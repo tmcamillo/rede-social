@@ -4,26 +4,77 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Pokemon</title>
+  <title>Papo de Biritas</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.css">
   <link href="https://fonts.googleapis.com/css?family=Niramit|Pacifico" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="style.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 
 <body>
-
   <nav class="menu-top">
 
   </nav>
 
   <main>
+    <div class="col-md-4">
+      <form>
+        <div class="form-group">
+          <label for="exampleInputEmail1">E-mail</label>
+          <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+            placeholder="Digite seu e-mail">
+          <small id="emailHelp" class="form-text text-muted">Suas informações são confidenciais.</small>
+        </div>
+        <div class="form-group">
+          <label for="exampleInputPassword1">Senha</label>
+          <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Digite sua Senha">
+        </div>
+        <!-- <div class="form-group form-check">
+          <input type="checkbox" class="form-check-input" id="exampleCheck1">
+          <label class="form-check-label" for="exampleCheck1">Check me out</label>
+        </div> -->
+        <button id="exampleEnterBtn" type="submit" class="btn btn-primary btn-block">Entrar</button>
+      </form>
+    </div>
+    <div class="login-social-media">
+    <p class="text-center"><small>-- ou --</small></p>
 
+    <p class="text-center">
+        <button class="btn btn-lg btn-default" id="authGitHubButton"><i class="fa fa-github fa-2x"></i></button>
+        <button class="btn btn-lg btn-primary" id="authFacebookButton"><i class="fa fa-facebook fa-2x"></i></button>
+        <button class="btn btn-lg btn-info" id="authTwitterButton"><i class="fa fa-twitter fa-2x"></i></button>
+        <button class="btn btn-lg btn-danger" id="authGoogleButton"><i class="fa fa-google fa-2x"></i></button>
+        <button class="btn btn-lg btn-warning" id="authAnonymouslyButton"><i class="fa fa-user fa-2x"></i></button>
+    </p>
+</div>
   </main>
 
-  <script src="app.js"></script>
-  <script src="main.js"></script>
-
   <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/5.8.4/firebase-auth.js"></script>
+  <script>
+    var config = {
+      apiKey: "AIzaSyCY0vRXRq3ZgjcWmP6oc73VtGrP97RsALA",
+      authDomain: "redesocial-4b829.firebaseapp.com",
+      databaseURL: "https://redesocial-4b829.firebaseio.com",
+      projectId: "redesocial-4b829",
+      storageBucket: "redesocial-4b829.appspot.com",
+      messagingSenderId: "781389421197"
+    };
+    firebase.initializeApp(config);
+  </script>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
+    <script src="app.js"></script>
+    <script src="auth.js"></script>
+    <script src="main.js"></script>
+    <script src="style.css"></script>
 </body>
 
 </html>
