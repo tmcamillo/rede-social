@@ -1,5 +1,4 @@
 $(document).ready(function () {
-    // let authFacebookButton = $("#authFacebookButton")
 
     $("#exampleEnterBtn").click(function(event) {
         event.preventDefault();
@@ -9,7 +8,7 @@ $(document).ready(function () {
 
         firebase.auth().signInWithEmailAndPassword(email, password)
             .then(function() {
-                window.location = "home.html"
+                window.location = "home.html";
             })
             .catch(function (error) {
 
@@ -29,7 +28,7 @@ $(document).ready(function () {
 
         firebase.auth().createUserWithEmailAndPassword(email, password)
             .then(function() {
-                window.location = "home.html"
+                window.location = "home.html";
             })
             .catch(function (error){
 
