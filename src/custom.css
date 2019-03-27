@@ -1,0 +1,34 @@
+.class-center{
+    display: flex;
+    min-height: 80vh;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.menu-background{
+    background: url("../assets/1xbg-pdbimg.png");
+    height: 10em;
+}
+.logo-div{
+    justify-content: center;
+    display: flex;
+}
+.img-logo{
+    margin: 10vh 0 0 0;
+    height: 25vh;
+    width: auto;
+}
+.purple{
+    background-color: #83579B;
+    border: none;
+}
+.bluish{
+    background-color: #6ABDBC;
+    border: none;
+}
+.purple-ic{
+    color: #83579B;
+}
