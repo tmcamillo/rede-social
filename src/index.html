@@ -4,7 +4,7 @@
 <head>
 
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>Cadastro - Papo de Biritas</title>
   <link rel="stylesheet" type="text/css" href="custom.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.css">
@@ -40,9 +40,9 @@
           <input type="checkbox" class="form-check-input" id="exampleCheck1">
           <label class="form-check-label" for="exampleCheck1">Check me out</label>
         </div> -->
-        <button id="exampleEnterBtn" type="submit" class="purple btn btn-primary btn-block purple">Entrar</button>
+        <button id="exampleEnterBtn" type="submit" class="btn-primary btn btn-block">Entrar</button>
         <!-- Botão que chama modal -->
-        <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#exampleModalLong">
+        <button type="button" class="btn-secondary btn btn-block" data-toggle="modal" data-target="#exampleModalLong">
           Não tem conta? Inscreva-se!
         </button>
 
@@ -63,7 +63,7 @@
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLongTitle">Cadastro</h5>
+            <h5 class="modal-title text-center" id="exampleModalLongTitle">Preencha os dados abaixo e faça parte da nossa plataforma! ;)</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
@@ -72,7 +72,7 @@
 
                   <div class="container">
                       <input type="file" class="inputfile" id="photoFile">
-                      <label id="upload_btn" class for="photoFile"><img src="../assets/user-circle-solid.svg" alt="Avatar" class="image">
+                      <label id="upload_btn" class for="photoFile"><i class="fas fa-user-circle fa-6x image"></i>
                       <div class="overlay">
                         <div class="text">Carregar foto</div>
                       </div>
@@ -82,28 +82,23 @@
             <form>
 
               <div class="form-group">
-                <label for="exampleFormControlInput1">Nome *</label>
-                <input type="text" class="form-control" id="nameInput" placeholder="Digite seu nome">
+                <input type="text" class="form-control" id="nameInput" placeholder="Nome">
               </div>
 
               <div class="form-group">
-                <label for="exampleFormControlInput1">Sobrenome *</label>
-                <input type="text" class="form-control" id="lastNameInput" placeholder="Digite seu sobrenome">
+                <input type="text" class="form-control" id="lastNameInput" placeholder="Sobrenome">
               </div>
 
               <div class="form-group">
-                <label for="exampleFormControlInput1">E-mail *</label>
-                <input type="email" class="form-control" id="emailInput" placeholder="nome@exemplo.com">
+                <input type="tel" class="form-control" id="phoneInput" placeholder="Telefone">
               </div>
 
               <div class="form-group">
-                <label for="exampleFormControlInput1">Telefone *</label>
-                <input type="tel" class="form-control" id="phoneInput" placeholder="(xx) xxxx-xxxx">
+                <input type="email" class="form-control" id="emailInput" placeholder="E-mail *">
               </div>
 
               <div class="form-group">
-                <label for="exampleFormControlInput1">Senha *</label>
-                <input type="password" class="form-control" id="passwordInput" placeholder="Digite sua senha">
+                <input type="password" class="form-control" id="passwordInput" placeholder="Digite sua senha *">
               </div>
 
               <!-- <div class="form-group">
