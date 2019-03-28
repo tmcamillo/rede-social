@@ -6,10 +6,12 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Cadastro - Papo de Biritas</title>
-  <link rel="stylesheet" type="text/css" href="style.css">
+  <link rel="stylesheet" type="text/css" href="custom.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.css">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+    integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
   <script src="https://www.gstatic.com/firebasejs/5.8.4/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/5.8.4/firebase-auth.js"></script>
   <script src="https://www.gstatic.com/firebasejs/5.8.4/firebase-database.js"></script>
@@ -19,7 +21,8 @@
 <body>
   <nav class="menu-top">
     <div class="menu-background">
-      <figure class="logo-div"><img  class="img-logo" src="../assets/logo-round.png" alt="Logo Papo de Biritas" width=156 height=156></figure>
+      <figure class="logo-div"><img class="img-logo" src="../assets/logo-round.png" alt="Logo Papo de Biritas" width=156
+          height=156></figure>
     </div>
   </nav>
 
@@ -38,7 +41,11 @@
           <label class="form-check-label" for="exampleCheck1">Check me out</label>
         </div> -->
         <button id="exampleEnterBtn" type="submit" class="purple btn btn-primary btn-block purple">Entrar</button>
-        <button id="sign-up-btn" type="button" class="bluish btn btn-primary btn-block" data-toggle="modal" data-target=".bd-example-modal-lg">Não tem conta? Inscreva-se!</button>
+        <!-- Botão que chama modal -->
+        <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#exampleModalLong">
+          Não tem conta? Inscreva-se!
+        </button>
+
       </form>
     </div>
     <div class="login-social-media">
@@ -50,56 +57,68 @@
       </p>
     </div>
 
-    <!-- Abrir modal de inscreva-se -->
-
-    <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
       aria-hidden="true">
-      <div class="modal-dialog modal-lg">
+      <div class="modal-dialog" role="document">
         <div class="modal-content">
-          <form>
-            <div class="form-group col-md-4">
-              <label for="exampleFormControlFile1">Escolha sua foto de perfil</label>
-              <input type="file" class="form-control-file" id="photoFile">
-            </div>
-          </form>
-          <form>
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle">Cadastro</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
 
-            <div class="form-group">
-              <label for="exampleFormControlInput1">Nome *</label>
-              <input type="text" class="form-control" id="nameInput" placeholder="Digite seu nome">
-            </div>
+                  <div class="container">
+                      <input type="file" class="inputfile" id="photoFile">
+                      <label id="upload_btn" class for="photoFile"><img src="../assets/user-circle-solid.svg" alt="Avatar" class="image">
+                      <div class="overlay">
+                        <div class="text">Carregar foto</div>
+                      </div>
+                    </label>
+                    </div>
 
-            <div class="form-group">
-              <label for="exampleFormControlInput1">Sobrenome *</label>
-              <input type="text" class="form-control" id="lastNameInput" placeholder="Digite seu sobrenome">
-            </div>
+            <form>
 
-            <div class="form-group">
-              <label for="exampleFormControlInput1">E-mail *</label>
-              <input type="email" class="form-control" id="emailInput" placeholder="nome@exemplo.com">
-            </div>
+              <div class="form-group">
+                <label for="exampleFormControlInput1">Nome *</label>
+                <input type="text" class="form-control" id="nameInput" placeholder="Digite seu nome">
+              </div>
 
-            <div class="form-group">
-              <label for="exampleFormControlInput1">Telefone *</label>
-              <input type="tel" class="form-control" id="phoneInput" placeholder="(xx) xxxx-xxxx">
-            </div>
+              <div class="form-group">
+                <label for="exampleFormControlInput1">Sobrenome *</label>
+                <input type="text" class="form-control" id="lastNameInput" placeholder="Digite seu sobrenome">
+              </div>
 
-            <div class="form-group">
-              <label for="exampleFormControlInput1">Senha *</label>
-              <input type="password" class="form-control" id="passwordInput" placeholder="Digite sua senha">
-            </div>
+              <div class="form-group">
+                <label for="exampleFormControlInput1">E-mail *</label>
+                <input type="email" class="form-control" id="emailInput" placeholder="nome@exemplo.com">
+              </div>
 
-            <div class="form-group">
-              <label for="exampleFormControlInput1">Confirmar Senha *</label>
-              <input type="password" class="form-control" id="confirmPasswordInput" placeholder="Confirme a sua senha">
-            </div>
+              <div class="form-group">
+                <label for="exampleFormControlInput1">Telefone *</label>
+                <input type="tel" class="form-control" id="phoneInput" placeholder="(xx) xxxx-xxxx">
+              </div>
 
-            <p class="text-center"><small>* campos obrigatórios</small></p>
+              <div class="form-group">
+                <label for="exampleFormControlInput1">Senha *</label>
+                <input type="password" class="form-control" id="passwordInput" placeholder="Digite sua senha">
+              </div>
 
-            <button id="btnRegister" type="submit" class="btn btn-primary btn-block">Cadastrar</button>
-
-          </form>
+              <!-- <div class="form-group">
+                <label for="exampleFormControlInput1">Confirmar Senha *</label>
+                <input type="password" class="form-control" id="confirmPasswordInput"
+                  placeholder="Confirme a sua senha">
+              </div> -->
+              <div>
+                <p class="text-center"><small>* campos obrigatórios</small></p>
+                <button id="btnRegister" type="submit" class="btn btn-primary btn-block">Cadastrar</button>
+            </form>
+          </div>
         </div>
+      </div>
+    </div>
   </main>
 
   <script src="https://code.jquery.com/jquery-3.3.1.min.js"
