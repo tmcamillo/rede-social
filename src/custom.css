@@ -1,0 +1,77 @@
+.class-center{
+  display: flex;
+  min-height: 80vh;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.inputfile {
+	width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
+}
+.menu-background{
+  background: url("../assets/1xbg-pdbimg.png");
+  height: 10em;
+}
+.logo-div{
+  justify-content: center;
+  display: flex;
+}
+.img-logo{
+  margin: 10vh 0 0 0;
+  height: 25vh;
+  width: auto;
+}
+.purple-ic{
+  color: #83579B;
+}
+.modal{
+  color: #6ABEBC;
+}
+.container{
+  display: flex;
+  justify-content: center;
+  margin: 0 0 20px 0;
+}
+.image {
+  position: relative;
+  display: block;
+  color: #6ABEBC;
+}
+  
+.overlay {
+  position: absolute;
+  top: 17px;
+  bottom: 0;
+  left: 202px;
+  right: 0;
+  width: 95px;
+  height: 94px;
+  border-radius: 50%;
+  opacity: 0;
+  transition: .5s ease;
+  background-color: #6ABEBC;
+}
+  
+.container:hover .overlay {
+  opacity: 1;
+}
+  
+.text {
+  color: white;
+  font-size: 15px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  text-align: center;
+}

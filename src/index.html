@@ -4,12 +4,14 @@
 <head>
 
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>Cadastro - Papo de Biritas</title>
-  <link rel="stylesheet" type="text/css" href="style.css">
+  <link rel="stylesheet" type="text/css" href="custom.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.css">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+    integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
   <script src="https://www.gstatic.com/firebasejs/5.8.4/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/5.8.4/firebase-auth.js"></script>
   <script src="https://www.gstatic.com/firebasejs/5.8.4/firebase-database.js"></script>
@@ -18,6 +20,10 @@
 
 <body>
   <nav class="menu-top">
+    <div class="menu-background">
+      <figure class="logo-div"><img class="img-logo" src="../assets/logo-round.png" alt="Logo Papo de Biritas" width=156
+          height=156></figure>
+    </div>
   </nav>
 
   <main class="class-center">
@@ -26,7 +32,6 @@
         <div class="form-group">
           <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
             placeholder="E-mail">
-          <small id="emailHelp" class="form-text text-muted">Suas informações são confidenciais.</small>
         </div>
         <div class="form-group">
           <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Senha">
@@ -35,68 +40,80 @@
           <input type="checkbox" class="form-check-input" id="exampleCheck1">
           <label class="form-check-label" for="exampleCheck1">Check me out</label>
         </div> -->
-        <button id="exampleEnterBtn" type="submit" class="btn btn-primary btn-block">Entrar</button>
-        <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target=".bd-example-modal-lg">Não tem conta? Inscreva-se!</button>
+        <button id="exampleEnterBtn" type="submit" class="btn-primary btn btn-block">Entrar</button>
+        <!-- Botão que chama modal -->
+        <button type="button" class="btn-secondary btn btn-block" data-toggle="modal" data-target="#exampleModalLong">
+          Não tem conta? Inscreva-se!
+        </button>
+
       </form>
     </div>
     <div class="login-social-media">
-      <p class="text-center"><small>-- ou --</small></p>
+      <br>
+      <p class="text-center">ou continue com:</p>
 
       <p class="text-center">
-        <button class="btn btn-lg btn-primary" id="authFacebookButton"><i class="fa fa-facebook fa-2x"></i></button>
+        <i id="authFacebookButton" class="fab fa-facebook fa-3x purple-ic"></i>
       </p>
     </div>
 
-    <!-- Abrir modal de inscreva-se -->
-
-    <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
       aria-hidden="true">
-      <div class="modal-dialog modal-lg">
+      <div class="modal-dialog" role="document">
         <div class="modal-content">
-          <form>
-            <div class="form-group col-md-4">
-              <label for="exampleFormControlFile1">Escolha sua foto de perfil</label>
-              <input type="file" class="form-control-file" id="photoFile">
-            </div>
-          </form>
-          <form>
+          <div class="modal-header">
+            <h5 class="modal-title text-center" id="exampleModalLongTitle">Preencha os dados abaixo e faça parte da nossa plataforma! ;)</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
 
-            <div class="form-group">
-              <label for="exampleFormControlInput1">Nome *</label>
-              <input type="text" class="form-control" id="nameInput" placeholder="Digite seu nome">
-            </div>
+                  <div class="container">
+                      <input type="file" class="inputfile" id="photoFile">
+                      <label id="upload_btn" class for="photoFile"><i class="fas fa-user-circle fa-6x image"></i>
+                      <div class="overlay">
+                        <div class="text">Carregar foto</div>
+                      </div>
+                    </label>
+                    </div>
 
-            <div class="form-group">
-              <label for="exampleFormControlInput1">Sobrenome *</label>
-              <input type="text" class="form-control" id="lastNameInput" placeholder="Digite seu sobrenome">
-            </div>
+            <form>
 
-            <div class="form-group">
-              <label for="exampleFormControlInput1">E-mail *</label>
-              <input type="email" class="form-control" id="emailInput" placeholder="nome@exemplo.com">
-            </div>
+              <div class="form-group">
+                <input type="text" class="form-control" id="nameInput" placeholder="Nome">
+              </div>
 
-            <div class="form-group">
-              <label for="exampleFormControlInput1">Telefone *</label>
-              <input type="tel" class="form-control" id="phoneInput" placeholder="(xx) xxxx-xxxx">
-            </div>
+              <div class="form-group">
+                <input type="text" class="form-control" id="lastNameInput" placeholder="Sobrenome">
+              </div>
 
-            <div class="form-group">
-              <label for="exampleFormControlInput1">Senha *</label>
-              <input type="password" class="form-control" id="passwordInput" placeholder="Digite sua senha">
-            </div>
+              <div class="form-group">
+                <input type="tel" class="form-control" id="phoneInput" placeholder="Telefone">
+              </div>
 
-            <div class="form-group">
-              <label for="exampleFormControlInput1">Confirmar Senha *</label>
-              <input type="password" class="form-control" id="confirmPasswordInput" placeholder="Confirme a sua senha">
-            </div>
+              <div class="form-group">
+                <input type="email" class="form-control" id="emailInput" placeholder="E-mail *">
+              </div>
 
-            <p class="text-center"><small>* campos obrigatórios</small></p>
+              <div class="form-group">
+                <input type="password" class="form-control" id="passwordInput" placeholder="Digite sua senha *">
+              </div>
 
-            <button id="btnRegister" type="submit" class="btn btn-primary btn-block">Cadastrar</button>
-
-          </form>
+              <!-- <div class="form-group">
+                <label for="exampleFormControlInput1">Confirmar Senha *</label>
+                <input type="password" class="form-control" id="confirmPasswordInput"
+                  placeholder="Confirme a sua senha">
+              </div> -->
+              <div>
+                <p class="text-center"><small>* campos obrigatórios</small></p>
+                <button id="btnRegister" type="submit" class="btn btn-primary btn-block">Cadastrar</button>
+            </form>
+          </div>
         </div>
+      </div>
+    </div>
   </main>
 
   <script src="https://code.jquery.com/jquery-3.3.1.min.js"
