@@ -45,7 +45,9 @@
   display: block;
   color: #6ABEBC;
 }
-  
+.logo-nav{
+	width: 15vw;
+}
 .overlay {
   position: absolute;
   top: 17px;
@@ -74,4 +76,14 @@
   -ms-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
   text-align: center;
+}
+.comment{
+	margin: none;
+	padding: 0;
+}
+#container-comment{
+	margin: 3vh 0 0 0;
+}
+#lower-space-comment{
+	margin: 10px;
 }
