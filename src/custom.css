@@ -32,6 +32,25 @@
 .purple-ic{
   color: #83579B;
 }
+.purple-ic:hover{
+  color: #764D8D;
+}
+.btn-secondary{
+  background-color: #6ABEBC;
+  border: none;
+}
+.btn-secondary:hover{
+  background-color: #5BA7A5;
+  border: none;
+}
+.btn-primary{
+  background-color: #83579B;
+  border: none;
+}
+.btn-primary:hover{
+  background-color: #764D8D;
+  border: none;
+}
 .modal{
   color: #6ABEBC;
 }
