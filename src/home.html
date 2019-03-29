@@ -2,16 +2,15 @@
 <html lang="en">
 
 <head>
-
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<title>Cadastro - Papo de Biritas</title>
-	<link rel="stylesheet" type="text/css" href="custom.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.css">
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
 		integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
 		integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+	<link rel="stylesheet" type="text/css" href="custom.css">
 	<script src="https://www.gstatic.com/firebasejs/5.8.4/firebase-app.js"></script>
 	<script src="https://www.gstatic.com/firebasejs/5.8.4/firebase-auth.js"></script>
 	<script src="https://www.gstatic.com/firebasejs/5.8.4/firebase-database.js"></script>
@@ -19,28 +18,33 @@
 </head>
 
 <body>
+
 	<header class="container-fluid">
-		<nav class="navbar navbar-light bg-light">
-			<a class="logo"><img class="logo-nav" src="../assets/LOGONEGATVO.png"></a>
+
+		<nav class="navbar navbar-light bg-purple">
+
+			<a class="logo col-md-6 d-flex justify-content-center"><img class="logo-nav" src="../assets/LOGONEGATVO.png"></a>
+
+			<div class="col-md-6 d-flex justify-content-center">
 			<form class="form-inline">
-				<input class="form-control mr-sm-2" type="search" placeholder="Pesquisar" aria-label="Pesquisar">
-				<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Pesquisar</button>
-				<i class="fas fa-user-circle fa-4x"></i>
+					<i class="fas fa-user-circle text-white"></i>
 			</form>
+				<i class="fas fa-user-circle text-white ml-5"></i>
+			</div>
 		</nav>
+
 	</header>
 
-	<main class="container-fluid col-6">
-		<form id="container-comment" class="container-fluid">
+	<main class="container-fluid bg-purple p-3">
 
-			<div class="form-row d-flex">
+		<form id="container-comment" class="container-fluid col-md-6 bg-light rounded p-3">
+
+			<div class="form-row d-flex justify-content-around mb-2">
 				<p class="col-md-8">Qual o tipo de bebida?</p>
-				<div id="icons-comment" class="col-md-4 d-flex justify-content-between">
 					<i class="fas fa-cocktail fa-2x"></i>
 					<i class="fas fa-wine-glass-alt fa-2x"></i>
 					<i class="fas fa-beer fa-2x"></i>
 				</div>
-			</div>
 
 			<div class="form-row">
 				<div class="form-group col-9">
@@ -51,25 +55,29 @@
 				</div>
 			</div>
 
-			<textarea id="comment" type="text" class="form-control" rows="4" placeholder="Conte-nos o que achou"></textarea>
+			<textarea id="comment" type="text" class="form-control form-group" rows="4"
+				placeholder="Conte-nos o que achou"></textarea>
 
-			<div id="lower-space-comment" class="form-row form-group d-flex align-items-center">
+			<div id="b-space-comment" class="form-row d-flex">
 				<div id="stars-comment" class="form-row col-8">
-					<i id="star-one" class="far fa-star"></i>
+					<!-- <p class="pl-2 pr-2">Dê uma nota: </p> -->
+					<div id="stars-ic">
+					<i id="star-one" class="ml-3 far fa-star"></i>
 					<i id="star-two" class="far fa-star"></i>
 					<i id="star-tree" class="far fa-star"></i>
 					<i id="star-four" class="far fa-star"></i>
 					<i id="star-five" class="far fa-star"></i>
+					</div>
 				</div>
 
-				<div class="custom-control custom-checkbox col-4">
+				<div class="custom-control custom-checkbox col-4 text-right">
 					<input type="checkbox" class="custom-control-input" id="customCheck1">
-					<label class="custom-control-label" for="customCheck1">Post Privado</label>
+					<label class="custom-control-label " for="customCheck1">Privado</label>
 				</div>
 			</div>
 		</form>
 
-		<div id="timeline">
+		<div id="timeline" class="bg-pdb">
 
 		</div>
 	</main>
