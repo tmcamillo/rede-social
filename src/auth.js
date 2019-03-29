@@ -6,15 +6,16 @@ $(document).ready(function () {
         let email = $("#exampleInputEmail1").val();
         let password = $("#exampleInputPassword1").val();
 
-        firebase.auth().signInWithEmailAndPassword(email, password)
-            .then(function() {
-                window.location = "home.html";
+        firebase.auth().createUserWithEmailAndPassword(txtEmail, txtPassword)
+            .then(function(){
+            window.location = "home.html";
+            writeUserData(userId, imageUrl, name, lastName, email, phone, password);
             })
+        
             .catch(function (error) {
-
-                var errorCode = error.code;
-                var errorMessage = error.message;
-
+                let errorCode = error.code;
+                let errorMessage = error.message;
+                
                 console.log(errorCode)
                 console.log(errorMessage)
             })
