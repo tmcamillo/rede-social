@@ -32,20 +32,41 @@
 .purple-ic{
   color: #83579B;
 }
+.purple-ic:hover{
+  color: #764D8D;
+}
+.btn-secondary{
+  background-color: #6ABEBC;
+  border: none;
+}
+.btn-secondary:hover{
+  background-color: #5BA7A5;
+  border: none;
+}
+.btn-primary{
+  background-color: #83579B;
+  border: none;
+}
+.btn-primary:hover{
+  background-color: #764D8D;
+  border: none;
+}
+.bg-purple{
+  background-color: #764D8D;
+}
 .modal{
   color: #6ABEBC;
-}
-.container{
-  display: flex;
-  justify-content: center;
-  margin: 0 0 20px 0;
 }
 .image {
   position: relative;
   display: block;
   color: #6ABEBC;
 }
-  
+
+.logo-nav{
+  width: 9em;
+  height: 4em;
+}
 .overlay {
   position: absolute;
   top: 17px;
@@ -74,4 +95,20 @@
   -ms-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
   text-align: center;
+}
+.comment{
+	margin: none;
+	padding: 0;
+}
+.container-fluid{
+  padding: 0;
+}
+body{
+  background: url("../assets/bg-yellow-1x.png")
+}
+.fa-star{
+  font-size: 1.3em;
+}
+.fa-user-circle{
+  font-size: 3em;
 }
