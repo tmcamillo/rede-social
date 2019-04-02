@@ -6,18 +6,17 @@ $(document).ready(function () {
         let email = $("#exampleInputEmail1").val();
         let password = $("#exampleInputPassword1").val();
 
-        firebase.auth().createUserWithEmailAndPassword(txtEmail, txtPassword)
-            .then(function(){
-            window.location = "home.html";
-            writeUserData(userId, imageUrl, name, lastName, email, phone, password);
+        firebase.auth().signInWithEmailAndPassword(email, password)
+            .then(function(response){
+                window.location = "home.html?id=" + response.user.uid;
+                writeUserData(userId, imageUrl, name, lastName, email, phone, password);
             })
         
             .catch(function (error) {
                 let errorCode = error.code;
                 let errorMessage = error.message;
-                
-                console.log(errorCode)
-                console.log(errorMessage)
+                alert (errorCode, errorMessage);
+            
             })
     });
 
@@ -28,8 +27,8 @@ $(document).ready(function () {
         let password = $("#passwordInput").val();
 
         firebase.auth().createUserWithEmailAndPassword(email, password)
-            .then(function() {
-                window.location = "home.html";
+            .then(function(response) {
+                window.location = "home.html?id=" + response.user.uid;
             })
             .catch(function (error){
 
