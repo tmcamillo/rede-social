@@ -11,9 +11,11 @@
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
 		integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 	<link rel="stylesheet" type="text/css" href="custom.css">
+	
 	<script src="https://www.gstatic.com/firebasejs/5.8.4/firebase-app.js"></script>
-	<script src="https://www.gstatic.com/firebasejs/5.8.4/firebase-auth.js"></script>
+	<!-- <script src="https://www.gstatic.com/firebasejs/5.8.4/firebase-auth.js"></script> -->
 	<script src="https://www.gstatic.com/firebasejs/5.8.4/firebase-database.js"></script>
+	
 	<script src="config.js"></script>
 </head>
 
@@ -60,28 +62,29 @@
 
 			<div id="b-space-comment" class="form-row d-flex">
 				<div id="stars-comment" class="form-row col-8">
-					<!-- <p class="pl-2 pr-2">Dê uma nota: </p> -->
 					<div id="stars-ic">
-					<i id="star-one" class="ml-3 far fa-star"></i>
-					<i id="star-two" class="far fa-star"></i>
-					<i id="star-tree" class="far fa-star"></i>
-					<i id="star-four" class="far fa-star"></i>
-					<i id="star-five" class="far fa-star"></i>
+						<i id="star-one" class="ml-3 far fa-star"></i>
+						<i id="star-two" class="far fa-star"></i>
+						<i id="star-tree" class="far fa-star"></i>
+						<i id="star-four" class="far fa-star"></i>
+						<i id="star-five" class="far fa-star"></i>
 					</div>
 				</div>
 
 				<div class="custom-control custom-checkbox col-4 text-right">
 					<input type="checkbox" class="custom-control-input" id="customCheck1">
 					<label class="custom-control-label " for="customCheck1">Privado</label>
+					<button type="submit" class="btn btn-primary add-post">Postar</button>
 				</div>
 			</div>
 		</form>
-
-		<div id="timeline" class="bg-pdb">
-
-		</div>
 	</main>
-
+	
+	<section>
+		<div id="timeline" class="bg-pdb">
+			<ul class="post-list"></ul>
+		</div>
+	</section>
 	<script src="https://code.jquery.com/jquery-3.3.1.min.js"
 		integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
@@ -90,6 +93,8 @@
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
 		integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
 		crossorigin="anonymous"></script>
+	
+	<script src="database.js"></script>
 	<script src="auth.js"></script>
 	<script src="fb-auth.js"></script>
 	<script src="main.js"></script>

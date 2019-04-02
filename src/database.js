@@ -1,5 +1,5 @@
 const database = firebase.database();
-// const userId = firebase.auth().currentUser.uid;
+// const USER_ID = window.location.search.match(/\?id=(.*)/)[1];
 const photoFile = document.getElementById('photoFile');
 const nameInput = document.getElementById('nameInput');
 const lastNameInput = document.getElementById("lastNameInput");
@@ -19,28 +19,34 @@ function writeUserData(userId, imageUrl, name, lastName, email, phone, password)
 }
 
 $(document).ready(function(){
-    database.ref('/post/').once('value')
+
+    database.ref("/post/").once("value")
     .then(function(snapshot) {
         snapshot.forEach(function(childSnapshot) {
             let childkey = childSnapshot.key;
             let childData = childSnapshot.val();
-            $(".post-list").append(`<li>${childData.brand}<br>${childData.review}</li>`);
+            $(".post-list").append(`<li>${childData.label}<br>${childData.review}</li>`);
             
         })
     });
+
     
+
     $(".add-post").click(function(event) {
         event.preventDefault();
-        let newBrand = $(".brand-input").val();
+        let newBrand = $("#label").val();
         let brandUpperCase = newBrand.toUpperCase();
-        let newPost =  $(".review-input").val();
+        let newPost =  $("#comment").val();
+        let alcohoolPer = $("#alcohol").val();
+
         
-        database.ref("post").push({
-            brand: brandUpperCase,
-            review: newPost
+        database.ref("post/").push({
+            label: brandUpperCase,
+            review: newPost,
+            alcohoolPer: alcohoolPer
         });
         
-        $(".post-list").append(`<li>${brandUpperCase}<br>${newPost}</li>`);
+        $(".post-list").append(`<li>${brandUpperCase}<br>${newPost}<br>${alcohoolPer}%</li>`);
     });
 
 });
