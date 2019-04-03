@@ -1,3 +1,6 @@
+ol{
+  list-style: none;
+}
 .class-center{
   display: flex;
   min-height: 80vh;
@@ -28,11 +31,17 @@
   height: 10em;
   width: auto;
 }
+.purple{
+  color: #83579B;
+}
 .purple-ic{
   color: #83579B;
 }
 .purple-ic:hover{
   color: #764D8D;
+}
+.bluish{
+  color: #6ABEBC;
 }
 .btn-secondary{
   background-color: #6ABEBC;
@@ -53,8 +62,8 @@
 .bg-purple{
   background-color: #764D8D;
 }
-.modal{
-  color: #6ABEBC;
+.bg-yellow{
+  background-color: #FCD858;
 }
 .image {
   position: relative;
@@ -102,7 +111,7 @@
 .container-fluid{
   padding: 0;
 }
-body{
+.bg-pdb{
   background: url("../assets/bg-yellow-1x.png")
 }
 .fa-star{
@@ -110,4 +119,29 @@ body{
 }
 .fa-user-circle{
   font-size: 3em;
+}
+.f-14{
+  font-size: 1.4em;
+}
+.f-17{
+  font-size: 1.7em;
+}
+
+.rating-stars ol {
+  list-style-type:none;
+  padding:0;
+  
+  -moz-user-select:none;
+  -webkit-user-select:none;
+}
+
+.rating-stars ol > li.star {
+  display:inline-block;
+  
+}
+.rating-stars ol > li.star.hover > i.fa {
+  color:#FFCC36;
+}
+.rating-stars ol > li.star.selected > i.fa {
+  color:#FF912C;
 }

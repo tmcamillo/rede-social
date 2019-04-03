@@ -11,11 +11,11 @@
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
 		integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 	<link rel="stylesheet" type="text/css" href="custom.css">
-	
+
 	<script src="https://www.gstatic.com/firebasejs/5.8.4/firebase-app.js"></script>
 	<script src="https://www.gstatic.com/firebasejs/5.8.4/firebase-auth.js"></script>
 	<script src="https://www.gstatic.com/firebasejs/5.8.4/firebase-database.js"></script>
-	
+
 	<script src="config.js"></script>
 </head>
 
@@ -25,28 +25,29 @@
 
 		<nav class="navbar navbar-light bg-purple">
 
-			<a class="logo col-md-6 d-flex justify-content-center"><img class="logo-nav" src="../assets/LOGONEGATVO.png"></a>
+			<a class="logo col-md-6 d-flex justify-content-center"><img class="logo-nav"
+					src="../assets/LOGONEGATVO.png"></a>
 
 			<div class="col-md-6 d-flex justify-content-center">
-			<form class="form-inline">
+				<form class="form-inline">
 					<i class="fas fa-user-circle text-white"></i>
-			</form>
+				</form>
 				<i class="fas fa-user-circle text-white ml-5"></i>
 			</div>
 		</nav>
 
 	</header>
 
-	<main class="container-fluid bg-purple p-3 d-flex">
+	<main class="container-fluid bg-purple py-3">
 
 		<form id="container-comment" class="container-fluid col-md-6 bg-light rounded p-3">
 
 			<div class="form-row d-flex justify-content-around mb-2">
 				<p class="col-md-8">Qual o tipo de bebida?</p>
-					<i class="fas fa-cocktail fa-2x"></i>
-					<i class="fas fa-wine-glass-alt fa-2x"></i>
-					<i class="fas fa-beer fa-2x"></i>
-				</div>
+				<i class="fas fa-cocktail fa-2x"></i>
+				<i class="fas fa-wine-glass-alt fa-2x"></i>
+				<i class="fas fa-beer fa-2x"></i>
+			</div>
 
 			<div class="form-row">
 				<div class="form-group col-9">
@@ -60,29 +61,69 @@
 			<textarea id="comment" type="text" class="form-control form-group" rows="4"
 				placeholder="Conte-nos o que achou"></textarea>
 
-			<div id="b-space-comment" class="form-row d-flex">
+			<div id="b-space-comment" class="form-row mb-3">
 				<div id="stars-comment" class="form-row col-8">
-					<div id="stars-ic">
-						<i id="star-one" class="ml-3 far fa-star"></i>
-						<i id="star-two" class="far fa-star"></i>
-						<i id="star-tree" class="far fa-star"></i>
-						<i id="star-four" class="far fa-star"></i>
-						<i id="star-five" class="far fa-star"></i>
-					</div>
+						<div class='rating-stars text-center'>
+								<ol id='stars'>
+								  <li class='star' title='Poor' data-value='1'>
+									<i class='fa fa-star fa-fw'></i>
+								  </li>
+								  <li class='star' title='Fair' data-value='2'>
+									<i class='fa fa-star fa-fw'></i>
+								  </li>
+								  <li class='star' title='Good' data-value='3'>
+									<i class='fa fa-star fa-fw'></i>
+								  </li>
+								  <li class='star' title='Excellent' data-value='4'>
+									<i class='fa fa-star fa-fw'></i>
+								  </li>
+								  <li class='star' title='WOW!!!' data-value='5'>
+									<i class='fa fa-star fa-fw'></i>
+								  </li>
+								</ul>
+							  </div>
 				</div>
 
 				<div class="form-grouph custom-control custom-checkbox col-4 text-right">
 					<input type="checkbox" class="custom-control-input" id="customCheck1">
 					<label class="custom-control-label " for="customCheck1">Privado</label>
 				</div>
-				<button type="submit" class="btn btn-primary btn-block add-post">Postar</button>
 			</div>
+			<button type="submit" class="btn btn-primary btn-block add-post">Postar</button>
 		</form>
 	</main>
-	
-	<section>
-		<div id="timeline" class="bg-pdb">
-			<ul class="post-list"></ul>
+
+	<section class="bg-pdb">
+		<div id="timeline">
+			<ol class="post-list container-fluid py-3">
+				<li>
+					<div class="container-fluid col-md-6 bg-light rounded p-4">
+						<div class="d-flex">
+							<!-- <img src=""> -->
+							<a class="d-inline-flex mr-auto mb-3">
+								<i class="fas fa-user-circle fa-2x purple align-self-center"></i>
+								<div class="ml-2">
+									<span class="purple">
+										<strong class="f-14">Nome</strong>
+										<br>
+										<span class="small">${childData.time}</span>
+									</span>
+								</div>
+							</a>
+							<i class="edit far fa-edit bluish fa-2x mx-1"></i>
+							<i class="delete far fa-trash-alt bluish fa-2x mx-1"></i>
+						</div>
+						<div class="comment">
+							<h5>${childData.label}</h5>
+							<p>${childData.review}</p>
+						</div>
+						<div class="d-flex purple">
+							<div class="mr-auto">nota estrelas</div>
+							<span><strong>${childData.alcohoolPer}%</strong> icone</span>
+						</div>
+					</div>
+				</li>
+			</ol>
 		</div>
 	</section>
 	<script src="https://code.jquery.com/jquery-3.3.1.min.js"
@@ -93,12 +134,13 @@
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
 		integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
 		crossorigin="anonymous"></script>
-	
+
 	<script src="database.js"></script>
 	<script src="auth.js"></script>
 	<script src="fb-auth.js"></script>
 	<script src="main.js"></script>
 	<script src="app.js"></script>
+	<script src="rating.js"></script>
 </body>
 
 </html>
