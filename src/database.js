@@ -10,9 +10,6 @@ const USER_ID = window.location.search.match(/\?id=(.*)/)[1];
 // const passwordInput = document.getElementById("passwordInput");
 
 function writeUserData(email, password, uid) {
-    console.log(nameInput);
-    console.log(nameInput.value);
-    console.log(lastNameInput);
     database.ref("users/" + uid).set({
         name: nameInput.value,
         surname: lastNameInput.value,
@@ -22,9 +19,29 @@ function writeUserData(email, password, uid) {
     });
 }
 
+function time() {
+    let today = new Date();
+    let hour = today.getHours();
+    let min = today.getMinutes();
+    let day = today.getDay();
+    let month = today.getMonth();
+    let year = today.getFullYear();
+    let timeNow = leftZeros(hour) + ":" + leftZeros(min) + " - " + leftZeros(day) + "/" + leftZeros(month) + "/" + year;
+    return timeNow;
+};
+
+function leftZeros(number) {
+    if (number < 10) {
+        newNumber = '0' + number
+        return newNumber
+    } else {
+        return number
+    }
+};
+
 $(document).ready(function () {
 
-    database.ref("/post/").once("value")
+    database.ref("/post/" + USER_ID).once("value")
         .then(function (snapshot) {
             snapshot.forEach(function (childSnapshot) {
                 let childkey = childSnapshot.key;
@@ -40,7 +57,7 @@ $(document).ready(function () {
 									<span class="purple">
 										<strong class="f-14">Nome</strong>
 										<br>
-										<span class="small">${childData.time}</span>
+										<span class="small">${childData.postTime}</span>
 									</span>
 								</div>
 							</a>
@@ -63,21 +80,9 @@ $(document).ready(function () {
         });
 
 
-
-    $(".add-post").click(function (event) {
-    database.ref("/post/" + USER_ID).once("value")
-    .then(function(snapshot) {
-        snapshot.forEach(function(childSnapshot) {
-            let childkey = childSnapshot.key;
-            let childData = childSnapshot.val();
-            $(".post-list").append(`<li>${childData.label}<br>${childData.review}<br>${childData.alcohoolPer}%</li>`);
-            
-        })
-    });
-
     $(".add-post").click(function(event) {
-
         event.preventDefault();
+
         let newBrand = $("#label").val();
         let brandUpperCase = newBrand.toUpperCase();
         let newPost = $("#comment").val();
@@ -85,58 +90,19 @@ $(document).ready(function () {
         let postTime = time();
 
         database.ref("/post/" + USER_ID).push({
-
             label: brandUpperCase,
             review: newPost,
             alcohoolPer: alcohoolPer,
             postTime: postTime
         });
 
-        $(".post-list").append(`
-        <li>
+        $(".post-list").append(`<li>
         <div class="container-fluid col-md-6 bg-light rounded p-3">
         ${brandUpperCase}
         ${newPost}
-        ${alcohoolPer}%
-        </div>
-        </li>
-        `);
+        ${alcohoolPer}%</div></li>`);
     });
-
 
     $('#stars li').on('click', functionDasEstrelas);
-})
-
-function time() {
-    let today = new Date();
-    let hour = today.getHours();
-    let min = today.getMinutes();
-    let day = today.getDay();
-    let month = today.getMonth();
-    let year = today.getFullYear();
-    let timeNow = leftZeros(hour) + ":" + leftZeros(min) + " - " + leftZeros(day) + "/" + leftZeros(month) + "/" + year;
-    return timeNow;
-}
-
-function leftZeros(number) {
-	if (number < 10) {
-		newNumber = '0' + number
-		return newNumber
-	} else {
-		return number
-	}
-}
-
-function writeUserData(userId, imageUrl, name, lastName, email, phone, password) {
-    database.ref('users/' + userId).set({
-        profile_picture: imageUrl,
-        username: name,
-        userLastName: lastName,
-        email: email,
-        phone: phone,
-        pass: password
-    });
-}
-
 });
 
