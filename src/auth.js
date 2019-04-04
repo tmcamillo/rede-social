@@ -1,6 +1,12 @@
 $(document).ready(function () {
 
+    $('[data-toggle="tooltip"]').tooltip()
+    
+    $("#exampleEnterBtn").click(function(event) {
+
+
     $("#sign-in-btn").click(function(event) {
+
         event.preventDefault();
 
         let email = $("#email-input").val();
