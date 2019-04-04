@@ -113,3 +113,67 @@ body{
   font-size: 3em;
 }
 
+.purple{
+  color: #83579B;
+}
+.purple-ic{
+  color: #83579B;
+}
+.purple-ic:hover{
+  color: #764D8D;
+}
+.bluish{
+  color: #6ABEBC;
+}
+.btn-secondary{
+  background-color: #6ABEBC;
+  border: none;
+}
+.btn-secondary:hover{
+  background-color: #5BA7A5;
+  border: none;
+}
+.btn-primary{
+  background-color: #83579B;
+  border: none;
+}
+.btn-primary:hover{
+  background-color: #764D8D;
+  border: none;
+}
+.bg-purple{
+  background-color: #764D8D;
+}
+.bg-yellow{
+  background-color: #FCD858;
+}
+.bg-pdb{
+  background: url("../assets/bg-yellow-1x.png")
+}
+
+.rating-stars ol {
+  list-style-type:none;
+  padding:0;
+  
+  -moz-user-select:none;
+  -webkit-user-select:none;
+}
+.rating-stars ol > li.star {
+  display:inline-block; 
+}
+.rating-stars ol > li.star.hover > i.fa {
+  color:#FFCC36;
+}
+.rating-stars ol > li.star.selected > i.fa {
+  color:#FF912C;
+}
+.faded {
+  opacity: 1;
+  transition: opacity .25s ease-in-out;
+  -moz-transition: opacity .25s ease-in-out;
+  -webkit-transition: opacity .25s ease-in-out;
+  }
+
+.faded:hover {
+  opacity: 0;
+  }

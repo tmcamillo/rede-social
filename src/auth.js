@@ -1,5 +1,6 @@
 $(document).ready(function () {
-
+    $('[data-toggle="tooltip"]').tooltip()
+    
     $("#sign-in-btn").click(function(event) {
         event.preventDefault();
 
@@ -26,8 +27,9 @@ $(document).ready(function () {
 
         firebase.auth().createUserWithEmailAndPassword(email, password)
             .then(function(response) {
-                window.location = "home.html?id=" + response.user.uid;
                 writeUserData(email, password, response.user.uid);
+                window.location = "home.html?id=" + response.user.uid;
+                
             })
 
             .catch(function (error){
