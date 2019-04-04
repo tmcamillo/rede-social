@@ -7,6 +7,7 @@ const emailInput = document.getElementById("emailInput");
 const phoneInput = document.getElementById('phoneInput');
 const passwordInput = document.getElementById('passwordInput');
 
+
 $(document).ready(function () {
 
     database.ref("/post/").once("value")

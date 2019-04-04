@@ -8,16 +8,16 @@ $(document).ready(function () {
         let password = $("#exampleInputPassword1").val();
 
         firebase.auth().signInWithEmailAndPassword(email, password)
-            .then(function() {
-                window.location = "home.html";
+            .then(function(response){
+                window.location = "home.html?id=" + response.user.uid;
+                writeUserData(userId, imageUrl, name, lastName, email, phone, password);
             })
+        
             .catch(function (error) {
-
-                var errorCode = error.code;
-                var errorMessage = error.message;
-
-                console.log(errorCode)
-                console.log(errorMessage)
+                let errorCode = error.code;
+                let errorMessage = error.message;
+                alert (errorCode, errorMessage);
+            
             })
     });
 
@@ -28,8 +28,8 @@ $(document).ready(function () {
         let password = $("#passwordInput").val();
 
         firebase.auth().createUserWithEmailAndPassword(email, password)
-            .then(function() {
-                window.location = "home.html";
+            .then(function(response) {
+                window.location = "home.html?id=" + response.user.uid;
             })
             .catch(function (error){
 

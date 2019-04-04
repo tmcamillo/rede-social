@@ -12,11 +12,9 @@
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
 		integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 	<link rel="stylesheet" type="text/css" href="custom.css">
-
 	<script src="https://www.gstatic.com/firebasejs/5.8.4/firebase-app.js"></script>
-	<script src="https://www.gstatic.com/firebasejs/5.8.4/firebase-auth.js"></script>
+	<!-- <script src="https://www.gstatic.com/firebasejs/5.8.4/firebase-auth.js"></script> -->
 	<script src="https://www.gstatic.com/firebasejs/5.8.4/firebase-database.js"></script>
-
 	<script src="config.js"></script>
 </head>
 
@@ -38,8 +36,8 @@
 		</nav>
 
 	</header>
-
 	<main class="container-fluid bg-purple py-3">
+
 
 		<form id="container-comment" class="container-fluid col-md-6 bg-light rounded p-3">
 
@@ -61,7 +59,7 @@
 
 			<textarea id="comment" type="text" class="form-control form-group" rows="4"
 				placeholder="Conte-nos o que achou"></textarea>
-
+      
 			<div id="b-space-comment" class="form-row form-group ml-3">
 						<div class='rating-stars text-center mr-auto'>
 								<ol id='stars' class="m-0">
@@ -84,9 +82,11 @@
 							  </div>
 
 				<div class="form-grouph custom-control custom-checkbox mr-4">
+
 					<input type="checkbox" class="custom-control-input" id="customCheck1">
 					<label class="custom-control-label " for="customCheck1">Privado</label>
 				</div>
+				<button type="submit" class="btn btn-primary btn-block add-post">Postar</button>
 			</div>
 			<button type="submit" class="btn btn-primary btn-block add-post">Postar</button>
 		</form>
@@ -106,7 +106,7 @@
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
 		integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
 		crossorigin="anonymous"></script>
-
+  
 	<script src="database.js"></script>
 	<script src="auth.js"></script>
 	<script src="fb-auth.js"></script>
