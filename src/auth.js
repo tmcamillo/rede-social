@@ -1,9 +1,11 @@
 $(document).ready(function () {
-
     $('[data-toggle="tooltip"]').tooltip()
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> 22b6d53f0d505364049c5f43e37450c40dd03470
     $("#sign-in-btn").click(function(event) {
-
         event.preventDefault();
 
         let email = $("#email-input").val();
@@ -29,8 +31,9 @@ $(document).ready(function () {
 
         firebase.auth().createUserWithEmailAndPassword(email, password)
             .then(function(response) {
-                window.location = "home.html?id=" + response.user.uid;
                 writeUserData(email, password, response.user.uid);
+                window.location = "home.html?id=" + response.user.uid;
+                
             })
 
             .catch(function (error){
