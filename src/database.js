@@ -2,12 +2,12 @@ const database = firebase.database();
 const USER_ID = window.location.search.match(/\?id=(.*)/)[1];
 // console.log("w" + USER_ID);
 
-const photoFile = document.getElementById("photoFile");
-const nameInput = document.getElementById("nameInput");
-const lastNameInput = document.getElementById("lastNameInput");
-const emailInput = document.getElementById("emailInput");
-const phoneInput = document.getElementById("phoneInput");
-const passwordInput = document.getElementById("passwordInput");
+// const photoFile = document.getElementById("photoFile");
+// const nameInput = document.getElementById("nameInput");
+// const lastNameInput = document.getElementById("lastNameInput");
+// const emailInput = document.getElementById("emailInput");
+// const phoneInput = document.getElementById("phoneInput");
+// const passwordInput = document.getElementById("passwordInput");
 
 function writeUserData(email, password, uid) {
     console.log(nameInput);
@@ -23,9 +23,7 @@ function writeUserData(email, password, uid) {
 }
 
 $(document).ready(function(){
-    loadReview()
 
-function loadReview(){
     database.ref("/post/" + USER_ID).once("value")
     .then(function(snapshot) {
         snapshot.forEach(function(childSnapshot) {
@@ -65,7 +63,6 @@ function loadReview(){
             
         })
     });
-}
 
 
     $(".add-post").click(function(event) {
