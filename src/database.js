@@ -2,12 +2,12 @@ const database = firebase.database();
 const USER_ID = window.location.search.match(/\?id=(.*)/)[1];
 // console.log("w" + USER_ID);
 
-const photoFile = document.getElementById("photoFile");
-const nameInput = document.getElementById("nameInput");
-const lastNameInput = document.getElementById("lastNameInput");
-const emailInput = document.getElementById("emailInput");
-const phoneInput = document.getElementById("phoneInput");
-const passwordInput = document.getElementById("passwordInput");
+// const photoFile = document.getElementById("photoFile");
+// // const nameInput = document.getElementById("nameInput");
+// // const lastNameInput = document.getElementById("lastNameInput");
+// const emailInput = document.getElementById("emailInput");
+// const phoneInput = document.getElementById("phoneInput");
+// const passwordInput = document.getElementById("passwordInput");
 
 function writeUserData(email, password, uid) {
     console.log(nameInput);
@@ -48,7 +48,7 @@ function loadReview(){
 								</div>
 							</a>
 							<i class="edit far fa-edit bluish f-14 mx-1"></i>
-							<i class="delete far fa-trash-alt bluish f-14 mx-1"></i>
+							<i class="delete far fa-trash-alt bluish f-14 mx-1" data-post-id=${childkey}></i>
 						</div>
 						<div id="comment-review"">
 							<h5>${childData.label}</h5>
@@ -100,7 +100,7 @@ function loadReview(){
 								</div>
 							</a>
 							<i class="edit far fa-edit bluish f-14 mx-1"></i>
-							<i class="delete far fa-trash-alt bluish f-14 mx-1"></i>
+							<i class="delete far fa-trash-alt bluish f-14 mx-1" data-post-id=${childkey}></i>
 						</div>
 						<div id="comment-review">
 							<h5>${brandUpperCase}</h5>
