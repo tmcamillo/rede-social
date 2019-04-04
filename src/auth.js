@@ -1,5 +1,6 @@
 $(document).ready(function () {
-
+    $('[data-toggle="tooltip"]').tooltip()
+    
     $("#exampleEnterBtn").click(function(event) {
         event.preventDefault();
 
