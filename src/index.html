@@ -11,11 +11,13 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
   <link rel="stylesheet" type="text/css" href="custom.css">
+
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
     integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
   <script src="https://www.gstatic.com/firebasejs/5.8.4/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/5.8.4/firebase-auth.js"></script>
   <script src="https://www.gstatic.com/firebasejs/5.8.4/firebase-database.js"></script>
+
   <script src="config.js"></script>
 </head>
 
@@ -29,13 +31,13 @@
   <main class="class-center bg-yellow">
       <form class="col-md-4">
         <div class="form-group">
-          <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+          <input type="email" class="form-control" id="email-input" aria-describedby="emailHelp"
             placeholder="E-mail">
         </div>
         <div class="form-group">
-          <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Senha">
+          <input type="password" class="form-control" id="password-input" placeholder="Senha">
         </div>
-        <button id="exampleEnterBtn" type="submit" class="btn-primary btn btn-block">Entrar</button>
+        <button id="sign-in-btn" type="submit" class="btn-primary btn btn-block">Entrar</button>
 
         <button type="button" class="btn-secondary btn btn-block" data-toggle="modal" data-target="#exampleModalLong">
           Não tem conta? Inscreva-se!
@@ -101,7 +103,7 @@
               </div> -->
               <div>
                 <p class="text-center"><small>* campos obrigatórios</small></p>
-                <button id="btnRegister" type="submit" class="btn btn-secondary btn-block">Cadastrar</button>
+                <button id="sign-up-btn" type="submit" class="btn btn-secondary btn-block">Cadastrar</button>
             </form>
           </div>
         </div>
@@ -125,11 +127,12 @@
   <script> bootstrapValidate('#emailInput', 'email:Digite um formato de email válido');</script>
   <script> bootstrapValidate('#passwordInput', 'min:5:Minimo de 6 caracteres');</script>
   
+  <script src="rating.js"></script>
+  <script src="database.js"></script>
   <script src="auth.js"></script>
   <script src="fb-auth.js"></script>
   <script src="main.js"></script>
   <script src="app.js"></script>
-  <script src="rating.js"></script>
 </body>
 
 </html>
