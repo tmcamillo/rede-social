@@ -10,9 +10,6 @@ const USER_ID = window.location.search.match(/\?id=(.*)/)[1];
 // const passwordInput = document.getElementById("passwordInput");
 
 function writeUserData(email, password, uid) {
-    console.log(nameInput);
-    console.log(nameInput.value);
-    console.log(lastNameInput);
     database.ref("users/" + uid).set({
         name: nameInput.value,
         surname: lastNameInput.value,
@@ -22,15 +19,14 @@ function writeUserData(email, password, uid) {
     });     
 }
 
-$(document).ready(function(){
+$(document).ready(function () {
 
     database.ref("/post/" + USER_ID).once("value")
-    .then(function(snapshot) {
-        snapshot.forEach(function(childSnapshot) {
-            let childkey = childSnapshot.key;
-            let childData = childSnapshot.val();
-            $(".post-list").append(
-                `
+        .then(function (snapshot) {
+            snapshot.forEach(function (childSnapshot) {
+                let childkey = childSnapshot.key;
+                let childData = childSnapshot.val();
+                $(".post-list").append(`
 				<li>
 					<div class="container-fluid col-md-6 bg-light rounded p-4 my-3">
 						<div class="d-flex">
@@ -46,7 +42,7 @@ $(document).ready(function(){
 								</div>
 							</a>
 							<i class="edit far fa-edit bluish f-14 mx-1"></i>
-							<i class="delete far fa-trash-alt bluish f-14 mx-1"></i>
+							<i class="delete far fa-trash-alt bluish f-14 mx-1" data-post-id=${childkey}></i>
 						</div>
 						<div id="comment-review"">
 							<h5>${childData.label}</h5>
@@ -58,15 +54,15 @@ $(document).ready(function(){
 						</div>
 					</div>
 				</li>
-            `
-            );
-            
-        })
-    });
+            `);
+
+            })
+        });
 
 
     $(".add-post").click(function(event) {
         event.preventDefault();
+
         let newBrand = $("#label").val();
         let brandUpperCase = newBrand.toUpperCase();
         let newPost =  $("#comment").val();
@@ -78,7 +74,11 @@ $(document).ready(function(){
             review: newPost,
             alcohoolPer: alcohoolPer,
             postTime: postTime
-        });
+		});
+		
+	$('#stars li').on('click', functionDasEstrelas);
+	
+});
 
         $(".post-list").append(
             `
@@ -97,7 +97,7 @@ $(document).ready(function(){
 								</div>
 							</a>
 							<i class="edit far fa-edit bluish f-14 mx-1"></i>
-							<i class="delete far fa-trash-alt bluish f-14 mx-1"></i>
+							<i class="delete far fa-trash-alt bluish f-14 mx-1" data-post-id=${childkey}></i>
 						</div>
 						<div id="comment-review">
 							<h5>${brandUpperCase}</h5>
@@ -112,8 +112,6 @@ $(document).ready(function(){
             `
         );
     });
-    $('#stars li').on('click', functionDasEstrelas);
-});
 
 function time() {
     let today = new Date();
