@@ -1,6 +1,3 @@
-ol{
-  list-style: none;
-}
 .class-center{
   display: flex;
   min-height: 80vh;
@@ -28,20 +25,15 @@ ol{
   display: flex;
 }
 .img-logo{
-  height: 10em;
+  margin: 10vh 0 0 0;
+  height: 25vh;
   width: auto;
-}
-.purple{
-  color: #83579B;
 }
 .purple-ic{
   color: #83579B;
 }
 .purple-ic:hover{
   color: #764D8D;
-}
-.bluish{
-  color: #6ABEBC;
 }
 .btn-secondary{
   background-color: #6ABEBC;
@@ -62,14 +54,48 @@ ol{
 .bg-purple{
   background-color: #764D8D;
 }
-.bg-yellow{
-  background-color: #FCD858;
+.modal{
+  color: #6ABEBC;
 }
+.image {
+  position: relative;
+  display: block;
+  color: #6ABEBC;
+}
+
 .logo-nav{
   width: 9em;
   height: 4em;
 }
-
+.overlay {
+  position: absolute;
+  top: 17px;
+  bottom: 0;
+  left: 202px;
+  right: 0;
+  width: 95px;
+  height: 94px;
+  border-radius: 50%;
+  opacity: 0;
+  transition: .5s ease;
+  background-color: #6ABEBC;
+}
+  
+.container:hover .overlay {
+  opacity: 1;
+}
+  
+.text {
+  color: white;
+  font-size: 15px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
 .comment{
 	margin: none;
 	padding: 0;
@@ -77,40 +103,13 @@ ol{
 .container-fluid{
   padding: 0;
 }
-.bg-pdb{
-  background: url("../assets/bg-yellow-1x.png");
-  height: 100vh;
+body{
+  background: url("../assets/bg-yellow-1x.png")
 }
-.f-14{
-  font-size: 1.4em;
+.fa-star{
+  font-size: 1.3em;
 }
-.f-17{
-  font-size: 1.7em;
+.fa-user-circle{
+  font-size: 3em;
 }
 
-.rating-stars ol {
-  list-style-type:none;
-  padding:0;
-  
-  -moz-user-select:none;
-  -webkit-user-select:none;
-}
-.rating-stars ol > li.star {
-  display:inline-block; 
-}
-.rating-stars ol > li.star.hover > i.fa {
-  color:#FFCC36;
-}
-.rating-stars ol > li.star.selected > i.fa {
-  color:#FF912C;
-}
-.faded {
-  opacity: 1;
-  transition: opacity .25s ease-in-out;
-  -moz-transition: opacity .25s ease-in-out;
-  -webkit-transition: opacity .25s ease-in-out;
-  }
-
-.faded:hover {
-  opacity: 0;
-  }
