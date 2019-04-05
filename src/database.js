@@ -26,7 +26,7 @@ $(document).ready(function () {
             snapshot.forEach(function (childSnapshot) {
                 let childkey = childSnapshot.key;
                 let childData = childSnapshot.val();
-                $(".post-list").append(`
+                $("#post-list").append(`
 				<li>
 					<div class="container-fluid col-md-6 bg-light rounded p-4 my-3">
 						<div class="d-flex">
@@ -80,7 +80,7 @@ $(document).ready(function () {
 	
 });
 
-        $(".post-list").append(
+        $("#post-list").append(
             `
 				<li>
 					<div class="container-fluid col-md-6 bg-light rounded p-4 my-3">
@@ -111,7 +111,7 @@ $(document).ready(function () {
 				</li>
             `
         );
-    });
+    })
 
 function time() {
     let today = new Date();
@@ -120,7 +120,8 @@ function time() {
     let day = today.getDay();
     let month = today.getMonth();
     let year = today.getFullYear();
-    let timeNow = leftZeros(hour) + ":" + leftZeros(min) + " - " + leftZeros(day) + "/" + leftZeros(month) + "/" + year;
+	let timeNow = leftZeros(hour) + ":" + leftZeros(min) + " - " + leftZeros(day) + "/" + leftZeros(month) + "/" + year;
+	
     return timeNow;
 }
 

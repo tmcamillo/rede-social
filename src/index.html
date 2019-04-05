@@ -7,8 +7,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>Cadastro - Papo de Biritas</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.css">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
   <link rel="stylesheet" type="text/css" href="custom.css">
 
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
@@ -23,12 +24,11 @@
 <body>
   <nav class="menu-top">
     <div class="menu-background">
-      <figure class="logo-div"><img class="img-logo" src="../assets/logo-round.png" alt="Logo Papo de Biritas" width=156
-          height=156></figure>
+      <figure class="logo-div"><img class="img-logo mt-5" src="../assets/logo-round.png" alt="Logo Papo de Biritas" width=156 height=156></figure>
     </div>
   </nav>
 
-  <main class="class-center">
+  <main class="class-center bg-yellow">
       <form class="col-md-4">
         <div class="form-group">
           <input type="email" class="form-control" id="email-input" aria-describedby="emailHelp"
@@ -55,22 +55,23 @@
     </div>
 
     <!-- Modal -->
-    <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
+    <div class="modal fade bluish" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
       aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title text-center" id="exampleModalLongTitle">Preencha os dados abaixo e faça parte da nossa plataforma! ;)</h5>
+            <p class="modal-title text-center" id="exampleModalLongTitle">Preencha os dados abaixo e faça parte da nossa plataforma! ;)</p>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
+
           <div class="modal-body">
 
-            <div class="m-b-20 d-flex justify-content-center">
-              <input type="file" class="inputfile" id="photoFile">
-              <i id="profile-photo" class="fas fa-user-circle fa-6x faded"></i>
-            </div>
+              <div class="m-b-20 d-flex justify-content-center">
+                  <input type="file" class="inputfile" id="photoFile">
+                  <i id="profile-photo" class="fas fa-user-circle fa-6x faded"></i>
+                </div>
 
 
             <form>
@@ -120,10 +121,11 @@
   <script> bootstrapValidate('#lastNameInput', 'max:10:Máximo de 10 caracteres');</script>
   <script> bootstrapValidate('#emailInput', 'email:Digite um formato de email válido');</script>
   <script> bootstrapValidate('#passwordInput', 'min:5:Minimo de 6 caracteres');</script>
-  
-  
+
   <script src="auth.js"></script>
   <script src="fb-auth.js"></script>
+  <script src="main.js"></script>
+  <script src="app.js"></script>
   <script src="rating.js"></script>
   <script src="database.js"></script>
 </body>
