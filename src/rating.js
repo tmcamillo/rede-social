@@ -1,64 +1,67 @@
-$(document).ready(function(){
-  
-    /* 1. Visualizing things on Hover - See next part for action on click */
-    $('#stars li').on('mouseover', function(){
-      var onStar = parseInt($(this).data('value'), 10); // The star currently mouse on
-     
-      // Now highlight all the stars that's not after the current hovered star
-      $(this).parent().children('li.star').each(function(e){
-        if (e < onStar) {
-          $(this).addClass('hover');
-        }
-        else {
-          $(this).removeClass('hover');
-        }
-      });
-      
-    }).on('mouseout', function(){
-      $(this).parent().children('li.star').each(function(e){
+function ratingStar() {
+
+  $('#stars li').on('mouseover', function () {
+    let onStar = parseInt($(this).data('value'), 10);
+
+    $(this).parent().children('li.star').each(function (e) {
+      if (e < onStar) {
+        $(this).addClass('hover');
+      }
+      else {
         $(this).removeClass('hover');
-      });
+      }
     });
-    
-    
-    /* 2. Action to perform on click */
 
-    
-    
-  })
+  }).on('mouseout', function () {
+    $(this).parent().children('li.star').each(function (e) {
+      $(this).removeClass('hover');
+    });
+  });
   
-  
-  function responseMessage(msg) {
-    $('.success-box').fadeIn(200);  
-    $('.success-box div.text-message').html("<span>" + msg + "</span>");
-  }
+  $('#stars li').on('click', function () {
+    let onStar = parseInt($(this).data('value'), 10);
+    let stars = $(this).parent().children('li.star');
 
-  function functionDasEstrelas(){
-    var counter = 0;
-    var onStar = parseInt($(this).data('value'), 10); // The star currently selected
-    var stars = $(this).parent().children('li.star');
-    
     for (i = 0; i < stars.length; i++) {
       $(stars[i]).removeClass('selected');
     }
-    
+
     for (i = 0; i < onStar; i++) {
-      counter = i ;
       $(stars[i]).addClass('selected');
     }
-    document.getElementById("stars").dataset("myStars") = counter + 1
-    console.log($("#stars")); 
-    $("#stars").data("myStars", counter + 1);
-    
-    // JUST RESPONSE (Not needed)
-    var ratingValue = parseInt($('#stars li.selected').last().data('value'), 10);
-    var msg = "";
-    if (ratingValue > 1) {
-        msg = "Thanks! You rated this " + ratingValue + " stars.";
+  })
+}
+
+function getingDrinks() {
+
+  // $('#drinks li').on('mouseover', function () {
+  //   let onIcon = $(this).data('value');
+
+  //   $(this).parent().children('li.drinks').each(function (e) {
+  //     if (e < onIcon) {
+  //       $(this).addClass('hover');
+  //     }
+  //     else {
+  //       $(this).removeClass('hover');
+  //     }
+  //   });
+
+  // }).on('mouseout', function () {
+  //   $(this).parent().children('li.star').each(function (e) {
+  //     $(this).removeClass('hover');
+  //   });
+  // });
+  
+  $('#drinks li').on('click', function () {
+    let onIcon = $(this).data('value');
+    let icon = $(this).parent().children('li.drinks');
+
+    for (i = 0; i < stars.length; i++) {
+      $(icon[i]).removeClass('selected');
     }
-    else {
-        msg = "We will improve ourselves. You rated this " + ratingValue + " stars.";
+
+    for (i = 0; i < onIcon; i++) {
+      $(icon[i]).addClass('selected');
     }
-    // responseMessage(msg);
-    
-  }
+  })
+}

@@ -21,6 +21,9 @@ function writeUserData(email, password, uid) {
 
 $(document).ready(function () {
 
+	ratingStar()
+	getingDrinks()
+	
     database.ref("/post/" + USER_ID).once("value")
         .then(function (snapshot) {
             snapshot.forEach(function (childSnapshot) {
@@ -45,11 +48,11 @@ $(document).ready(function () {
 							<i class="delete far fa-trash-alt bluish f-14 mx-1" data-post-id=${childkey}></i>
 						</div>
 						<div id="comment-review"">
-							<h5>${childData.label}</h5>
+							<h5>${childData.drinkType} ${childData.label}</h5>
 							<p>${childData.review}</p>
 						</div>
 						<div class="d-flex purple">
-							<div class="mr-auto">nota estrelas</div>
+							<div class="mr-auto">${childData.starScore}</div>
 							<span><strong>${childData.alcohoolPer}%</strong> icone</span>
 						</div>
 					</div>
@@ -60,59 +63,60 @@ $(document).ready(function () {
         });
 
 
-    $(".add-post").click(function(event) {
-        event.preventDefault();
+    $("#add-post").click(function(event) {
+		event.preventDefault();
 
+		let drink = $('#drinks li.selected').last().data('value');
+		let drinkUpperCase = drink.toUpperCase();
         let newBrand = $("#label").val();
-        let brandUpperCase = newBrand.toUpperCase();
+		let brandUpperCase = newBrand.toUpperCase();
         let newPost =  $("#comment").val();
         let alcohoolPer = $("#alcohol").val();
-        let postTime = time();
-
+		let date = time();
+		let ratingValue = parseInt($('#stars li.selected').last().data('value'), 10);
+		
         database.ref("/post/" + USER_ID).push({
+			drinkType: drinkUpperCase,
             label: brandUpperCase,
             review: newPost,
             alcohoolPer: alcohoolPer,
-            postTime: postTime
+			postTime: date,
+			starScore: ratingValue,
 		});
-		
-	$('#stars li').on('click', functionDasEstrelas);
-	
-});
 
-        $("#post-list").append(
-            `
-				<li>
-					<div class="container-fluid col-md-6 bg-light rounded p-4 my-3">
-						<div class="d-flex">
-							<!-- <img src=""> -->
-							<a class="d-inline-flex mr-auto mb-3">
-								<i class="fas fa-user-circle fa-2x purple align-self-center"></i>
-								<div class="ml-2">
-									<span class="purple">
-										<strong class="f-14">Nome</strong>
-										<br>
-										<span class="small">${postTime}</span>
-									</span>
-								</div>
-							</a>
-							<i class="edit far fa-edit bluish f-14 mx-1"></i>
-							<i class="delete far fa-trash-alt bluish f-14 mx-1" data-post-id=${childkey}></i>
-						</div>
-						<div id="comment-review">
-							<h5>${brandUpperCase}</h5>
-							<p>${newPost}</p>
-						</div>
-						<div class="d-flex purple">
-							<div class="mr-auto">nota estrelas</div>
-							<span><strong>${alcohoolPer}%</strong> icone</span>
-						</div>
+	$("#post-list").append(
+		`
+			<li>
+				<div class="container-fluid col-md-6 bg-light rounded p-4 my-3">
+					<div class="d-flex">
+						<!-- <img src=""> -->
+						<a class="d-inline-flex mr-auto mb-3">
+							<i class="fas fa-user-circle fa-2x purple align-self-center"></i>
+							<div class="ml-2">
+								<span class="purple">
+									<strong class="f-14">Nome</strong>
+									<br>
+									<span class="small">${date}</span>
+								</span>
+							</div>
+						</a>
+						<i class="edit far fa-edit bluish f-14 mx-1"></i>
+						<i class="delete far fa-trash-alt bluish f-14 mx-1"></i>
 					</div>
-				</li>
-            `
-        );
-    })
-
+					<div id="comment-review">
+						<h5>${drinkUpperCase} ${brandUpperCase}</h5>
+						<p>${newPost}</p>
+					</div>
+					<div class="d-flex purple">
+						<div class="mr-auto">${ratingValue}</div>
+						<span><strong>${alcohoolPer}%</strong>icone</span>
+					</div>
+				</div>
+			</li>
+		`
+	);
+	
+})
 function time() {
     let today = new Date();
     let hour = today.getHours();
@@ -133,3 +137,6 @@ function leftZeros(number) {
 		return number
 	}
 }
+    })
+
+

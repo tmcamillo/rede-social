@@ -39,14 +39,27 @@
 	</header>
 
 	<main>
-		<div class="container-fluid bg-purple py-3">
+		<div class="container-fluid bg-purple py-3 purple">
 			<form id="container-comment" class="container-fluid col-md-6 bg-light rounded p-3">
 
 				<div class="form-row form-group">
-					<p class="ml-3 mr-auto">Qual o tipo de bebida?</p>
-					<i class="fas fa-cocktail fa-2x mx-2" data-toggle="tooltip" data-placement="top" title="Drinks"></i>
-					<i class="fas fa-wine-glass-alt fa-2x mx-2" data-toggle="tooltip" data-placement="top" title="Vinhos"></i>
-					<i class="fas fa-beer fa-2x mx-2" data-toggle="tooltip" data-placement="top" title="Cerveja"></i>
+					<p class="ml-3 mr-auto my-auto">Qual o tipo de bebida?</p>
+					<div class='rating text-center'>
+							<ul id='drinks' class="list-unstyled">
+									<li class="drinks" title="Drinks" data-value="drink">
+										<i class="fas fa-cocktail fa-2x mx-2" data-toggle="tooltip" data-placement="top"></i>
+									</li>
+									<li class="drinks" title="Vinhos" data-value="vinho">
+										<i class="fas fa-wine-glass-alt fa-2x mx-2" data-toggle="tooltip" data-placement="top" title="Vinhos"
+											data-value="wine"></i>
+									</li>
+									<li class="drinks" title="Cervejas" data-value="cerveja">
+										<i class="fas fa-beer fa-2x mx-2" data-toggle="tooltip" data-placement="top" title="Cerveja"
+											data-value="beer"></i>
+									</li>
+								</ul>
+					</div>
+					
 				</div>
 
 				<div class="form-row">
@@ -61,41 +74,41 @@
 				<textarea id="comment" type="text" class="form-control form-group" rows="4"
 					placeholder="Conte-nos o que achou"></textarea>
 
-				<div id="b-space-comment" class="form-row form-group ml-3">
-					<div class='rating-stars text-center mr-auto'>
-						<ol id='stars' class="m-0">
-							<li class='star' title='Poor' data-value='1'>
+				<div id="b-space-comment" class="form-row ml-3 ">
+					<div class='rating text-center'>
+						<ul id='stars' class="list-unstyled">
+							<li class='star' data-value='1'>
 								<i class='fa fa-star fa-fw'></i>
 							</li>
-							<li class='star' title='Fair' data-value='2'>
+							<li class='star' data-value='2'>
 								<i class='fa fa-star fa-fw'></i>
 							</li>
-							<li class='star' title='Good' data-value='3'>
+							<li class='star' data-value='3'>
 								<i class='fa fa-star fa-fw'></i>
 							</li>
-							<li class='star' title='Excellent' data-value='4'>
+							<li class='star' data-value='4'>
 								<i class='fa fa-star fa-fw'></i>
 							</li>
-							<li class='star' title='WOW!!!' data-value='5'>
+							<li class='star' data-value='5'>
 								<i class='fa fa-star fa-fw'></i>
 							</li>
-						</ol>
+						</ul>
 					</div>
 
-					<div class="form-group custom-control custom-checkbox mr-4">
+					<div class="form-group custom-control custom-checkbox ml-auto mr-4">
 
 						<input type="checkbox" class="custom-control-input" id="customCheck1">
 						<label class="custom-control-label " for="customCheck1">Privado</label>
 					</div>
-					<button type="submit" class="btn btn-primary btn-block add-post">Postar</button>
 				</div>
+				<button type="submit" id="add-post" class="btn btn-primary btn-block">Postar</button>
 			</form>
 		</div>
 
 		<section class="bg-pdb">
 			<div id="timeline">
-				<ol id="post-list" class="container-fluid py-3">
-				</ol>
+				<ul id="post-list" class="list-unstyled container-fluid py-3">
+				</ul>
 			</div>
 		</section>
 
@@ -110,13 +123,10 @@
 		integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
 		crossorigin="anonymous"></script>
 
-	<script src="rating.js"></script>
-	<script src="database.js"></script>
 	<script src="auth.js"></script>
 	<script src="fb-auth.js"></script>
-	<script src="main.js"></script>
-	<script src="app.js"></script>
-
+	<script src="rating.js"></script>
+	<script src="database.js"></script>
 </body>
 
 </html>

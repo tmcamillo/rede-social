@@ -106,9 +106,6 @@
 body{
   background: url("../assets/bg-yellow-1x.png")
 }
-.fa-star{
-  font-size: 1.3em;
-}
 .fa-user-circle{
   font-size: 3em;
 }
@@ -151,22 +148,26 @@ body{
   background: url("../assets/bg-yellow-1x.png")
 }
 
-.rating-stars ol {
-  list-style-type:none;
-  padding:0;
-  
-  -moz-user-select:none;
-  -webkit-user-select:none;
+.fa-cocktail:hover{
+  color: #6ABEBC;
 }
-.rating-stars ol > li.star {
-  display:inline-block; 
+.fa-wine-glass-alt:hover{
+  color: #C1181C;
 }
-.rating-stars ol > li.star.hover > i.fa {
-  color:#FFCC36;
+.fa-beer:hover{
+  color: #FCD858;
 }
-.rating-stars ol > li.star.selected > i.fa {
-  color:#FF912C;
+
+.rating ul > li.star.selected > i.fa {
+  color:#FCD858;
 }
+.rating ul > li.star.selected > i.fa {
+  color:#FCD858;
+}
+.rating ul > li.star.selected > i.fa {
+  color:#FCD858;
+}
+
 .faded {
   opacity: 1;
   transition: opacity .25s ease-in-out;
@@ -177,3 +178,27 @@ body{
 .faded:hover {
   opacity: 0;
   }
+
+.rating ul {  
+  -moz-user-select:none;
+  -webkit-user-select:none;
+}
+.rating ul > li {
+  display:inline-block;
+}
+
+/* Idle State of the stars */
+.rating ul > li > i {
+  color:#ccc; /* Color on idle state */
+}
+
+/* Hover state of the stars */
+.rating ul > li.star.hover > i.fa {
+  color:#FCD858;
+}
+
+/* Selected state of the stars */
+.rating ul > li.star.selected > i.fa {
+  color:#FCD858;
+}
+
