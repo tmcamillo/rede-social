@@ -43,8 +43,8 @@ $(document).ready(function(){
 									</span>
 								</div>
 							</a>
-							<i class="edit far fa-edit bluish f-14 mx-1"></i>
-							<i class="delete far fa-trash-alt bluish f-14 mx-1"></i>
+							<a href="#"> <i class="edit far fa-edit bluish f-14 mx-1"></i> </a>
+							<a href="#" data-post-id=${childkey}> <i class="delete far fa-trash-alt bluish f-14 mx-1"></i> </a>
 						</div>
 						<div id="comment-review"">
 							<h5>${childData.label}</h5>
@@ -56,11 +56,14 @@ $(document).ready(function(){
 						</div>
 					</div>
 				</li>
-            `
-            );
-            
+			`);
+
+            $(`a[data-post-id="${childkey}"]`).click(function(){
+				database.ref("post/" + USER_ID + "/" + childkey).remove();
+				$(this).closest("li").remove();
+			});
         })
-    });
+    });	
 
 
     $(".add-post").click(function(event) {
@@ -71,7 +74,7 @@ $(document).ready(function(){
         let alcohoolPer = $("#alcohol").val();
         let postTime = time();
 
-        database.ref("/post/" + USER_ID).push({
+        let postFromDb = database.ref("/post/" + USER_ID).push({
             label: brandUpperCase,
             review: newPost,
             alcohoolPer: alcohoolPer,
@@ -94,8 +97,8 @@ $(document).ready(function(){
 									</span>
 								</div>
 							</a>
-							<i class="edit far fa-edit bluish f-14 mx-1"></i>
-							<i class="delete far fa-trash-alt bluish f-14 mx-1"></i>
+							<a href="#"> <i class="edit far fa-edit bluish f-14 mx-1"></i> </a>
+							<a href="#" data-post-id=${postFromDb.key}> <i class="delete far fa-trash-alt bluish f-14 mx-1"></i> </a>
 						</div>
 						<div id="comment-review">
 							<h5>${brandUpperCase}</h5>
@@ -107,8 +110,13 @@ $(document).ready(function(){
 						</div>
 					</div>
 				</li>
-            `
-		);
+			`);
+
+		$(`a[data-post-id="${postFromDb.key}"]`).click(function(){
+			database.ref("post/" + USER_ID + "/" + postFromDb.key).remove();
+			$(this).closest("li").remove();
+		});
+
 		$('#container-comment')[0].reset();
     });
 	// $('#stars li').on('click', functionDasEstrelas);
