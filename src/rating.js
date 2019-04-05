@@ -32,36 +32,23 @@ function ratingStar() {
   })
 }
 
-function getingDrinks() {
-
-  // $('#drinks li').on('mouseover', function () {
-  //   let onIcon = $(this).data('value');
-
-  //   $(this).parent().children('li.drinks').each(function (e) {
-  //     if (e < onIcon) {
-  //       $(this).addClass('hover');
-  //     }
-  //     else {
-  //       $(this).removeClass('hover');
-  //     }
-  //   });
-
-  // }).on('mouseout', function () {
-  //   $(this).parent().children('li.star').each(function (e) {
-  //     $(this).removeClass('hover');
-  //   });
-  // });
+function gettingDrinks() {
   
-  $('#drinks li').on('click', function () {
-    let onIcon = $(this).data('value');
-    let icon = $(this).parent().children('li.drinks');
+  $('#listDrinks li').on('click', function () {
+    let stars = $(this).parent().children('li.drinks');
 
-    for (i = 0; i < stars.length; i++) {
-      $(icon[i]).removeClass('selected');
-    }
+      $(stars).addClass('selected');
+    })
+}
 
-    for (i = 0; i < onIcon; i++) {
-      $(icon[i]).addClass('selected');
-    }
-  })
+function iconDrink(number){
+  if(number === 1){
+    return `<i class="fas fa-cocktail fa-2x mx-2" data-toggle="tooltip" data-placement="top"></i>`
+  }
+  else if(number === 2){
+    return `<i class="fas fa-wine-glass-alt fa-2x mx-2" data-toggle="tooltip" data-placement="top"></i>`
+  }
+  else if(number === 3){
+    return `<i class="fas fa-beer fa-2x mx-2" data-toggle="tooltip" data-placement="top"></i>`
+  }
 }

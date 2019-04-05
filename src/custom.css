@@ -158,13 +158,13 @@ body{
   color: #FCD858;
 }
 
-.rating ul > li.star.selected > i.fa {
-  color:#FCD858;
+.rating ul > li.drinks.selected > i.fa-cocktail {
+  color:#6ABEBC;
 }
-.rating ul > li.star.selected > i.fa {
-  color:#FCD858;
+.rating ul > li.drinks.selected > i.fa-wine-glass-alt {
+  color:#C1181C;
 }
-.rating ul > li.star.selected > i.fa {
+.rating ul > li.drinks.selected > i.fa-beer {
   color:#FCD858;
 }
 
