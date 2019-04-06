@@ -125,6 +125,10 @@ body{
 .bluish{
   color: #6ABEBC;
 }
+
+.bg-bluish{
+  background-color: #6ABEBC;
+}
 .btn-secondary{
   background-color: #6ABEBC;
   border: none;
