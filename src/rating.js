@@ -43,12 +43,12 @@ function gettingDrinks() {
 
 function iconDrink(number){
   if(number === 1){
-    return `<i class="fas fa-cocktail fa-2x mx-2" data-toggle="tooltip" data-placement="top"></i>`
-  }
-  else if(number === 2){
-    return `<i class="fas fa-wine-glass-alt fa-2x mx-2" data-toggle="tooltip" data-placement="top"></i>`
-  }
-  else if(number === 3){
-    return `<i class="fas fa-beer fa-2x mx-2" data-toggle="tooltip" data-placement="top"></i>`
+    return "fas fa-cocktail fa-2x mx-2";
+  }if(number === 2){
+    return "fas fa-wine-glass-alt fa-2x mx-2"; 
+  }if(number === 3){
+    return "fas fa-beer fa-2x mx-2";
+  } else {
+    return "fas fa-wine-bottle";
   }
 }

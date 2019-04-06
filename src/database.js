@@ -9,8 +9,8 @@ const USER_ID = window.location.search.match(/\?id=(.*)/)[1];
 // const phoneInput = document.getElementById("phoneInput");
 // const passwordInput = document.getElementById("passwordInput");
 
-function writeUserData(email, password, uid) {
-	database.ref("users/" + uid).set({
+function writeUserData(email, password, uId) {
+	database.ref("users/" + uId).set({
 		name: nameInput.value,
 		surname: lastNameInput.value,
 		phone: phoneInput.value,
@@ -45,15 +45,15 @@ $(document).ready(function () {
 								</div>
 							</a>
 							<i class="edit far fa-edit bluish f-14 mx-1"></i>
-							<i class="delete far fa-trash-alt bluish f-14 mx-1" data-post-id=${childkey}></i>
+							<i class="delete far fa-trash-alt bluish f-14 mx-1" data-id="${childkey}" data-toggle="modal" data-target="#modal-del"></i>
 						</div>
 						<div id="comment-review"">
-							<h5>${childData.drinkIcon} ${childData.drinkType} ${childData.label}</h5>
+							<h5><i class="${childData.drinkIcon}" data-toggle="tooltip" data-placement="top"></i> ${childData.label}</h5>
 							<p>${childData.review}</p>
 						</div>
 						<div class="d-flex purple">
 							<div class="mr-auto">${childData.starScore}</div>
-							<span><strong>${childData.alcohoolPer}%</strong>${childData.drinkIcon}</span>
+							<span><strong>${childData.alcohoolPer}%</strong><i class="${childData.drinkIcon}" data-toggle="tooltip" data-placement="top"></i></span>
 						</div>
 					</div>
 				</li>
@@ -75,13 +75,12 @@ $(document).ready(function () {
 		let ratingValue = parseInt($('#stars li.selected').last().data('value'), 10);
 
 		database.ref("/post/" + USER_ID).push({
-			drinkType: drink,
 			drinkIcon: iDrink,
 			label: brandUpperCase,
 			review: newPost,
 			alcohoolPer: alcohoolPer,
 			postTime: date,
-			starScore: ratingValue,
+			// starScore: ratingValue
 		});
 
 		$("#post-list").append(
@@ -101,15 +100,15 @@ $(document).ready(function () {
 							</div>
 						</a>
 						<i class="edit far fa-edit bluish f-14 mx-1"></i>
-						<i class="delete far fa-trash-alt bluish f-14 mx-1"></i>
+						<i class="delete far fa-trash-alt bluish f-14 mx-1" data-toggle="modal" data-target="#modal-del"></i>
 					</div>
 					<div id="comment-review">
-						<h5>${iDrink} ${drink} ${brandUpperCase}</h5>
+						<h5><i class="${iDrink}" data-toggle="tooltip" data-placement="top"></i> ${brandUpperCase}</h5>
 						<p>${newPost}</p>
 					</div>
 					<div class="d-flex purple">
 						<div class="mr-auto">${ratingValue}</div>
-						<span><strong>${alcohoolPer}% </strong>${iDrink}</span>
+						<span><strong>${alcohoolPer}% </strong><i class="${iDrink}" data-toggle="tooltip" data-placement="top"></i></span>
 					</div>
 				</div>
 			</li>
