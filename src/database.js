@@ -1,7 +1,6 @@
 const database = firebase.database();
 const USER_ID = window.location.search.match(/\?id=(.*)/)[1];
 
-
 function writeUserData(email, password, uid) {
 
     database.ref("users/" + uid).set({

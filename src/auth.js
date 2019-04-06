@@ -29,7 +29,6 @@ $(document).ready(function () {
             .then(function(response) {
                 writeUserData(email, password, response.user.uid);
                 window.location = "home.html?id=" + response.user.uid;
-                
             })
 
             .catch(function (error){
