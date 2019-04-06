@@ -1,5 +1,6 @@
 $(document).ready(function () {
-    $('[data-toggle="tooltip"]').tooltip() 
+    $('[data-toggle="tooltip"]').tooltip()
+
     $("#sign-in-btn").click(function(event) {
         event.preventDefault();
 
