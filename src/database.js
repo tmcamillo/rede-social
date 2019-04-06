@@ -1,13 +1,6 @@
 const database = firebase.database();
 const USER_ID = window.location.search.match(/\?id=(.*)/)[1];
-// console.log("w" + USER_ID);
 
-// const photoFile = document.getElementById("photoFile");
-// const nameInput = document.getElementById("nameInput");
-// const lastNameInput = document.getElementById("lastNameInput");
-// const emailInput = document.getElementById("emailInput");
-// const phoneInput = document.getElementById("phoneInput");
-// const passwordInput = document.getElementById("passwordInput");
 
 function writeUserData(email, password, uid) {
 
@@ -19,109 +12,6 @@ function writeUserData(email, password, uid) {
         pass: password
     });     
 }
-
-$(document).ready(function(){
-
-    database.ref("/post/" + USER_ID).once("value")
-    .then(function(snapshot) {
-        snapshot.forEach(function(childSnapshot) {
-            let childkey = childSnapshot.key;
-            let childData = childSnapshot.val();
-            $(".post-list").append(
-                `
-				<li>
-					<div class="container-fluid col-md-6 bg-light rounded p-4 my-3">
-						<div class="d-flex">
-							<!-- <img src=""> -->
-							<a class="d-inline-flex mr-auto mb-3">
-								<i class="fas fa-user-circle fa-2x purple align-self-center"></i>
-								<div class="ml-2">
-									<span class="purple">
-										<strong class="f-14">Nome</strong>
-										<br>
-										<span class="small">${childData.postTime}</span>
-									</span>
-								</div>
-							</a>
-							<a href="#"> <i class="edit far fa-edit bluish f-14 mx-1"></i> </a>
-							<a href="#" data-post-id=${childkey}> <i class="delete far fa-trash-alt bluish f-14 mx-1"></i> </a>
-						</div>
-						<div id="comment-review"">
-							<h5>${childData.label}</h5>
-							<p>${childData.review}</p>
-						</div>
-						<div class="d-flex purple">
-							<div class="mr-auto">nota estrelas</div>
-							<span><strong>${childData.alcohoolPer}%</strong> icone</span>
-						</div>
-					</div>
-				</li>
-			`);
-
-            $(`a[data-post-id="${childkey}"]`).click(function(){
-				database.ref("post/" + USER_ID + "/" + childkey).remove();
-				$(this).closest("li").remove();
-			});
-        })
-    });	
-
-
-    $(".add-post").click(function(event) {
-        event.preventDefault();
-        let newBrand = $("#label").val();
-        let brandUpperCase = newBrand.toUpperCase();
-        let newPost =  $("#comment").val();
-        let alcohoolPer = $("#alcohol").val();
-        let postTime = time();
-
-        let postFromDb = database.ref("/post/" + USER_ID).push({
-            label: brandUpperCase,
-            review: newPost,
-            alcohoolPer: alcohoolPer,
-            postTime: postTime
-        });
-
-        $(".post-list").append(
-            `
-				<li>
-					<div class="container-fluid col-md-6 bg-light rounded p-4 my-3">
-						<div class="d-flex">
-							<!-- <img src=""> -->
-							<a class="d-inline-flex mr-auto mb-3">
-								<i class="fas fa-user-circle fa-2x purple align-self-center"></i>
-								<div class="ml-2">
-									<span class="purple">
-										<strong class="f-14">Nome</strong>
-										<br>
-										<span class="small">${postTime}</span>
-									</span>
-								</div>
-							</a>
-							<a href="#"> <i class="edit far fa-edit bluish f-14 mx-1"></i> </a>
-							<a href="#" data-post-id=${postFromDb.key}> <i class="delete far fa-trash-alt bluish f-14 mx-1"></i> </a>
-						</div>
-						<div id="comment-review">
-							<h5>${brandUpperCase}</h5>
-							<p>${newPost}</p>
-						</div>
-						<div class="d-flex purple">
-							<div class="mr-auto">nota estrelas</div>
-							<span><strong>${alcohoolPer}%</strong> icone</span>
-						</div>
-					</div>
-				</li>
-			`);
-
-		$(`a[data-post-id="${postFromDb.key}"]`).click(function(){
-			database.ref("post/" + USER_ID + "/" + postFromDb.key).remove();
-			$(this).closest("li").remove();
-		});
-
-		$('#container-comment')[0].reset();
-    });
-	// $('#stars li').on('click', functionDasEstrelas);
-	
-});
 
 function time() {
     let today = new Date();
@@ -142,3 +32,76 @@ function leftZeros(number) {
 		return number
 	}
 }
+
+function appendData(childData, childKey) {
+	$(".post-list").append(
+		`
+		<li>
+			<div class="container-fluid col-md-6 bg-light rounded p-4 my-3">
+				<div class="d-flex">
+					<!-- <img src=""> -->
+					<a class="d-inline-flex mr-auto mb-3">
+						<i class="fas fa-user-circle fa-2x purple align-self-center"></i>
+						<div class="ml-2">
+							<span class="purple">
+								<strong class="f-14">Nome</strong>
+								<br>
+								<span class="small">${childData.postTime}</span>
+							</span>
+						</div>
+					</a>
+					<a href="#"> <i class="edit far fa-edit bluish f-14 mx-1"></i> </a>
+					<a href="#" class="trash-ic" data-toggle="modal" data-target="#deleteModal" data-post-id="${childKey}"> <i class="delete far fa-trash-alt bluish f-14 mx-1"></i> </a>
+				</div>
+				<div id="comment-review">
+					<h5>${childData.label}</h5>
+					<p>${childData.review}</p>
+				</div>
+				<div class="d-flex purple">
+					<div class="mr-auto">nota estrelas</div>
+					<span><strong>${childData.alcohoolPer}%</strong> icone</span>
+				</div>
+			</div>
+		</li>
+	`);
+}
+
+$(document).ready(function(){
+
+    database.ref("/post/" + USER_ID).once("value")
+    .then(function(snapshot) {
+        snapshot.forEach(function(childSnapshot) {
+            let childkey = childSnapshot.key;
+			let childData = childSnapshot.val();
+			
+            appendData(childData, childkey)
+		});	
+    });	
+
+    $(".add-post").click(function(event) {
+		event.preventDefault();
+		
+		let data = {
+			label: $("#label").val().toUpperCase(),
+			review: $("#comment").val(),
+			alcohoolPer: $("#alcohol").val(),
+			postTime: time()
+		};
+		
+        let postFromDb = database.ref("/post/" + USER_ID).push(data);
+		appendData(data, postFromDb.key)
+		$('#container-comment')[0].reset();
+	});
+
+	let selected_key = ''
+
+	$(document).on('click', '.trash-ic', function() {
+		selected_key = $(this).attr('data-post-id');
+	})
+
+	$("#btnDelete").click(function(){
+		database.ref("post/" + USER_ID + "/" + selected_key).remove();
+		$(`a[data-post-id=${selected_key}]`).closest("li").remove();
+		$('#deleteModal').modal('hide');
+	});
+});
