@@ -80,7 +80,7 @@ $(document).ready(function () {
 			review: newPost,
 			alcohoolPer: alcohoolPer,
 			postTime: date,
-			// starScore: ratingValue
+			starScore: ratingValue,
 		});
 
 		$("#post-list").append(
