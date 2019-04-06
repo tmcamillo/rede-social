@@ -13,14 +13,15 @@ function writeUserData(email, password, uid) {
 }
 
 function time() {
-    let today = new Date();
-    let hour = today.getHours();
-    let min = today.getMinutes();
-    let day = today.getDay();
-    let month = today.getMonth();
-    let year = today.getFullYear();
-    let timeNow = leftZeros(hour) + ":" + leftZeros(min) + " - " + leftZeros(day) + "/" + leftZeros(month) + "/" + year;
-    return timeNow;
+	let today = new Date();
+	let hour = today.getHours();
+	let min = today.getMinutes();
+	let day = today.getDay();
+	let month = today.getMonth();
+	let year = today.getFullYear();
+	let timeNow = leftZeros(hour) + ":" + leftZeros(min) + " - " + leftZeros(day) + "/" + leftZeros(month) + "/" + year;
+
+	return timeNow;
 }
 
 function leftZeros(number) {
@@ -66,6 +67,8 @@ function appendData(childData, childKey) {
 }
 
 $(document).ready(function(){
+	ratingStar()
+	gettingDrinks()
 
     database.ref("/post/" + USER_ID).once("value")
     .then(function(snapshot) {
@@ -79,12 +82,18 @@ $(document).ready(function(){
 
     $(".add-post").click(function(event) {
 		event.preventDefault();
+
+		// let drink = parseInt($('#listDrinks li.selected').last().data('value'), 10);
+		// let iDrink = iconDrink(drink);
+		// let ratingValue = parseInt($('#stars li.selected').last().data('value'), 10);
 		
 		let data = {
+			drinkIcon: iconDrink(parseInt($('#listDrinks li.selected').last().data('value'), 10)),
 			label: $("#label").val().toUpperCase(),
 			review: $("#comment").val(),
 			alcohoolPer: $("#alcohol").val(),
-			postTime: time()
+			postTime: time(),
+			starScore: parseInt($('#stars li.selected').last().data('value'), 10),
 		};
 		
         let postFromDb = database.ref("/post/" + USER_ID).push(data);
