@@ -48,7 +48,7 @@
 	<main>
 		<div class="container-fluid bg-purple py-3 purple">
 			<form id="container-comment" class="container-fluid col-md-6 bg-light rounded p-3">
-				<div class="form-row form-group">
+				<!-- <div class="form-row form-group">
 					<p class="ml-3 mr-auto my-auto">Qual o tipo de bebida?</p>
 					<div class='rating text-center'>
 						<ul id='listDrinks' class="list-unstyled">
@@ -63,8 +63,7 @@
 							</li>
 						</ul>
 					</div>
-
-				</div>
+				</div> -->
 
 				<div class="form-row">
 					<div class="form-group col-9">
@@ -79,7 +78,7 @@
 					placeholder="Conte-nos o que achou"></textarea>
 
 				<div id="b-space-comment" class="form-row ml-3 ">
-					<div class='rating text-center'>
+					<div class='rating text-center my-auto'>
 						<ul id='stars' class="list-unstyled">
 							<li class='star' data-value='1'>
 								<i class='fa fa-star fa-fw'></i>
@@ -100,11 +99,15 @@
 					</div>
 
 					<div class="form-group custom-control custom-checkbox ml-auto mr-4">
-						<input type="checkbox" checked data-toggle="toggle" data-on="Público" data-off="Privado"
-							data-onstyle="success" data-offstyle="danger" data-size="small">
+									<!-- <input type="checkbox" data-toggle="toggle" checked="checked" id="post-privacy" data-size="small" data-on="Público" data-off="Privado" data-onstyle="success" data-offstyle="danger"/> -->
+									<select class="form-control  form-control-sm" id="exampleFormControlSelect1">
+											<option>Público</option>
+											<option>Privado</option>
+											</select>
+								</div>
 					</div>
+					<button type="submit" class="btn btn-purple btn-block add-post">Postar</button>
 				</div>
-				<button type="submit" class="btn btn-primary btn-block add-post">Postar</button>
 			</form>
 
 		</div>
@@ -128,7 +131,7 @@
 						</div>
 						<div class="modal-footer">
 							<button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cancelar</button>
-							<button id="btnDelete"  type="button" class="btn btn-primary">Deletar</button>
+							<button id="btnDelete"  type="button" class="btn btn-purple">Deletar</button>
 						</div>
 					</div>
 				</div>

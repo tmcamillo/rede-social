@@ -3,13 +3,13 @@ const USER_ID = window.location.search.match(/\?id=(.*)/)[1];
 
 function writeUserData(email, password, uid) {
 
-    database.ref("users/" + uid).set({
-        name: nameInput.value,
-        surname: lastNameInput.value,
-        phone: phoneInput.value,
-        email: email,
-        pass: password
-    });     
+	database.ref("users/" + uid).set({
+		name: nameInput.value,
+		surname: lastNameInput.value,
+		phone: phoneInput.value,
+		email: email,
+		pass: password
+	});
 }
 
 function time() {
@@ -19,14 +19,14 @@ function time() {
 	let day = today.getDay();
 	let month = today.getMonth();
 	let year = today.getFullYear();
-	let timeNow = leftZeros(hour) + ":" + leftZeros(min) + " - " + leftZeros(day) + "/" + leftZeros(month) + "/" + year;
+	let timeNow = day + "/" + month + "/" + year + " - " + leftZeros(hour) + ":" + leftZeros(min) ;
 
 	return timeNow;
 }
 
 function leftZeros(number) {
 	if (number < 10) {
-		newNumber = '0' + number
+		newNumber = '0' + number;
 		return newNumber
 	} else {
 		return number
@@ -53,6 +53,7 @@ function appendData(childData, childKey) {
 				<i class="edit far fa-edit bluish f-14 mx-1"></i>
 				<i class="delete far fa-trash-alt bluish f-14 mx-1" data-id="${childKey}" data-toggle="modal"
 					data-target="#modal-del"></i>
+					
 			</div>
 			<div id="comment-review"">
 				<h5><i class="DRINK" data-toggle="tooltip" data-placement="top"></i> ${childData.label}</h5>
@@ -68,26 +69,27 @@ function appendData(childData, childKey) {
 	`);
 }
 
-$(document).ready(function(){
+$(document).ready(function () {
+
 	ratingStar()
 	// gettingDrinks()
 
-    database.ref("/post/" + USER_ID).once("value")
-    .then(function(snapshot) {
-        snapshot.forEach(function(childSnapshot) {
-            let childkey = childSnapshot.key;
-			let childData = childSnapshot.val();
-			
-            appendData(childData, childkey)
-		});	
-    });	
+	database.ref("/post/" + USER_ID).once("value")
+		.then(function (snapshot) {
+			snapshot.forEach(function (childSnapshot) {
+				let childkey = childSnapshot.key;
+				let childData = childSnapshot.val();
 
-    $(".add-post").click(function(event) {
+				appendData(childData, childkey)
+			});
+		});
+
+	$(".add-post").click(function (event) {
 		event.preventDefault();
 		// let drink = parseInt($('#listDrinks li.selected').last().data('value'), 10);
 		// let iDrink = iconDrink(drink);
 		// let ratingValue = parseInt($('#stars li.selected').last().data('value'), 10);
-		
+
 		let data = {
 			// drinkIcon: iconDrink(parseInt($('#listDrinks li.selected').last().data('value'), 10)),
 			label: $("#label").val().toUpperCase(),
@@ -95,20 +97,22 @@ $(document).ready(function(){
 			alcohoolPer: $("#alcohol").val(),
 			postTime: time(),
 			starScore: parseInt($('#stars li.selected').last().data('value'), 10),
+			// privacy: ,
 		};
-		
-        let postFromDb = database.ref("/post/" + USER_ID).push(data);
+
+		console.log(data)
+		let postFromDb = database.ref("/post/" + USER_ID).push(data);
 		appendData(data, postFromDb.key)
 		$('#container-comment')[0].reset();
 	});
 
 	let selected_key = ''
 
-	$(document).on('click', '.trash-ic', function() {
+	$(document).on('click', '.trash-ic', function () {
 		selected_key = $(this).attr('data-post-id');
 	})
 
-	$("#btnDelete").click(function(){
+	$("#btnDelete").click(function () {
 		database.ref("post/" + USER_ID + "/" + selected_key).remove();
 		$(`a[data-post-id=${selected_key}]`).closest("li").remove();
 		$('#deleteModal').modal('hide');
