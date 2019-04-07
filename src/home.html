@@ -99,46 +99,53 @@
 					</div>
 
 					<div class="form-group custom-control custom-checkbox ml-auto mr-4">
-									<!-- <input type="checkbox" data-toggle="toggle" checked="checked" id="post-privacy" data-size="small" data-on="Público" data-off="Privado" data-onstyle="success" data-offstyle="danger"/> -->
-									<select class="form-control  form-control-sm" id="selPrivacy">
-											<option value="público">Público</option>
-											<option value="privado">Privado</option>
-											</select>
-								</div>
+						<!-- <input type="checkbox" data-toggle="toggle" checked="checked" id="post-privacy" data-size="small" data-on="Público" data-off="Privado" data-onstyle="success" data-offstyle="danger"/> -->
+						<select class="form-control  form-control-sm" id="selPrivacy">
+							<option value="público">Público</option>
+							<option value="privado">Privado</option>
+						</select>
 					</div>
-					<button type="submit" class="btn btn-purple btn-block add-post">Postar</button>
 				</div>
+				<button type="submit" class="btn btn-purple btn-block add-post">Postar</button>
 			</form>
-
 		</div>
+
+		<section>
+			<div id="timeline" class="bg-pdb">
+					<div class="container-fluid col-md-6 d-flex">
+							<!-- <button type="submit" class="btn btn-purple flex-fill my-3 mr-2">Linha do tempo</button> -->
+							<button id="news-feed" type="submit" class="btn btn-purple flex-fill my-3 mr-2">Feed de novidades</button>
+							<button id="private-post" type="submit" class="btn btn-purple flex-fill my-3 ml-2">Posts Privados</button>
+						</div>
+						
+				<ul id="post-list" class="post-list list-unstyled d-flex flex-column-reverse"></ul>
+			</div>
+		</section>
+
 	</main>
 
-	<section>
-		<div id="timeline" class="bg-pdb">
-			<ul class="post-list list-unstyled d-flex flex-column-reverse"></ul>
 
-			<!-- Delete Modal -->
 
-			<div class="modal fade purple" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
-				aria-hidden="true" data-backdrop="static">
-				<div class="modal-dialog" role="document">
-					<div class="modal-content ">
-						<div class="modal-header">
-							<h5 class="modal-title">Tem certeza que deseja deletar este post?</h5>
-							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-								<span aria-hidden="true">&times;</span>
-							</button>
-						</div>
-						<div class="modal-footer">
-							<button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cancelar</button>
-							<button id="btnDelete"  type="button" class="btn btn-purple">Deletar</button>
-						</div>
-					</div>
+	<!-- Delete Modal -->
+
+	<div class="modal fade purple" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
+		aria-hidden="true" data-backdrop="static">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content ">
+				<div class="modal-header">
+					<h5 class="modal-title">Tem certeza que deseja deletar este post?</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cancelar</button>
+					<button id="btnDelete"  type="button" class="btn btn-purple">Deletar</button>
 				</div>
 			</div>
 		</div>
+	</div>
 
-	</section>
 
 	<script src="https://code.jquery.com/jquery-3.3.1.min.js"
 		integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
