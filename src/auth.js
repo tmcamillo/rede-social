@@ -19,6 +19,7 @@ $(document).ready(function () {
             })
     });
 
+
     $("#sign-up-btn").click(function(event) {
         event.preventDefault();
         
