@@ -1,5 +1,6 @@
 const database = firebase.database();
 const USER_ID = window.location.search.match(/\?id=(.*)/)[1];
+
 function loadPosts(){
 	database.ref("/post/" + USER_ID).once("value")
 	.then(function (snapshot) {

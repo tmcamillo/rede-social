@@ -1,3 +1,6 @@
+.comment-count{
+  color: #83579B;
+}
 .class-center{
   display: flex;
   min-height: 80vh;
