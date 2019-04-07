@@ -5,19 +5,23 @@
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-	
+
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.css">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-  <link rel="stylesheet" type="text/css" href="custom.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+		integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+		crossorigin="anonymous"></script>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+		integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+		integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+	<link rel="stylesheet" type="text/css" href="custom.css">
 	<link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
-    integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+		integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 	<script src="https://www.gstatic.com/firebasejs/5.8.4/firebase-app.js"></script>
 	<script src="https://www.gstatic.com/firebasejs/5.8.4/firebase-auth.js"></script>
 	<script src="https://www.gstatic.com/firebasejs/5.8.4/firebase-database.js"></script>
-	
+
 	<script src="config.js"></script>
 
 	<title>Cadastro - Papo de Biritas</title>
@@ -44,8 +48,7 @@
 	<main>
 		<div class="container-fluid bg-purple py-3 purple">
 			<form id="container-comment" class="container-fluid col-md-6 bg-light rounded p-3">
-
-				<div class="form-row form-group">
+				<!-- <div class="form-row form-group">
 					<p class="ml-3 mr-auto my-auto">Qual o tipo de bebida?</p>
 					<div class='rating text-center'>
 						<ul id='listDrinks' class="list-unstyled">
@@ -60,8 +63,7 @@
 							</li>
 						</ul>
 					</div>
-
-				</div>
+				</div> -->
 
 				<div class="form-row">
 					<div class="form-group col-9">
@@ -76,7 +78,7 @@
 					placeholder="Conte-nos o que achou"></textarea>
 
 				<div id="b-space-comment" class="form-row ml-3 ">
-					<div class='rating text-center'>
+					<div class='rating text-center my-auto'>
 						<ul id='stars' class="list-unstyled">
 							<li class='star' data-value='1'>
 								<i class='fa fa-star fa-fw'></i>
@@ -97,18 +99,30 @@
 					</div>
 
 					<div class="form-group custom-control custom-checkbox ml-auto mr-4">
-							<input type="checkbox" checked data-toggle="toggle" data-on="Público" data-off="Privado" data-onstyle="success" data-offstyle="danger" data-size="small">
+						<!-- <input type="checkbox" data-toggle="toggle" checked="checked" id="post-privacy" data-size="small" data-on="Público" data-off="Privado" data-onstyle="success" data-offstyle="danger"/> -->
+						<select class="form-control  form-control-sm" id="selPrivacy">
+							<option value="público">Público</option>
+							<option value="privado">Privado</option>
+						</select>
 					</div>
 				</div>
+				<button type="submit" class="btn btn-purple btn-block add-post">Postar</button>
+			</form>
+		</div>
+
+		<section>
+			<div id="timeline" class="bg-pdb">
+					<div class="container-fluid col-md-6 d-flex">
+							<!-- <button type="submit" class="btn btn-purple flex-fill my-3 mr-2">Linha do tempo</button> -->
+							<button id="news-feed" type="submit" class="btn btn-purple flex-fill my-3 mr-2">Feed de novidades</button>
+							<button id="private-post" type="submit" class="btn btn-purple flex-fill my-3 ml-2">Posts Privados</button>
+						</div>
+						
+				<ul id="post-list" class="post-list list-unstyled d-flex flex-column-reverse"></ul>
 			</div>
+		</section>
 
-			<button type="submit" class="btn btn-primary btn-block add-post">Postar</button>
-		</form>
 	</main>
-
-	<section>
-		<div id="timeline" class="bg-pdb">
-			<ul class="post-list list-unstyled d-flex flex-column-reverse"></ul>
 
 			<!-- Delete Modal --> 
 			<div class="modal fade purple" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" data-backdrop="static">
@@ -122,25 +136,27 @@
 						</div>
 						<div class="modal-footer">
 							<button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cancelar</button>
-							<button id="btnDelete" type="button" class="btn btn-primary">Deletar</button>
+							<button id="btnDelete" type="button" class="btn btn-purple">Deletar</button>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
+	</div>
 
-	</section>
 
-  	<script src="https://code.jquery.com/jquery-3.3.1.min.js"
-    	integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-  	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-    	integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+	<script src="https://code.jquery.com/jquery-3.3.1.min.js"
+		integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
 		crossorigin="anonymous"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-  	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-    	integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-    	crossorigin="anonymous"></script>
- 	<script src="https://cdn.rawgit.com/PascaleBeier/bootstrap-validate/v2.2.0/dist/bootstrap-validate.js" ></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+		integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+		crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+		integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+		crossorigin="anonymous"></script>
+	<script src="https://cdn.rawgit.com/PascaleBeier/bootstrap-validate/v2.2.0/dist/bootstrap-validate.js"></script>
 	<script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
 
 	<script src="auth.js"></script>

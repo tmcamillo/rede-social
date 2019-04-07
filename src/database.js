@@ -1,80 +1,8 @@
 const database = firebase.database();
 const USER_ID = window.location.search.match(/\?id=(.*)/)[1];
 
-function writeUserData(email, password, uid) {
-
-    database.ref("users/" + uid).set({
-        name: nameInput.value,
-        surname: lastNameInput.value,
-        phone: phoneInput.value,
-        email: email,
-        pass: password
-    });     
-}
-
-function time() {
-	let today = new Date();
-	let hour = today.getHours();
-	let min = today.getMinutes();
-	let day = today.getDay();
-	let month = today.getMonth();
-	let year = today.getFullYear();
-	let timeNow = leftZeros(hour) + ":" + leftZeros(min) + " - " + leftZeros(day) + "/" + leftZeros(month) + "/" + year;
-
-	return timeNow;
-}
-
-function leftZeros(number) {
-	if (number < 10) {
-		newNumber = '0' + number
-		return newNumber
-	} else {
-		return number
-	}
-}
-
-function appendData(childData, childKey, amountLikes, liked) {
-	$(".post-list").append(
-		`
-		<li>
-			<div class=" container-fluid col-md-6 bg-light rounded p-4 my-3">
-				<div class="d-flex">
-					<!-- <img src=""> -->
-					<a class="d-inline-flex mr-auto mb-3">
-						<i class="fas fa-user-circle fa-2x purple align-self-center"></i>
-						<div class="ml-2">
-							<span class="purple">
-								<strong class="f-14">Nome</strong>
-								<br>
-								<span class="small">${childData.postTime}</span>
-							</span>
-						</div>
-					</a>
-					<a href="#"> <i class="edit far fa-edit bluish f-14 mx-1"></i> </a>
-					<a href="#" class="trash-ic" data-toggle="modal" data-target="#deleteModal" data-post-id="${childKey}"> <i class="delete far fa-trash-alt bluish f-14 mx-1"></i> </a>
-				</div>
-				<div id="comment-review">
-					<h5 class="text-muted" >${childData.label}</h5>
-					<p  class="text-muted" >${childData.review}</p>
-				</div>
-				<div class="d-flex purple">
-					<div class="mr-auto">nota estrelas</div>
-					<span><strong>${childData.alcohoolPer}%</strong> icone</span>
-				</div>
-				<div class="text-right">
-				 <a href="#" id="like-Unlike" class="mr-auto text-muted" data-post-id="${childKey}"><i class="${liked ? 'fas fa-heart': 'far fa-heart'}"></i></a> <span class="likes" data-post-id="${childKey}">${amountLikes}</span> like(s)
-					
-				</div>
-			</div>
-		</li>
-	`);
-}
-
-$(document).ready(function(){
-	ratingStar()
-	gettingDrinks()
-	
-    database.ref("/post/" + USER_ID).once("value")
+function loadPosts(){
+	database.ref("/post/" + USER_ID).once("value")
     .then(function(snapshot) {
         snapshot.forEach(function(childSnapshot) {
             let childkey = childSnapshot.key;
@@ -90,7 +18,105 @@ $(document).ready(function(){
             appendData(childData, childkey, amountLikes, liked);
 		});	
 	});
+}
+function writeUserData(email, password, uid) {
+
+	database.ref("users/" + uid).set({
+		name: nameInput.value,
+		surname: lastNameInput.value,
+		phone: phoneInput.value,
+		email: email,
+		pass: password
+	});
+}
+
+function time() {
+	let today = new Date();
+	let hour = today.getHours();
+	let min = today.getMinutes();
+	let day = today.getUTCDate();
+	let month = today.getUTCMonth();
+	let year = today.getUTCFullYear();
+	let timeNow = leftZeros(day) + "/" + leftZeros(month) + "/" + year + " - " + leftZeros(hour) + ":" + leftZeros(min);
+
+	return timeNow;
+}
+
+function leftZeros(number) {
+	if (number < 10) {
+		newNumber = '0' + number;
+		return newNumber
+	} else {
+		return number
+	}
+}
+
+function appendData(childData, childKey, amountLikes, liked) {
+	$(".post-list").append(
+		`
+		<li>
+			<div class="container-fluid col-md-6 bg-light rounded p-4 mb-3">
+				<div class="d-flex">
+					<!-- <img src=""> -->
+					<a class="d-inline-flex mr-auto mb-3">
+						<i class="fas fa-user-circle fa-2x purple align-self-center"></i>
+						<div class="ml-2">
+							<span class="purple">
+								<strong class="f-14">Nome</strong>
+								<br>
+								<span class="small">${childData.postTime} - ${childData.privacy}</span>
+							</span>
+						</div>
+					</a>
+					<a href="#"> <i class="edit far fa-edit bluish f-14 mx-1"></i> </a>
+					<a href="#" class="trash-ic" data-toggle="modal" data-target="#deleteModal" data-post-id="${childKey}"> <i class="delete far fa-trash-alt bluish f-14 mx-1"></i> </a>
+				</div>
+				<div id="comment-review"">
+					<h5><i class="DRINK" data-toggle="tooltip" data-placement="top"></i> ${childData.label}</h5>
+					<p>${childData.review}</p>
+				</div>
+				<div class="d-flex purple">
+					<div class="mr-auto">${childData.starScore}</div>
+					<span><strong>${childData.alcohoolPer}%</strong><i class="DRINK" data-toggle="tooltip" data-placement="top"></i></span>
+				</div>
+				<div class="text-right">
+				 <a href="#" id="like-Unlike" class="mr-auto text-muted" data-post-id="${childKey}"><i class="${liked ? 'fas fa-heart': 'far fa-heart'}"></i></a> <span class="likes" data-post-id="${childKey}">${amountLikes}</span> like(s)
+					
+				</div>
+			</div>
+		</div>
+	</li>
+	`);
+}
+
+$(document).ready(function () {
+	loadPosts()
+	ratingStar()
 	
+	$("#news-feed").click(function () {
+		$('#post-list').html("");
+		loadPosts()
+	})
+	
+	$("#private-post").click(function () {
+		$('#post-list').html("");
+		database.ref("/post/" + USER_ID).orderByChild("privacy").equalTo('privado').once('value', function (snapshot) {
+			snapshot.forEach(function(childSnapshot) {
+				let childkey = childSnapshot.key;
+				let childData = childSnapshot.val();
+				let amountLikes = childData.likes ? childData.likes.length : 0;
+				let liked = false;
+	
+				if (childData.likes) {
+					if($.inArray(USER_ID, childData.likes) != -1){
+						liked = true;
+					}
+				}
+				appendData(childData, childkey, amountLikes, liked);
+			});	
+		});
+	});
+		
 	// Funcão que adiciona erro no campo se vazio
 	$('#container-comment input[type="text"], input[type="number"], textarea').on('keyup', function() {
 		if($(this).val() === ''){
@@ -124,7 +150,9 @@ $(document).ready(function(){
 			review: $("#comment").val(),
 			alcohoolPer: $("#alcohol").val(),
 			postTime: time(),
-			starScore: typeof($('#stars li.selected').last().data('value')) === 'undefined' ? 0 : $('#stars li.selected').last().data('value'),
+			// starScore: typeof($('#stars li.selected').last().data('value')) === 'undefined' ? 0 : $('#stars li.selected').last().data('value'),
+			starScore: parseInt($('#stars li.selected').last().data('value'), 10),
+			privacy: $("#selPrivacy option:selected").val(),
 		};
 		
         let postFromDb = database.ref("/post/" + USER_ID).push(data);
@@ -184,7 +212,6 @@ $(document).ready(function(){
 		$(`a[data-post-id=${selected_key}]`).closest("li").remove();
 		$('#deleteModal').modal('hide');
 	});
-
-	
 });
+
 
