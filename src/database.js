@@ -46,14 +46,14 @@ function appendData(childData, childKey) {
 						<span class="purple">
 							<strong class="f-14">Nome</strong>
 							<br>
-							<span class="small">${childData.postTime}</span>
+							<span class="small">${childData.postTime} - ${childData.privacy}</span>
 						</span>
 					</div>
 				</a>
 				<i class="edit far fa-edit bluish f-14 mx-1"></i>
 				<i class="delete far fa-trash-alt bluish f-14 mx-1" data-id="${childKey}" data-toggle="modal"
 					data-target="#modal-del"></i>
-					
+
 			</div>
 			<div id="comment-review"">
 				<h5><i class="DRINK" data-toggle="tooltip" data-placement="top"></i> ${childData.label}</h5>
@@ -97,7 +97,7 @@ $(document).ready(function () {
 			alcohoolPer: $("#alcohol").val(),
 			postTime: time(),
 			starScore: parseInt($('#stars li.selected').last().data('value'), 10),
-			// privacy: ,
+			privacy: $("#selPrivacy option:selected").val(),
 		};
 
 		console.log(data)
