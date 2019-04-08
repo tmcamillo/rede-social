@@ -68,14 +68,14 @@ function appendData(childData, childKey, amountLikes, liked) {
 							</span>
 						</div>
 					</a>
-					<a href="#"> <i data-task-id="${childKey}" class="edit far fa-edit bluish f-14 mx-1"></i> </a>
+					<a href="#"> <i data-edit-id="${childKey}" class="edit far fa-edit bluish f-14 mx-1"></i> </a>
 					<a href="#" class="trash-ic" data-toggle="modal" data-target="#deleteModal"
 						data-post-id="${childKey}">
 						<i class="delete far fa-trash-alt bluish f-14 mx-1"></i> </a>
 				</div>
 				<div id="comment-review">
 					<h5><i class="drink" data-toggle="tooltip" data-placement="top"></i> ${childData.label}</h5>
-					<p class="review m-1">${childData.review}</p>
+					<p class="review m-1" data-review-id="${childKey}">${childData.review}</p>
 				</div>
 				<div class="d-flex purple">
 					<div class='rating text-center my-auto'>
@@ -99,40 +99,34 @@ function appendData(childData, childKey, amountLikes, liked) {
 </li>
 	`);
 
-	$(`i[data-task-id="${childKey}"]`).on('click', function (event) {
+	$(`i[data-edit-id="${childKey}"]`).on('click', function () {
 		event.preventDefault();
-		console.log("foi")
-		console.log(childKey)
 
-		database.ref("post/" + USER_ID + "/" + childKey).remove();
-
-		// $(this).parent().remove();
-		$(".review").prepend(`<li>
-			<textarea class="tasks-update">${childData.review}</textarea>
+		$(`p[data-review-id="${childKey}"]`).html(`
+			<textarea class="post-update" data-text-id="${childKey}">${childData.review}</textarea>
 			<button class="save-update">Update</button>
-			</li>`);
+			`);
+
 		$(".save-update").click(saveUpdate);
 	})
-	function saveUpdate(event){
+
+	function saveUpdate(event) {
 		event.preventDefault();
-		let newPost = $(".tasks-update").val();
-		let timePost= time();
-		let upData = updateData(newPost, timePost);
-	
+		let newPost = $(`textarea[data-text-id="${childKey}"]`).val();
+
+		$(`p[data-review-id="${childKey}"]`).html(newPost);
+
+		database.ref("post/" + USER_ID + "/" + childKey).update({
+			review: newPost
+		});
+
+		$(".post-update").parent().remove();
+		$(".save-update").parent().remove();
 		console.log(newPost)
-		console.log(timePost)
-		console.log(upData)
+
 	}
-	
-	function updateData(review, postTime){
-		return database.ref("post/" + USER_ID + "/" + childKey).push({
-			review: review,
-			postTime: postTime,
-		  });
-		}
+
 }
-
-
 
 $(document).ready(function () {
 
@@ -203,7 +197,7 @@ $(document).ready(function () {
 		let postFromDb = database.ref("/post/" + USER_ID).push(data);
 		appendData(data, postFromDb.key, 0, false);
 		$('#container-comment')[0].reset();
-		$('.star').removeClass('selected');
+		$('#stars').removeClass('selected');
 
 	});
 
