@@ -1,6 +1,7 @@
 const database = firebase.database();
 const USER_ID = window.location.search.match(/\?id=(.*)/)[1];
 
+//função carrega todos os posts já realizados pelo usuário
 function loadPosts(){
 	database.ref("/post/" + USER_ID).once("value")
     .then(function(snapshot) {
@@ -10,6 +11,7 @@ function loadPosts(){
 			let amountLikes = childData.likes ? childData.likes.length : 0;
 			let liked = false;
 
+			//procura se o post já foi curtido pelo id e se sim, troca o status do liked para já vir preenchido no feed
 			if (childData.likes) {
 				if($.inArray(USER_ID, childData.likes) != -1){
 					liked = true;
@@ -19,6 +21,8 @@ function loadPosts(){
 		});	
 	});
 }
+
+// função salva dados do usuário no firebase
 function writeUserData(email, password, uid) {
 
 	database.ref("users/" + uid).set({
@@ -51,6 +55,7 @@ function leftZeros(number) {
 	}
 }
 
+//Adiciona dinamicamente itens ao html
 function appendData(childData, childKey, amountLikes, liked) {
 	$(".post-list").append(
 		`
@@ -80,7 +85,7 @@ function appendData(childData, childKey, amountLikes, liked) {
 					<span><strong>${childData.alcohoolPer}%</strong><i class="DRINK" data-toggle="tooltip" data-placement="top"></i></span>
 				</div>
 				<div class="text-right">
-				 <a href="#" id="like-Unlike" class="mr-auto text-muted" data-post-id="${childKey}"><i class="${liked ? 'fas fa-heart': 'far fa-heart'}"></i></a> <span class="likes" data-post-id="${childKey}">${amountLikes}</span> like(s)
+				 <a href="#" id="like-Unlike" class="mr-auto text-muted" data-post-id="${childKey}"><i class="${liked ? 'fas fa-heart' : 'far fa-heart'}"></i> </a> <span class="likes" data-post-id="${childKey}">${amountLikes}</span> like(s)
 					
 				</div>
 			</div>
@@ -90,6 +95,7 @@ function appendData(childData, childKey, amountLikes, liked) {
 }
 
 $(document).ready(function () {
+
 	loadPosts()
 	ratingStar()
 	
@@ -117,7 +123,7 @@ $(document).ready(function () {
 		});
 	});
 		
-	// Funcão que adiciona erro no campo se vazio
+	// Valida se campos estão todos preenchidos no momento da digitação
 	$('#container-comment input[type="text"], input[type="number"], textarea').on('keyup', function() {
 		if($(this).val() === ''){
 			$(this).addClass('is-invalid');
@@ -127,11 +133,11 @@ $(document).ready(function () {
 		}
 	});
 
-	// Função que posta os dados se todos estiverem preenchidos
+	// Click executa o post, se todos campos estiverem preenchidos
     $(".add-post").click(function(event) {
 		event.preventDefault();
 
-		// Valida de todos os campos estão preenchidos
+		// Valida se todos os campos foram de fato preenchidos e barra a postagem caso não.
 		let error = false
 		$('#container-comment input[type="text"], input[type="number"], textarea').each(function(){
 			if($(this).val() === ''){
@@ -142,40 +148,64 @@ $(document).ready(function () {
 				$(this).removeClass('is-invalid');
 			}
 		}) 
-		if (error) return false
+		if (error) return
 		
+		//Adiciona valores para o objeto no firebase
 		let data = {
-			drinkIcon: iconDrink(parseInt($('#listDrinks li.selected').last().data('value'), 10)),
+			// drinkIcon: iconDrink(parseInt($('#listDrinks li.selected').last().data('value'), 10)),
 			label: $("#label").val().toUpperCase(),
 			review: $("#comment").val(),
 			alcohoolPer: $("#alcohol").val(),
 			postTime: time(),
-			// starScore: typeof($('#stars li.selected').last().data('value')) === 'undefined' ? 0 : $('#stars li.selected').last().data('value'),
-			starScore: parseInt($('#stars li.selected').last().data('value'), 10),
+			starScore: typeof($('#stars li.selected').last().data('value')) === 'undefined' ? 0 : $('#stars li.selected').last().data('value'),
+			// starScore: parseInt($('#stars li.selected').last().data('value'), 10),
 			privacy: $("#selPrivacy option:selected").val(),
 		};
 		
-        let postFromDb = database.ref("/post/" + USER_ID).push(data);
+		//Pegando id que foi salvo no banco e mostrando na tela
+		let postFromDb = database.ref("/post/" + USER_ID).push(data);
 		appendData(data, postFromDb.key, 0, false);
+
+		$('.toast-body').html('Sua review foi adicionada ao feed :)');
+		$('.toast').toast('show');
+
+		//Reseta form e estrelas após post
 		$('#container-comment')[0].reset();
 		$('#stars li').removeClass('selected');
+
+
 	});
 
+	//Variável declarada global
 	let selected_key = ''
+
+	//Click pega o data-id no elemento clicado
 	$(document).on('click', '.trash-ic', function() {
 		selected_key = $(this).attr('data-post-id');
-	})
 
-	//1guarda o like que foi clicado e muda a cor. ok
-	//2 passos a frente: pegar o id de qm está clicando e onde foi clicado. 
-	//3 passo, antes de add validar se o cara já clicou
-	//4 passo, se o cara que clicou tem
+	});
+
+	$("#btnDelete").click(function(){
+		database.ref("post/" + USER_ID + "/" + selected_key).remove();
+		$(`a[data-post-id=${selected_key}]`).closest("li").remove();
+		$('#deleteModal').modal('hide');
+		window.scrollTo(0,0)
+		$('.toast-body').html('O post foi deletado do feed :)');
+		$('.toast').toast('show');
+	});
+
+	//1 passo: guarda o like que foi clicado e muda a cor do icone
+	//2 passo: pega o id de qm está clicando
+	//3 passo: validar se o cara já clicou
+	//4 passo: se o cara já clicou descurtir
 
 	$(document).on('click', '#like-Unlike', function(e) {
 		e.preventDefault();
 
+		//Click pega o data-id no elemento clicado
 		selected_key = $(this).attr('data-post-id');
 
+		//valida o click para ver se o item já estava curtido(o de cima valida do banco)
 		if ($(this.firstChild).attr('class') === 'fas fa-heart') {
 			$(this.firstChild).removeClass('fas fa-heart');
 			$(this.firstChild).addClass('far fa-heart');
@@ -185,33 +215,36 @@ $(document).ready(function () {
 			$(this.firstChild).addClass('fas fa-heart');
 		}
 		
+		//Busca na base o item que o usuário clicou para validar se a curtida será adicionado ou removida
 		database.ref("/post/" + USER_ID + '/' + selected_key).once("value")
 		.then(function(snapshot) {
 			let values = snapshot.val();
 			
+			//verifica se existe algum like no item 
 			if (values.likes) {
+				//tendo, verifica se o usuário logado que deu o like
 				if($.inArray(USER_ID, values.likes) != -1){
+					//se foi o próprio usuário, ele remove o like
 					values.likes.splice($.inArray(USER_ID, values.likes),1);
 				}
 				else{
+					//se não achou curtida, ele acrescenta uma curtida
 					values.likes.push(USER_ID);
 				}
 			}
+			//caso não tenha nenhum like ainda, cria um array e push no like
 			else {
 				values.likes = [];
 				values.likes.push(USER_ID);
 			}
+			//incluo dinamicamente a quantidade de likes clicado
 			$(`span[data-post-id=${selected_key}]`).html(values.likes.length);
+			//atualiza qtdade de curtidas no banco
 			database.ref("/post/" + USER_ID + '/'+ selected_key).update(values);
 			
 		});
 	});
 
-	$("#btnDelete").click(function(){
-		database.ref("post/" + USER_ID + "/" + selected_key).remove();
-		$(`a[data-post-id=${selected_key}]`).closest("li").remove();
-		$('#deleteModal').modal('hide');
-	});
 });
 
 
