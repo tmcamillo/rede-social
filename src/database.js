@@ -1,23 +1,23 @@
 const database = firebase.database();
 const USER_ID = window.location.search.match(/\?id=(.*)/)[1];
 
-function loadPosts(){
+function loadPosts() {
 	database.ref("/post/" + USER_ID).once("value")
-    .then(function(snapshot) {
-        snapshot.forEach(function(childSnapshot) {
-            let childkey = childSnapshot.key;
-			let childData = childSnapshot.val();
-			let amountLikes = childData.likes ? childData.likes.length : 0;
-			let liked = false;
+		.then(function (snapshot) {
+			snapshot.forEach(function (childSnapshot) {
+				let childkey = childSnapshot.key;
+				let childData = childSnapshot.val();
+				let amountLikes = childData.likes ? childData.likes.length : 0;
+				let liked = false;
 
-			if (childData.likes) {
-				if($.inArray(USER_ID, childData.likes) != -1){
-					liked = true;
+				if (childData.likes) {
+					if ($.inArray(USER_ID, childData.likes) != -1) {
+						liked = true;
+					}
 				}
-			}
-            appendData(childData, childkey, amountLikes, liked);
-		});	
-	});
+				appendData(childData, childkey, amountLikes, liked);
+			});
+		});
 }
 function writeUserData(email, password, uid) {
 
@@ -73,14 +73,14 @@ function appendData(childData, childKey, amountLikes, liked) {
 				</div>
 				<div id="comment-review"">
 					<h5><i class="DRINK" data-toggle="tooltip" data-placement="top"></i> ${childData.label}</h5>
-					<p>${childData.review}</p>
+					<p class="m-1">${childData.review}</p>
 				</div>
 				<div class="d-flex purple">
 					<div class="mr-auto">${childData.starScore}</div>
 					<span><strong>${childData.alcohoolPer}%</strong><i class="DRINK" data-toggle="tooltip" data-placement="top"></i></span>
 				</div>
 				<div class="text-right">
-				 <a href="#" id="like-Unlike" class="mr-auto text-muted" data-post-id="${childKey}"><i class="${liked ? 'fas fa-heart': 'far fa-heart'}"></i></a> <span class="likes" data-post-id="${childKey}">${amountLikes}</span> like(s)
+				 <a href="#" id="like-Unlike" class="mr-auto text-muted" data-post-id="${childKey}"><i class="${liked ? 'fas fa-heart' : 'far fa-heart'}"></i></a> <span class="likes" data-post-id="${childKey}">${amountLikes}</span> like(s)
 					
 				</div>
 			</div>
@@ -90,79 +90,80 @@ function appendData(childData, childKey, amountLikes, liked) {
 }
 
 $(document).ready(function () {
-	loadPosts()
-	ratingStar()
-	
+
+	loadPosts();
+	ratingStar();
+
 	$("#news-feed").click(function () {
 		$('#post-list').html("");
 		loadPosts()
 	})
-	
+
 	$("#private-post").click(function () {
 		$('#post-list').html("");
 		database.ref("/post/" + USER_ID).orderByChild("privacy").equalTo('privado').once('value', function (snapshot) {
-			snapshot.forEach(function(childSnapshot) {
+			snapshot.forEach(function (childSnapshot) {
 				let childkey = childSnapshot.key;
 				let childData = childSnapshot.val();
 				let amountLikes = childData.likes ? childData.likes.length : 0;
 				let liked = false;
-	
+
 				if (childData.likes) {
-					if($.inArray(USER_ID, childData.likes) != -1){
+					if ($.inArray(USER_ID, childData.likes) != -1) {
 						liked = true;
 					}
 				}
 				appendData(childData, childkey, amountLikes, liked);
-			});	
+			});
 		});
 	});
-		
+
 	// Funcão que adiciona erro no campo se vazio
-	$('#container-comment input[type="text"], input[type="number"], textarea').on('keyup', function() {
-		if($(this).val() === ''){
+	$('#container-comment input[type="text"], input[type="number"], textarea').on('keyup', function () {
+		if ($(this).val() === '') {
 			$(this).addClass('is-invalid');
 		}
-		else{
+		else {
 			$(this).removeClass('is-invalid');
 		}
 	});
 
 	// Função que posta os dados se todos estiverem preenchidos
-    $(".add-post").click(function(event) {
+	$("#btn-post").click(function (event) {
 		event.preventDefault();
 
 		// Valida de todos os campos estão preenchidos
 		let error = false
-		$('#container-comment input[type="text"], input[type="number"], textarea').each(function(){
-			if($(this).val() === ''){
+		$('#container-comment input[type="text"], input[type="number"], textarea').each(function () {
+			if ($(this).val() === '') {
 				$(this).addClass('is-invalid');
 				error = true
 			}
-			else{
+			else {
 				$(this).removeClass('is-invalid');
 			}
-		}) 
+		})
 		if (error) return false
-		
+
 		let data = {
-			drinkIcon: iconDrink(parseInt($('#listDrinks li.selected').last().data('value'), 10)),
+			// drinkIcon: iconDrink(parseInt($('#listDrinks li.selected').last().data('value'), 10)),
 			label: $("#label").val().toUpperCase(),
 			review: $("#comment").val(),
 			alcohoolPer: $("#alcohol").val(),
 			postTime: time(),
-			// starScore: typeof($('#stars li.selected').last().data('value')) === 'undefined' ? 0 : $('#stars li.selected').last().data('value'),
 			starScore: parseInt($('#stars li.selected').last().data('value'), 10),
 			privacy: $("#selPrivacy option:selected").val(),
 		};
-		
-        let postFromDb = database.ref("/post/" + USER_ID).push(data);
+
+		let postFromDb = database.ref("/post/" + USER_ID).push(data);
 		appendData(data, postFromDb.key, 0, false);
 		$('#container-comment')[0].reset();
-		$('#stars li').removeClass('selected');
+
+		$('.star').removeClass('selected');
 	});
 
-	let selected_key = ''
-	$(document).on('click', '.trash-ic', function() {
+	let selected_key = '';
+	$(document).on('click', '.trash-ic', function () {
 		selected_key = $(this).attr('data-post-id');
 	})
 
@@ -171,7 +172,7 @@ $(document).ready(function () {
 	//3 passo, antes de add validar se o cara já clicou
 	//4 passo, se o cara que clicou tem
 
-	$(document).on('click', '#like-Unlike', function(e) {
+	$(document).on('click', '#like-Unlike', function (e) {
 		e.preventDefault();
 
 		selected_key = $(this).attr('data-post-id');
@@ -184,30 +185,30 @@ $(document).ready(function () {
 			$(this.firstChild).removeClass('far fa-heart');
 			$(this.firstChild).addClass('fas fa-heart');
 		}
-		
+
 		database.ref("/post/" + USER_ID + '/' + selected_key).once("value")
-		.then(function(snapshot) {
-			let values = snapshot.val();
-			
-			if (values.likes) {
-				if($.inArray(USER_ID, values.likes) != -1){
-					values.likes.splice($.inArray(USER_ID, values.likes),1);
+			.then(function (snapshot) {
+				let values = snapshot.val();
+
+				if (values.likes) {
+					if ($.inArray(USER_ID, values.likes) != -1) {
+						values.likes.splice($.inArray(USER_ID, values.likes), 1);
+					}
+					else {
+						values.likes.push(USER_ID);
+					}
 				}
-				else{
+				else {
+					values.likes = [];
 					values.likes.push(USER_ID);
 				}
-			}
-			else {
-				values.likes = [];
-				values.likes.push(USER_ID);
-			}
-			$(`span[data-post-id=${selected_key}]`).html(values.likes.length);
-			database.ref("/post/" + USER_ID + '/'+ selected_key).update(values);
-			
-		});
+				$(`span[data-post-id=${selected_key}]`).html(values.likes.length);
+				database.ref("/post/" + USER_ID + '/' + selected_key).update(values);
+
+			});
 	});
 
-	$("#btnDelete").click(function(){
+	$("#btnDelete").click(function () {
 		database.ref("post/" + USER_ID + "/" + selected_key).remove();
 		$(`a[data-post-id=${selected_key}]`).closest("li").remove();
 		$('#deleteModal').modal('hide');

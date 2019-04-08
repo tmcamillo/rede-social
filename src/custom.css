@@ -1,15 +1,9 @@
-.comment-count{
-  color: #83579B;
-}
-.class-center{
-  display: flex;
+#class-center{
   min-height: 80vh;
   width: 100%;
-  margin: 0;
-  padding: 0;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
+}
+.comment-count{
+  color: #83579B;
 }
 .inputfile {
 	width: 0.1px;
@@ -23,13 +17,8 @@
   background: url("../assets/1xbg-pdbimg.png");
   height: 10em;
 }
-.logo-div{
-  justify-content: center;
-  display: flex;
-}
 .img-logo{
-  margin: 10vh 0 0 0;
-  height: 25vh;
+  height: 30em;
   width: auto;
 }
 .purple-ic{
@@ -46,14 +35,6 @@
   background-color: #5BA7A5;
   border: none;
 }
-/* .btn-primary{
-  background-color: #83579B;
-  border: none;
-}
-.btn-primary:hover{
-  background-color: #764D8D;
-  border: none;
-} */
 .modal{
   color: #6ABEBC;
 }
@@ -130,13 +111,14 @@ body{
   background-color: #6ABEBC;
   border: #6ABEBC;
 }
-.btn-secondary:active{
-  background-color: #6ABEBC;
-  border: #6ABEBC;
-}
 .btn-secondary:hover{
   background-color: #5BA7A5;
   border: #5BA7A5;
+}
+.btn-purple:not(:disabled):not(.disabled).active, .btn-secondary:not(:disabled):not(.disabled):active, .show>.btn-secondary.dropdown-toggle {
+  background-color: #5BA7A5;
+  border: #5BA7A5;
+  color: white;
 }
 .btn-purple{
   background-color: #83579B;
@@ -148,7 +130,7 @@ body{
   border: #764D8D;
   color: white;
 }
-.btn-secondary:not(:disabled):not(.disabled).active, .btn-secondary:not(:disabled):not(.disabled):active, .show>.btn-secondary.dropdown-toggle {
+.btn-purple:not(:disabled):not(.disabled).active, .btn-secondary:not(:disabled):not(.disabled):active, .show>.btn-secondary.dropdown-toggle {
   background-color: #764D8D;
   border: #764D8D;
   color: white;
@@ -174,27 +156,6 @@ body{
   color: #FCD858;
 }
 
-.rating ul > li.drinks.selected > i.fa-cocktail {
-  color:#6ABEBC;
-}
-.rating ul > li.drinks.selected > i.fa-wine-glass-alt {
-  color:#C1181C;
-}
-.rating ul > li.drinks.selected > i.fa-beer {
-  color:#FCD858;
-}
-
-.faded {
-  opacity: 1;
-  transition: opacity .25s ease-in-out;
-  -moz-transition: opacity .25s ease-in-out;
-  -webkit-transition: opacity .25s ease-in-out;
-  }
-
-.faded:hover {
-  opacity: 0;
-  }
-
 .rating ul {  
   -moz-user-select:none;
   -webkit-user-select:none;
@@ -202,18 +163,12 @@ body{
 .rating ul > li {
   display:inline-block;
 }
-
-/* Idle State of the stars */
 .rating ul > li > i {
-  color:#ccc; /* Color on idle state */
+  color:#ccc;
 }
-
-/* Hover state of the stars */
 .rating ul > li.star.hover > i.fa {
   color:#FCD858;
 }
-
-/* Selected state of the stars */
 .rating ul > li.star.selected > i.fa {
   color:#FCD858;
 }
