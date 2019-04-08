@@ -16,9 +16,11 @@ function loadPosts(){
 				if($.inArray(USER_ID, childData.likes) != -1){
 					liked = true;
 				}
+			}
 				appendData(childData, childkey, amountLikes, liked);
 			});
 		});
+
 }
 
 // função salva dados do usuário no firebase
@@ -72,23 +74,19 @@ function appendData(childData, childKey, amountLikes, liked) {
 							</span>
 						</div>
 					</a>
-					<a href="#"> <i class="edit far fa-edit bluish f-14 mx-1"></i> </a>
+					<a href="#" class="edit-ic" data-edit-id="${childKey}"> <i class="edit far fa-edit bluish f-14 mx-1"></i> </a>
 					<a href="#" class="trash-ic" data-toggle="modal" data-target="#deleteModal" data-post-id="${childKey}"> <i class="delete far fa-trash-alt bluish f-14 mx-1"></i> </a>
 				</div>
 				<div id="comment-review"">
 					<h5><i class="DRINK" data-toggle="tooltip" data-placement="top"></i> ${childData.label}</h5>
-					<p class="m-1">${childData.review}</p>
+					<p class="m-1" data-review-id="${childKey}">${childData.review}</p>
 				</div>
 				<div class="d-flex purple">
 					<div class="mr-auto">${childData.starScore}</div>
 					<span><strong>${childData.alcohoolPer}%</strong><i class="DRINK" data-toggle="tooltip" data-placement="top"></i></span>
 				</div>
 				<div class="text-right">
-<<<<<<< HEAD
 				 <a href="#" id="like-Unlike" class="mr-auto text-muted" data-post-id="${childKey}"><i class="${liked ? 'fas fa-heart' : 'far fa-heart'}"></i> </a> <span class="likes" data-post-id="${childKey}">${amountLikes}</span> like(s)
-=======
-				 <a href="#" id="like-Unlike" class="mr-auto text-muted" data-post-id="${childKey}"><i class="${liked ? 'fas fa-heart' : 'far fa-heart'}"></i></a> <span class="likes" data-post-id="${childKey}">${amountLikes}</span> like(s)
->>>>>>> b3797eab162bfcf00b9c5508205554675ef3d5c0
 					
 				</div>
 			</div>
@@ -96,6 +94,8 @@ function appendData(childData, childKey, amountLikes, liked) {
 	</li>
 	`);
 }
+
+function newPost()
 
 $(document).ready(function () {
 
@@ -197,12 +197,38 @@ $(document).ready(function () {
 		$('.toast').toast('show');
 	});
 
+	$(document).on('click', '.edit-ic', function(e) {
+		e.preventDefault();
+		selected_key = $(this).attr('data-edit-id');
+
+		// $(`p[data-review-id="${childKey}"]`).prepend(`<li>
+		// 	<textarea id="post-update" data-text-id="${childKey}">${childData.review}</textarea>
+		// 	<button class="save-update">Update</button>
+		// 	</li>`);
+
+		// $(".save-update").click();
+	});
+		// let newPost = prompt(`altere o texto: ${text}`);
+	
+		// database.ref("post/" + selected_key).update({
+		// 	review: newPost	
+		// });
+
+
+
+	// $().on('click', 'edit-ic', function(e) {
+	// 	e.preventDefault()
+	// 	
+	// 	$(`a[data-post-id=${selected_key}]`).closest("li").remove();
+
+	// });
+
 	//1 passo: guarda o like que foi clicado e muda a cor do icone
 	//2 passo: pega o id de qm está clicando
 	//3 passo: validar se o cara já clicou
 	//4 passo: se o cara já clicou descurtir
 
-	$(document).on('click', '#like-Unlike', function (e) {
+	$(document).on('click', '#like-Unlike', function(e) {
 		e.preventDefault();
 
 		//Click pega o data-id no elemento clicado
