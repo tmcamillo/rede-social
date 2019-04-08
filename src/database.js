@@ -68,7 +68,7 @@ function appendData(childData, childKey, amountLikes, liked) {
 							</span>
 						</div>
 					</a>
-					<a href="#"> <i class="edit far fa-edit bluish f-14 mx-1"></i> </a>
+					<a href="#"> <i data-task-id="${childKey}" class="edit far fa-edit bluish f-14 mx-1"></i> </a>
 					<a href="#" class="trash-ic" data-toggle="modal" data-target="#deleteModal"
 						data-post-id="${childKey}">
 						<i class="delete far fa-trash-alt bluish f-14 mx-1"></i> </a>
@@ -98,7 +98,41 @@ function appendData(childData, childKey, amountLikes, liked) {
 </div>
 </li>
 	`);
+
+	$(`i[data-task-id="${childKey}"]`).on('click', function (event) {
+		event.preventDefault();
+		console.log("foi")
+		console.log(childKey)
+
+		database.ref("post/" + USER_ID + "/" + childKey).remove();
+
+		// $(this).parent().remove();
+		$(".review").prepend(`<li>
+			<textarea class="tasks-update">${childData.review}</textarea>
+			<button class="save-update">Update</button>
+			</li>`);
+		$(".save-update").click(saveUpdate);
+	})
+	function saveUpdate(event){
+		event.preventDefault();
+		let newPost = $(".tasks-update").val();
+		let timePost= time();
+		let upData = updateData(newPost, timePost);
+	
+		console.log(newPost)
+		console.log(timePost)
+		console.log(upData)
+	}
+	
+	function updateData(review, postTime){
+		return database.ref("post/" + USER_ID + "/" + childKey).push({
+			review: review,
+			postTime: postTime,
+		  });
+		}
 }
+
+
 
 $(document).ready(function () {
 
@@ -169,7 +203,8 @@ $(document).ready(function () {
 		let postFromDb = database.ref("/post/" + USER_ID).push(data);
 		appendData(data, postFromDb.key, 0, false);
 		$('#container-comment')[0].reset();
-		$('.star').removeClass('selected');	
+		$('.star').removeClass('selected');
+
 	});
 
 	let selected_key = '';
