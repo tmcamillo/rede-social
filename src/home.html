@@ -74,46 +74,48 @@
 					</div>
 				</div> -->
 
-				<div class="form-row">
+				<div id="multiCollapseExample1" class="collapse multi-collapse form-row">
 					<div class="form-group col-9">
 						<input id="label" type="text" class="form-control" placeholder="Marca">
 					</div>
 					<div class="form-group col-3">
-						<input id="alcohol" type="number" class="form-control" placeholder="Teor">
+						<input id="alcohol" type="number" min="0" step=".01" class="form-control" placeholder="Teor">
 					</div>
+					<p id="comment-count" class="comment-count small ml-2 my-0"><span id="charNum">300</span> caracteres restantes
+					</p>
 				</div>
+				<textarea id="comment" type="text" class="form-control form-group large-compact p-3" rows="1"
+					data-toggle="collapse" data-target=".multi-collapse" aria-expanded="false"
+					aria-controls="multiCollapseExample1 multiCollapseExample2" placeholder="Conte o que achou"></textarea>
 
-				<p id="comment-count" class="comment-count small ml-2 my-0"><span id="charNum">300</span> caracteres restantes
-				</p>
-				<textarea id="comment-area" type="text" class="form-control form-group" rows="4"
-					placeholder="Conte-nos o que achou"></textarea>
+				<div class="collapse multi-collapse" id="multiCollapseExample2">
+					<div id="b-space-comment" class="form-row ml-3" id="multiCollapseExample2">
+						<div class='rating text-center my-auto'>
+							<ul id='stars' class="list-unstyled">
+								<li class='star' data-value='1'>
+									<i class='fa fa-star fa-fw'></i>
+								</li>
+								<li class='star' data-value='2'>
+									<i class='fa fa-star fa-fw'></i>
+								</li>
+								<li class='star' data-value='3'>
+									<i class='fa fa-star fa-fw'></i>
+								</li>
+								<li class='star' data-value='4'>
+									<i class='fa fa-star fa-fw'></i>
+								</li>
+								<li class='star' data-value='5'>
+									<i class='fa fa-star fa-fw'></i>
+								</li>
+							</ul>
+						</div>
 
-				<div id="b-space-comment" class="form-row ml-3">
-					<div class='rating text-center my-auto'>
-						<ul id='stars' class="list-unstyled">
-							<li class='star' data-value='1'>
-								<i class='fa fa-star fa-fw'></i>
-							</li>
-							<li class='star' data-value='2'>
-								<i class='fa fa-star fa-fw'></i>
-							</li>
-							<li class='star' data-value='3'>
-								<i class='fa fa-star fa-fw'></i>
-							</li>
-							<li class='star' data-value='4'>
-								<i class='fa fa-star fa-fw'></i>
-							</li>
-							<li class='star' data-value='5'>
-								<i class='fa fa-star fa-fw'></i>
-							</li>
-						</ul>
-					</div>
-
-					<div class="form-group custom-control custom-checkbox ml-auto mr-4">
-						<select class="form-control  form-control-sm" id="selPrivacy">
-							<option value="público">Público</option>
-							<option value="privado">Privado</option>
-						</select>
+						<div class="form-group custom-control custom-checkbox ml-auto mr-4">
+							<select class="form-control form-control-sm small" id="selPrivacy">
+								<option value="público">Público</option>
+								<option value="privado">Privado</option>
+							</select>
+						</div>
 					</div>
 				</div>
 				<button id="btn-post" type="submit" class="btn btn-purple btn-block add-post">Postar</button>
@@ -130,6 +132,7 @@
 
 				<ul id="post-list" class="post-list list-unstyled d-flex flex-column-reverse px-3"></ul>
 			</div>
+
 		</section>
 
 	</main>
@@ -175,6 +178,7 @@
 	<script src="rating.js"></script>
 	<script src="database.js"></script>
 	<script src="script.js"></script>
+	<script src="edit.js"></script>
 </body>
 
 </html>

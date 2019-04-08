@@ -128,9 +128,7 @@ function appendData(childData, childKey, amountLikes, liked) {
 		$(".post-update").parent().remove();
 		$(".save-update").parent().remove();
 		console.log(newPost)
-
 	}
-
 }
 
 $(document).ready(function () {
@@ -221,7 +219,6 @@ $(document).ready(function () {
 	//Click pega o data-id no elemento clicado
 	$(document).on('click', '.trash-ic', function() {
 		selected_key = $(this).attr('data-post-id');
-
 	});
 
 	$("#btnDelete").click(function(){
