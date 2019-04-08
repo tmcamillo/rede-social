@@ -16,10 +16,9 @@ function loadPosts(){
 				if($.inArray(USER_ID, childData.likes) != -1){
 					liked = true;
 				}
-			}
-            appendData(childData, childkey, amountLikes, liked);
-		});	
-	});
+				appendData(childData, childkey, amountLikes, liked);
+			});
+		});
 }
 
 // função salva dados do usuário no firebase
@@ -78,14 +77,18 @@ function appendData(childData, childKey, amountLikes, liked) {
 				</div>
 				<div id="comment-review"">
 					<h5><i class="DRINK" data-toggle="tooltip" data-placement="top"></i> ${childData.label}</h5>
-					<p>${childData.review}</p>
+					<p class="m-1">${childData.review}</p>
 				</div>
 				<div class="d-flex purple">
 					<div class="mr-auto">${childData.starScore}</div>
 					<span><strong>${childData.alcohoolPer}%</strong><i class="DRINK" data-toggle="tooltip" data-placement="top"></i></span>
 				</div>
 				<div class="text-right">
+<<<<<<< HEAD
 				 <a href="#" id="like-Unlike" class="mr-auto text-muted" data-post-id="${childKey}"><i class="${liked ? 'fas fa-heart' : 'far fa-heart'}"></i> </a> <span class="likes" data-post-id="${childKey}">${amountLikes}</span> like(s)
+=======
+				 <a href="#" id="like-Unlike" class="mr-auto text-muted" data-post-id="${childKey}"><i class="${liked ? 'fas fa-heart' : 'far fa-heart'}"></i></a> <span class="likes" data-post-id="${childKey}">${amountLikes}</span> like(s)
+>>>>>>> b3797eab162bfcf00b9c5508205554675ef3d5c0
 					
 				</div>
 			</div>
@@ -103,23 +106,23 @@ $(document).ready(function () {
 		$('#post-list').html("");
 		loadPosts()
 	})
-	
+
 	$("#private-post").click(function () {
 		$('#post-list').html("");
 		database.ref("/post/" + USER_ID).orderByChild("privacy").equalTo('privado').once('value', function (snapshot) {
-			snapshot.forEach(function(childSnapshot) {
+			snapshot.forEach(function (childSnapshot) {
 				let childkey = childSnapshot.key;
 				let childData = childSnapshot.val();
 				let amountLikes = childData.likes ? childData.likes.length : 0;
 				let liked = false;
-	
+
 				if (childData.likes) {
-					if($.inArray(USER_ID, childData.likes) != -1){
+					if ($.inArray(USER_ID, childData.likes) != -1) {
 						liked = true;
 					}
 				}
 				appendData(childData, childkey, amountLikes, liked);
-			});	
+			});
 		});
 	});
 		
@@ -128,7 +131,7 @@ $(document).ready(function () {
 		if($(this).val() === ''){
 			$(this).addClass('is-invalid');
 		}
-		else{
+		else {
 			$(this).removeClass('is-invalid');
 		}
 	});
@@ -139,12 +142,12 @@ $(document).ready(function () {
 
 		// Valida se todos os campos foram de fato preenchidos e barra a postagem caso não.
 		let error = false
-		$('#container-comment input[type="text"], input[type="number"], textarea').each(function(){
-			if($(this).val() === ''){
+		$('#container-comment input[type="text"], input[type="number"], textarea').each(function () {
+			if ($(this).val() === '') {
 				$(this).addClass('is-invalid');
 				error = true
 			}
-			else{
+			else {
 				$(this).removeClass('is-invalid');
 			}
 		}) 
@@ -199,7 +202,7 @@ $(document).ready(function () {
 	//3 passo: validar se o cara já clicou
 	//4 passo: se o cara já clicou descurtir
 
-	$(document).on('click', '#like-Unlike', function(e) {
+	$(document).on('click', '#like-Unlike', function (e) {
 		e.preventDefault();
 
 		//Click pega o data-id no elemento clicado

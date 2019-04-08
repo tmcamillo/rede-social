@@ -17,7 +17,7 @@ function ratingStar() {
       $(this).removeClass('hover');
     });
   });
-  
+
   $('#stars li').on('click', function () {
     let onStar = parseInt($(this).data('value'), 10);
     let stars = $(this).parent().children('li.star');
@@ -33,7 +33,7 @@ function ratingStar() {
 }
 
 // function gettingDrinks() {
-  
+
 //   $('#listDrinks li').on('click', function () {
 //     let stars = $(this).parent().children('li.drinks');
 
