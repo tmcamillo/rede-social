@@ -2,6 +2,14 @@
   min-height: 80vh;
   width: 100%;
 }
+#comment-area{
+  resize: none;
+  transition: all .3s;
+  -webkit-transition: all .3s;
+}
+#comment-area:focus{
+  height:150px;
+}
 .comment-count{
   color: #83579B;
 }
@@ -172,4 +180,3 @@ body{
 .rating ul > li.star.selected > i.fa {
   color:#FCD858;
 }
-

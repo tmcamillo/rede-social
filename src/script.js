@@ -1,4 +1,4 @@
-let lengthPost = document.getElementById('comment-area').value.length;
+let lengthPost = document.getElementById('comment').value.length;
 let lengthLabel = document.getElementById('label').value.length;
 let lengthAlcohool = document.getElementById('alcohol').value.length;
 
@@ -22,7 +22,7 @@ function autosize() {
   }, 0);
 }
 
-document.getElementById('comment-area').addEventListener('input', () => {
+document.getElementById('comment').addEventListener('input', () => {
   count();
 
 })
