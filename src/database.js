@@ -20,7 +20,6 @@ function loadPosts(){
 				appendData(childData, childkey, amountLikes, liked);
 			});
 		});
-
 }
 
 // função salva dados do usuário no firebase
@@ -61,9 +60,9 @@ function appendData(childData, childKey, amountLikes, liked) {
 	$(".post-list").append(
 		`
 		<li>
-			<div class="container-fluid col-md-6 bg-light rounded p-4 mb-3">
+		<div class="container-fluid col-md-6 bg-light rounded mb-3">
+			<div class="card-body">
 				<div class="d-flex">
-					<!-- <img src=""> -->
 					<a class="d-inline-flex mr-auto mb-3">
 						<i class="fas fa-user-circle fa-2x purple align-self-center"></i>
 						<div class="ml-2">
@@ -74,28 +73,65 @@ function appendData(childData, childKey, amountLikes, liked) {
 							</span>
 						</div>
 					</a>
-					<a href="#" class="edit-ic" data-edit-id="${childKey}"> <i class="edit far fa-edit bluish f-14 mx-1"></i> </a>
-					<a href="#" class="trash-ic" data-toggle="modal" data-target="#deleteModal" data-post-id="${childKey}"> <i class="delete far fa-trash-alt bluish f-14 mx-1"></i> </a>
+					<a href="#"> <i data-edit-id="${childKey}" class="edit far fa-edit bluish f-14 mx-1"></i> </a>
+					<a href="#" class="trash-ic" data-toggle="modal" data-target="#deleteModal"
+						data-post-id="${childKey}">
+						<i class="delete far fa-trash-alt bluish f-14 mx-1"></i> </a>
 				</div>
-				<div id="comment-review"">
-					<h5><i class="DRINK" data-toggle="tooltip" data-placement="top"></i> ${childData.label}</h5>
-					<p class="m-1" data-review-id="${childKey}">${childData.review}</p>
+				<div id="comment-review">
+					<h5><i class="drink" data-toggle="tooltip" data-placement="top"></i> ${childData.label}</h5>
+					<p class="review m-1" data-review-id="${childKey}">${childData.review}</p>
 				</div>
 				<div class="d-flex purple">
-					<div class="mr-auto">${childData.starScore}</div>
-					<span><strong>${childData.alcohoolPer}%</strong><i class="DRINK" data-toggle="tooltip" data-placement="top"></i></span>
+					<div class='rating text-center my-auto'>
+						<ul class="list-unstyled">
+							${childData.starReply}
+						</ul>
+					</div>
+					<span class="ml-auto"><strong>${childData.alcohoolPer}%</strong><i class="DRINK" data-toggle="tooltip"
+							data-placement="top"></i></span>
 				</div>
+			</div>
+			<div class="card-footer text-muted">
 				<div class="text-right">
-				 <a href="#" id="like-Unlike" class="mr-auto text-muted" data-post-id="${childKey}"><i class="${liked ? 'fas fa-heart' : 'far fa-heart'}"></i> </a> <span class="likes" data-post-id="${childKey}">${amountLikes}</span> like(s)
-					
+					<a href="#" class="like-Unlike mr-auto text-muted" data-post-id="${childKey}"><i
+							class="${liked ? 'fas fa-heart' : 'far fa-heart'}"></i></a> <span class="likes"
+						data-post-id="${childKey}">${amountLikes}</span> like(s)
 				</div>
 			</div>
 		</div>
-	</li>
+</div>
+</li>
 	`);
-}
 
-function newPost()
+	$(`i[data-edit-id="${childKey}"]`).on('click', function () {
+		event.preventDefault();
+
+		$(`p[data-review-id="${childKey}"]`).html(`
+			<textarea class="post-update" data-text-id="${childKey}">${childData.review}</textarea>
+			<button class="save-update">Update</button>
+			`);
+
+		$(".save-update").click(saveUpdate);
+	})
+
+	function saveUpdate(event) {
+		event.preventDefault();
+		let newPost = $(`textarea[data-text-id="${childKey}"]`).val();
+
+		$(`p[data-review-id="${childKey}"]`).html(newPost);
+
+		database.ref("post/" + USER_ID + "/" + childKey).update({
+			review: newPost
+		});
+
+		$(".post-update").parent().remove();
+		$(".save-update").parent().remove();
+		console.log(newPost)
+
+	}
+
+}
 
 $(document).ready(function () {
 
@@ -163,6 +199,7 @@ $(document).ready(function () {
 			starScore: typeof($('#stars li.selected').last().data('value')) === 'undefined' ? 0 : $('#stars li.selected').last().data('value'),
 			// starScore: parseInt($('#stars li.selected').last().data('value'), 10),
 			privacy: $("#selPrivacy option:selected").val(),
+			starReply: $('#stars').html(),
 		};
 		
 		//Pegando id que foi salvo no banco e mostrando na tela
@@ -174,8 +211,7 @@ $(document).ready(function () {
 
 		//Reseta form e estrelas após post
 		$('#container-comment')[0].reset();
-		$('#stars li').removeClass('selected');
-
+		$('#stars').removeClass('selected');
 
 	});
 
@@ -197,38 +233,12 @@ $(document).ready(function () {
 		$('.toast').toast('show');
 	});
 
-	$(document).on('click', '.edit-ic', function(e) {
-		e.preventDefault();
-		selected_key = $(this).attr('data-edit-id');
-
-		// $(`p[data-review-id="${childKey}"]`).prepend(`<li>
-		// 	<textarea id="post-update" data-text-id="${childKey}">${childData.review}</textarea>
-		// 	<button class="save-update">Update</button>
-		// 	</li>`);
-
-		// $(".save-update").click();
-	});
-		// let newPost = prompt(`altere o texto: ${text}`);
-	
-		// database.ref("post/" + selected_key).update({
-		// 	review: newPost	
-		// });
-
-
-
-	// $().on('click', 'edit-ic', function(e) {
-	// 	e.preventDefault()
-	// 	
-	// 	$(`a[data-post-id=${selected_key}]`).closest("li").remove();
-
-	// });
-
 	//1 passo: guarda o like que foi clicado e muda a cor do icone
 	//2 passo: pega o id de qm está clicando
 	//3 passo: validar se o cara já clicou
 	//4 passo: se o cara já clicou descurtir
 
-	$(document).on('click', '#like-Unlike', function(e) {
+	$(document).on('click', '.like-Unlike', function (e) {
 		e.preventDefault();
 
 		//Click pega o data-id no elemento clicado
