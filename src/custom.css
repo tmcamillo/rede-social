@@ -4,12 +4,11 @@
 }
 #comment-area{
   resize: none;
-  height:80px;
   transition: all .3s;
   -webkit-transition: all .3s;
 }
-#comment-area::selection{
-  height:300px;
+#comment-area:focus{
+  height:150px;
 }
 .comment-count{
   color: #83579B;

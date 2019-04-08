@@ -55,9 +55,9 @@ function appendData(childData, childKey, amountLikes, liked) {
 	$(".post-list").append(
 		`
 		<li>
-			<div class="container-fluid col-md-6 bg-light rounded p-4 mb-3">
+		<div class="container-fluid col-md-6 bg-light rounded mb-3">
+			<div class="card-body">
 				<div class="d-flex">
-					<!-- <img src=""> -->
 					<a class="d-inline-flex mr-auto mb-3">
 						<i class="fas fa-user-circle fa-2x purple align-self-center"></i>
 						<div class="ml-2">
@@ -69,23 +69,34 @@ function appendData(childData, childKey, amountLikes, liked) {
 						</div>
 					</a>
 					<a href="#"> <i class="edit far fa-edit bluish f-14 mx-1"></i> </a>
-					<a href="#" class="trash-ic" data-toggle="modal" data-target="#deleteModal" data-post-id="${childKey}"> <i class="delete far fa-trash-alt bluish f-14 mx-1"></i> </a>
+					<a href="#" class="trash-ic" data-toggle="modal" data-target="#deleteModal"
+						data-post-id="${childKey}">
+						<i class="delete far fa-trash-alt bluish f-14 mx-1"></i> </a>
 				</div>
-				<div id="comment-review"">
-					<h5><i class="DRINK" data-toggle="tooltip" data-placement="top"></i> ${childData.label}</h5>
-					<p class="m-1">${childData.review}</p>
+				<div id="comment-review">
+					<h5><i class="drink" data-toggle="tooltip" data-placement="top"></i> ${childData.label}</h5>
+					<p class="review m-1">${childData.review}</p>
 				</div>
 				<div class="d-flex purple">
-					<div class="mr-auto">${childData.starScore}</div>
-					<span><strong>${childData.alcohoolPer}%</strong><i class="DRINK" data-toggle="tooltip" data-placement="top"></i></span>
+					<div class='rating text-center my-auto'>
+						<ul class="list-unstyled">
+							${childData.starReply}
+						</ul>
+					</div>
+					<span class="ml-auto"><strong>${childData.alcohoolPer}%</strong><i class="DRINK" data-toggle="tooltip"
+							data-placement="top"></i></span>
 				</div>
+			</div>
+			<div class="card-footer text-muted">
 				<div class="text-right">
-				 <a href="#" id="like-Unlike" class="mr-auto text-muted" data-post-id="${childKey}"><i class="${liked ? 'fas fa-heart' : 'far fa-heart'}"></i></a> <span class="likes" data-post-id="${childKey}">${amountLikes}</span> like(s)
-					
+					<a href="#" class="like-Unlike mr-auto text-muted" data-post-id="${childKey}"><i
+							class="${liked ? 'fas fa-heart' : 'far fa-heart'}"></i></a> <span class="likes"
+						data-post-id="${childKey}">${amountLikes}</span> like(s)
 				</div>
 			</div>
 		</div>
-	</li>
+</div>
+</li>
 	`);
 }
 
@@ -153,13 +164,12 @@ $(document).ready(function () {
 			postTime: time(),
 			starScore: parseInt($('#stars li.selected').last().data('value'), 10),
 			privacy: $("#selPrivacy option:selected").val(),
+			starReply: $('#stars').html(),
 		};
-
 		let postFromDb = database.ref("/post/" + USER_ID).push(data);
 		appendData(data, postFromDb.key, 0, false);
 		$('#container-comment')[0].reset();
-
-		$('.star').removeClass('selected');
+		$('.star').removeClass('selected');	
 	});
 
 	let selected_key = '';
@@ -172,7 +182,7 @@ $(document).ready(function () {
 	//3 passo, antes de add validar se o cara já clicou
 	//4 passo, se o cara que clicou tem
 
-	$(document).on('click', '#like-Unlike', function (e) {
+	$(document).on('click', '.like-Unlike', function (e) {
 		e.preventDefault();
 
 		selected_key = $(this).attr('data-post-id');
