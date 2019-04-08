@@ -94,7 +94,7 @@ function appendData(childData, childKey, amountLikes, liked) {
 			</div>
 			<div class="card-footer text-muted">
 				<div class="text-right">
-					<a href="#" class="like-Unlike mr-auto text-muted" data-post-id="${childKey}"><i
+					<a href="#" class="like-Unlike" mr-auto text-muted" data-post-id="${childKey}"><i
 							class="${liked ? 'fas fa-heart' : 'far fa-heart'}"></i></a> <span class="likes"
 						data-post-id="${childKey}">${amountLikes}</span> like(s)
 				</div>
