@@ -101,15 +101,15 @@ function appendData(childData, childKey, amountLikes, liked) {
 							data-placement='top'></i></span>
 				</div>
 			</div>
-			<div class='card-footer text-muted'>
-				<div class='text-right'>
-					<a href='#' class='like-Unlike mr-auto text-muted' data-post-id='${childKey}'><i
-							class='${liked ? 'fas fa-heart' : 'far fa-heart'}"></i></a> <span class='likes'
-						data-post-id='${childKey}'>${amountLikes}</span> like(s)
-				</div>
+			<div class="card-footer text-muted">
+			<div class="text-right">
+				<a href="#" class="like-Unlike mr-auto text-muted" data-post-id="${childKey}"><i
+						class="${liked ? 'fas fa-heart' : 'far fa-heart'}"></i></a> <span class="likes"
+					data-post-id="${childKey}">${amountLikes}</span> like(s)
 			</div>
 		</div>
-</div>
+		</div>
+	</div>
 </li>
 	`);
 
@@ -148,10 +148,8 @@ function appendData(childData, childKey, amountLikes, liked) {
 }
 
 $(document).ready(function () {
-
 	loadPosts()
 	ratingStar()
-	
 	
 	$('#news-feed').click(function () {
 		$('#post-list').html('');

@@ -15,7 +15,8 @@ $(document).ready(function () {
             .catch(function (error) {
                 let errorCode = error.code;
                 let errorMessage = error.message;
-                alert(errorCode, errorMessage);
+                alert('Ocorreu um erro, tente novamente.');
+                console.log(errorCode,errorMessage);
             })
     });
 
@@ -35,11 +36,11 @@ $(document).ready(function () {
             .catch(function (error) {
                 let errorCode = error.code;
                 let errorMessage = error.message;
-                alert(errorCode, errorMessage);
-               
+                alert('Ocorreu um erro, tente novamente.');
+                console.log(errorCode,errorMessage);
             })
     });
-    
+
 
     $('#logout-btn').click(function() {
         firebase.auth().signOut().then(function() {
@@ -47,6 +48,5 @@ $(document).ready(function () {
           }).catch(function(error) {
            alert('Ocorreu um erro, tente novamente.')
           });
-    })
-        
+    }) 
 });
