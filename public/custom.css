@@ -157,16 +157,6 @@ body{
   background: url("../assets/bg-yellow-1x.png")
 }
 
-.fa-cocktail:hover{
-  color: #6ABEBC;
-}
-.fa-wine-glass-alt:hover{
-  color: #C1181C;
-}
-.fa-beer:hover{
-  color: #FCD858;
-}
-
 .rating ul {  
   -moz-user-select:none;
   -webkit-user-select:none;
@@ -182,4 +172,43 @@ body{
 }
 .rating ul > li.star.selected > i.fa {
   color:#FCD858;
+}
+
+
+.container {
+  position: relative;
+  cursor: pointer;
+  font-size: 1em;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.cocktail:hover{
+  color: #6ABEBC;
+}
+.wine:hover{
+  color: #C1181C;
+}
+.beer:hover{
+  color: #FCD858;
+}
+
+.container input:checked ~ .cocktail{
+  color: #6ABEBC;
+}
+.container input:checked ~ .wine{
+  color: #C1181C;
+}
+.container input:checked ~ .beer{
+  color: #FCD858;
 }

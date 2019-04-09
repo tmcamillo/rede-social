@@ -10,7 +10,7 @@ function loadPosts(){
 			let childData = childSnapshot.val();
 			let amountLikes = childData.likes ? childData.likes.length : 0;
 			let liked = false;
-
+			
 			//procura se o post já foi curtido pelo id e se sim, troca o status do liked para já vir preenchido no feed
 			if (childData.likes) {
 				if($.inArray(USER_ID, childData.likes) != -1){
@@ -63,6 +63,11 @@ function userName(){
 	})
 }
 
+function openCollapse() {
+
+
+}
+
 //Adiciona dinamicamente itens ao html
 function appendData(childData, childKey, amountLikes, liked) {
 	$(".post-list").append(
@@ -112,6 +117,8 @@ function appendData(childData, childKey, amountLikes, liked) {
 </li>
 	`);
 
+		
+
 	$(`i[data-edit-id="${childKey}"]`).on('click', function () {
 		event.preventDefault();
 
@@ -140,7 +147,7 @@ function appendData(childData, childKey, amountLikes, liked) {
 }
 
 $(document).ready(function () {
-
+	
 	loadPosts();
 	ratingStar();
 	userName();
@@ -148,6 +155,7 @@ $(document).ready(function () {
 	$("#news-feed").click(function () {
 		$('#post-list').html("");
 		loadPosts()
+		userName()	
 	})
 
 	$("#private-post").click(function () {
@@ -167,6 +175,7 @@ $(document).ready(function () {
 				appendData(childData, childkey, amountLikes, liked);
 			});
 		});
+		userName()	
 	});
 		
 	// Valida se campos estão todos preenchidos no momento da digitação
@@ -182,7 +191,6 @@ $(document).ready(function () {
 	// Click executa o post, se todos campos estiverem preenchidos
     $(".add-post").click(function(event) {
 		event.preventDefault();
-
 		// Valida se todos os campos foram de fato preenchidos e barra a postagem caso não.
 		let error = false
 		$('#container-comment input[type="text"], input[type="number"], textarea').each(function () {

@@ -18,7 +18,7 @@
 	<link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
 		integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-	
+
 	<script src="https://www.gstatic.com/firebasejs/5.8.4/firebase-app.js"></script>
 	<script src="https://www.gstatic.com/firebasejs/5.8.4/firebase-auth.js"></script>
 	<script src="https://www.gstatic.com/firebasejs/5.8.4/firebase-database.js"></script>
@@ -41,45 +41,51 @@
 				<p id="user-name-p" class="user-name text-white text-break strong m-0"></p>
 			</div>
 			<div class="ml-3 d-flex flex-column">
-			<i class="fas fa-sign-out-alt text-white fa-2x"></i>
-			<p id="logout-label" class="text-white text-break strong m-0">Sair</p>
-		</div>
+				<i class="fas fa-sign-out-alt text-white fa-2x"></i>
+				<p id="logout-label" class="text-white text-break strong m-0">Sair</p>
+			</div>
 		</nav>
 
 	</header>
 
 	<main>
-			<!-- Toasts Messages -->	
-			<div class="position-absolute w-100 d-flex flex-column p-4">
-					<div class="toast ml-auto" role="alert" data-delay="1000" data-autohide="false">
-						<div class="toast-header">
-							<strong class="mr-auto text-primary">Feito!</strong>
-						</div>
-						<div class="toast-body"></div>
-					</div>
+		<!-- Toasts Messages -->
+		<div class="position-absolute w-100 d-flex flex-column p-4">
+			<div class="toast ml-auto" role="alert" data-delay="1000" data-autohide="false">
+				<div class="toast-header">
+					<strong class="mr-auto text-primary">Feito!</strong>
+				</div>
+				<div class="toast-body"></div>
 			</div>
+		</div>
 
 		<div class="container-fluid bg-purple p-3">
 			<form id="container-comment" class="container-fluid col-md-6 bg-light rounded p-3">
 
-				<!-- <div class="form-row form-group">
-					<p class="ml-3 mr-auto my-auto">Qual o tipo de bebida?</p>
-					<div class='rating text-center'>
-						<ul id='listDrinks' class="list-unstyled">
-							<li class="drinks" data-value="1">
-								<i class="fas fa-cocktail fa-2x mx-2" data-toggle="tooltip" data-placement="top"></i>
-							</li>
-							<li class="drinks" data-value="2">
-								<i class="fas fa-wine-glass-alt fa-2x mx-2" data-toggle="tooltip" data-placement="top"></i>
-							</li>
-							<li class="drinks" data-value="3">
-								<i class="fas fa-beer fa-2x mx-2" data-toggle="tooltip" data-placement="top"></i>
-							</li>
-						</ul>
-					</div>
-				</div> -->
-
 				<div id="multiCollapseExample1" class="collapse multi-collapse form-row">
+
+					<div class="d-flex flex-fill flex-row align-items-center form-group">
+						<div class="ml-2 mr-auto ">
+								<p class="m-0 purple">Qual o tipo de bebida?</p>
+						</div>
+						<div class="d-flex flex-row mx-2 ">
+								<label class="container m-0 p-0">
+										<input type="radio" checked="checked" name="radio" id="Coquetel">
+										<i class="cocktail fas fa-cocktail fa-2x mx-2" data-toggle="tooltip" data-placement="top"></i>
+									</label>
+							
+									<label class="container m-0 p-0">
+										<input type="radio" name="radio" id="Vinho">
+										<i class="wine fas fa-wine-glass-alt fa-2x mx-2" data-toggle="tooltip" data-placement="top"></i>
+									</label>
+							
+									<label class="container m-0 p-0">
+										<input type="radio" name="radio" id="Cerveja">
+										<i class="beer fas fa-beer fa-2x mx-2" data-toggle="tooltip" data-placement="top"></i>
+									</label>
+						</div>
+					</div>
+
 					<div class="form-group col-9">
 						<input id="label" type="text" class="form-control" placeholder="Marca">
 					</div>
