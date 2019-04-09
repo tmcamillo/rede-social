@@ -133,6 +133,11 @@ body{
   border: #83579B;
   color: white;
 }
+.btn-bluish{
+  background-color: #6ABEBC;
+  border: #6ABEBC;
+  color: white;
+}
 .btn-purple:hover{
   background-color: #764D8D;
   border: #764D8D;
@@ -179,4 +184,8 @@ body{
 }
 .rating ul > li.star.selected > i.fa {
   color:#FCD858;
+}
+
+.fa-heart{
+  color: #C1181C;
 }
