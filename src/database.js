@@ -64,6 +64,14 @@ function leftZeros(number) {
 	}
 }
 
+function userName(){
+	database.ref('users/' + USER_ID).once('value')
+	.then(function(snapshot){
+		let userInfo= snapshot.val();
+		$('.user-name').text(userInfo.name);
+	})
+}
+
 //Adiciona dinamicamente itens ao html
 function appendData(childData, childKey, amountLikes, liked) {
 	$('.post-list').append(
@@ -76,7 +84,7 @@ function appendData(childData, childKey, amountLikes, liked) {
 						<i class='fas fa-user-circle fa-2x purple align-self-center'></i>
 						<div class='ml-2'>
 							<span class='purple'>
-								<strong class='f-14'>Nome</strong>
+								<strong class='f-14 user-name'></strong>
 								<br>
 								<span class='small'>${childData.postTime} - ${childData.privacy}</span>
 							</span>
@@ -101,9 +109,9 @@ function appendData(childData, childKey, amountLikes, liked) {
 							data-placement='top'></i></span>
 				</div>
 			</div>
-			<div class="card-footer text-muted">
-			<div class="text-right">
-				<a href="#" class="like-Unlike mr-auto text-muted" data-post-id="${childKey}"><i
+			<div class='card-footer text-muted'>
+			<div class='text-right'>
+				<a href='#' class='like-Unlike mr-auto text-muted' data-post-id='${childKey}'><i
 						class="${liked ? 'fas fa-heart' : 'far fa-heart'}"></i></a> <span class="likes"
 					data-post-id="${childKey}">${amountLikes}</span> like(s)
 			</div>
@@ -148,11 +156,13 @@ function appendData(childData, childKey, amountLikes, liked) {
 }
 
 $(document).ready(function () {
-	loadPosts()
-	ratingStar()
-	
-	$('#news-feed').click(function () {
-		$('#post-list').html('');
+
+	loadPosts();
+	ratingStar();
+	userName();
+
+	$("#news-feed").click(function () {
+		$('#post-list').html("");
 		loadPosts()
 	})
 

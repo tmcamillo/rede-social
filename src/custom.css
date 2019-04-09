@@ -9,6 +9,10 @@
   -webkit-transition: all .3s;
 }
 
+#user-name-p{
+  width: 4em;
+}
+
 #comment-area:focus{
   height:150px;
 }
@@ -113,7 +117,7 @@ body{
 }
 
 .fa-user-circle{
-  font-size: 3em;
+  font-size: 2em;
 }
 
 .purple{
