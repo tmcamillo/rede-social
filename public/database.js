@@ -205,7 +205,7 @@ $(document).ready(function () {
 		
 		//Adiciona valores para o objeto no firebase
 		let data = {
-			drinkIcon: $("input[class='drink']:checked").val().toUpperCase(),
+			drink: $("input[class='drink']:checked").val().toUpperCase(),
 			label: $("#label").val().toUpperCase(),
 			review: $("#comment").val(),
 			alcohoolPer: $("#alcohol").val(),
