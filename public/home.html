@@ -14,11 +14,10 @@
 		integrity='sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T' crossorigin='anonymous'>
 	<link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.8.1/css/all.css'
 		integrity='sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf' crossorigin='anonymous'>
-	<link rel='stylesheet' type='text/css' href='custom.css'>
 	<link href='https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css' rel='stylesheet'>
 	<link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.8.1/css/all.css'
 		integrity='sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf' crossorigin='anonymous'>
-
+		<link rel='stylesheet' type='text/css' href='custom.css'>
 	<script src='https://www.gstatic.com/firebasejs/5.8.4/firebase-app.js'></script>
 	<script src='https://www.gstatic.com/firebasejs/5.8.4/firebase-auth.js'></script>
 	<script src='https://www.gstatic.com/firebasejs/5.8.4/firebase-database.js'></script>
@@ -28,7 +27,7 @@
 	<title>Cadastro - Papo de Biritas</title>
 </head>
 
-<body>
+<body class="bg-purple">
 
 	<header class='container-fluid bg-purple'>
 
@@ -49,7 +48,7 @@
 
 	</header>
 
-	<main>
+	<main class="container-fluid p-0">
 		<!-- Toasts Messages -->
 		<div class='position-absolute w-100 d-flex flex-column p-4'>
 			<div class='toast ml-auto' role='alert' data-delay='1500' data-autohide='true'>
@@ -124,7 +123,7 @@
 							</ul>
 						</div>
 						<div class='form-group custom-control custom-checkbox ml-auto mr-4'>
-							<select class='form-control form-control-sm small' id='selPrivacy'>
+							<select class='form-control form-control-sm small text-muted' id='selPrivacy'>
 								<option value='público'>Público</option>
 								<option value='privado'>Privado</option>
 							</select>
@@ -135,23 +134,30 @@
 			</form>
 		</section>
 
-		<section>
-			<div id='timeline' class='bg-pdb'>
+			<section id='timeline' class='bg-pdb'>
 				<div class='container-fluid col-md-6 d-flex p-3'>
 					<!-- <button type='submit' class='btn btn-purple flex-fill my-3 mr-2'>Linha do tempo</button> -->
 					<button id='news-feed' type='submit' class='btn btn-purple flex-fill mr-2'>Feed de novidades</button>
 					<button id='private-post' type='submit' class='btn btn-purple flex-fill ml-2'>Posts Privados</button>
 				</div>
-
-				<ul id='post-list' class='post-list list-unstyled d-flex flex-column-reverse px-3'></ul>
-			</div>
-
+				<ul id='post-list' class='post-list list-unstyled d-flex flex-column-reverse px-3 m-0'>
+				</ul>
+				<section id="no-post" class="text-white text-center card-body">
+						<i class="fas fa-comments fa-3x m-2"></i>
+					<p class="no-post">
+							Vamos bater um papo?
+							<br>
+							Faça sua primeira postagem!
+					</section>
+				</li>
 		</section>
-
 	</main>
+	<footer class="py-4 text-white text-center bg-yellow">
+			<p class="font-small">v0.0.2</p>
+	</footer>
 
 	<!-- Delete Modal -->
-	<div class='fade bluish' id='deleteModal' tabindex='-1' role='dialog' aria-labelledby='mySmallModalLabel'
+	<div class='modal fade purple' id='deleteModal' tabindex='-1' role='dialog' aria-labelledby='mySmallModalLabel'
 		aria-hidden='true' data-backdrop='static'>
 		<div class='modal-dialog' role='document'>
 			<div class='modal-content'>
@@ -168,8 +174,7 @@
 			</div>
 		</div>
 	</div>
-	</div>
-	</div>
+
 
 
 	<script src='https://code.jquery.com/jquery-3.3.1.min.js'
@@ -191,6 +196,7 @@
 	<script src='rating.js'></script>
 	<script src='database.js'></script>
 	<script src='script.js'></script>
+	<script src='counter.js'></script>
 </body>
 
 </html>

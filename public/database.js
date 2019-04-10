@@ -1,13 +1,13 @@
 const database = firebase.database();
 const USER_ID = window.location.search.match(/\?id=(.*)/)[1];
 
-let postFrom = database.ref('/post/' + USER_ID).once('value')
-	.then(function (snapshot) {
-		snapshot.forEach(function (childSnapshot) {
-			console.log('postFrom', childSnapshot);
-		});
+// let postFrom = database.ref('/post/' + USER_ID).once('value')
+// 	.then(function (snapshot) {
+// 		snapshot.forEach(function (childSnapshot) {
+// 			console.log('postFrom', childSnapshot);
+// 		});
 
-	});
+// 	});
 
 
 //função carrega todos os posts já realizados pelo usuário
@@ -27,8 +27,8 @@ function loadPosts() {
 					}
 				}
 				appendData(childData, childkey, amountLikes, liked);
-
 			});
+			badges()
 		});
 	userName()
 }
@@ -86,7 +86,7 @@ function appendData(childData, childKey, amountLikes, liked) {
 						<i class='fas fa-user-circle fa-2x purple align-self-center'></i>
 						<div class='ml-2'>
 							<span class='purple'>
-								<strong class='f-14 user-name'></strong>
+								<span class='f-14 user-name'></span> <span class='badge-user'></span>
 								<br>
 								<span class='small'>${childData.postTime} - ${childData.privacy}</span>
 							</span>
@@ -98,8 +98,8 @@ function appendData(childData, childKey, amountLikes, liked) {
 						<i class='delete far fa-trash-alt bluish f-14 mx-1'></i> </a>
 				</div>
 
-				<div id='comment-review'>
-					<h5 data-review-id='${childKey}'><i class='drink' data-toggle='tooltip' data-placement='top'></i>${childData.label}</h5>
+				<div id='comment-review' class='text-comment'>
+					<h5 data-review-id='${childKey}'>${childData.drinkType} ${childData.label}</h5>
 					<p class='review m-1' data-review-id='${childKey}'>${childData.review}</p>
 
 				</div>
@@ -114,21 +114,19 @@ function appendData(childData, childKey, amountLikes, liked) {
 			</div>
 			<div class='card-footer text-muted'>
 			<div class='text-right'>
-				<a href='#' class='like-Unlike mr-auto text-muted' data-post-id='${childKey}'><i
+				<a href='#' class='like-unlike mr-auto text-muted' data-post-id='${childKey}'><i
 						class='${liked ? 'fas fa-heart' : 'far fa-heart'}'></i></a> <span class='likes'
-					data-post-id='${childKey}'>${amountLikes}</span> like(s)
+					data-post-id='${childKey}'>${amountLikes}</span>
 			</div>
 		</div>
 		</div>
 	</div>
 </li>
 	`);
-
+	
 	//Executa edição in-place do post 
 	$(`i[data-edit-id='${childKey}']`).on('click', function () {
-
 		event.preventDefault();
-
 		//Cria input/textarea e botão no msm lugar do paragrafo original
 		$(`p[data-review-id='${childKey}']`).html(`
 			<textarea class='post-update form-control rounded bg-light' data-text-id='${childKey}'>${childData.review}</textarea>
@@ -137,6 +135,7 @@ function appendData(childData, childKey, amountLikes, liked) {
 
 		// Dispara função de salvar na base e na tela
 		$(".save-update").click(saveUpdate);
+
 	});
 
 	function saveUpdate(event) {
@@ -157,7 +156,6 @@ function appendData(childData, childKey, amountLikes, liked) {
 		$(".save-update").parent().remove();
 		console.log(newPost)
 	}
-
 }
 
 $(document).ready(function () {
@@ -186,6 +184,7 @@ $(document).ready(function () {
 				appendData(childData, childkey, amountLikes, liked);
 				userName()
 			})
+			badges()
 		})
 	})
 
@@ -218,7 +217,7 @@ $(document).ready(function () {
 		//Adiciona valores para o objeto no firebase
 		let data = {
 
-			drink: $("input[class='drink']:checked").val().toUpperCase(),
+			drinkType: $("input[class='drink']:checked").val().toUpperCase(),
 			label: $("#label").val().toUpperCase(),
 			review: $("#comment").val(),
 			alcohoolPer: $("#alcohol").val(),
@@ -238,7 +237,7 @@ $(document).ready(function () {
 		//Reseta form e estrelas após post
 		$("#container-comment")[0].reset();
 		$("#stars li").removeClass("selected");
-
+		badges()
 	});
 
 	//Variável declarada global
@@ -256,6 +255,7 @@ $(document).ready(function () {
 		window.scrollTo(0, 0)
 		$(".toast-body").html("O post foi deletado do feed :)");
 		$(".toast").toast("show");
+		badges()
 	});
 
 	//1 passo: guarda o like que foi clicado e muda a cor do icone
@@ -263,7 +263,7 @@ $(document).ready(function () {
 	//3 passo: validar se o cara já clicou
 	//4 passo: se o cara já clicou descurtir
 
-	$(document).on("click", ".like-Unlike", function (e) {
+	$(document).on("click", ".like-unlike", function (e) {
 		e.preventDefault();
 
 		//Click pega o data-id no elemento clicado

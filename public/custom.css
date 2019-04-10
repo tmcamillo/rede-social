@@ -15,12 +15,6 @@
 	position: absolute;
 	z-index: -1;
 }
-
-.bg-menu{
-  background: url("../assets/1xbg-pdbimg.png");
-  height: 10em;
-}
-
 .img-logo{
   height: 30em;
   width: auto;
@@ -103,10 +97,14 @@ color: white;
   background-color: #83579B;
 }
 .bg-yellow{
-  background-color: #FCD858;
+  background-color: #EAC339;
 }
 .bg-pdb{
   background: url("../assets/bg-yellow-1x.png")
+}
+.bg-menu{
+  background: url("../assets/1xbg-pdbimg.png");
+  height: 10em;
 }
 
 .rating ul {  
@@ -168,6 +166,18 @@ color: white;
 .container input:checked ~ .beer{
   color: #FCD858;
 }
+.likes{
+  color: #C1181C;
+}
 .fa-heart{
   color: #C1181C;
+}
+.text-comment{
+  color: rgb(102,99,99);
+}
+.badge-user{
+  height: 15px;;
+}
+.no-post{
+  font-size: 20px;
 }
