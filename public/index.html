@@ -1,51 +1,56 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang='en'>
 
 <head>
 
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta charset='utf-8' />
+  <meta name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no'>
 
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.css">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-  <link rel="stylesheet" type="text/css" href="custom.css">
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.css'>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js'
+    integrity='sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1'
+    crossorigin='anonymous'></script>
+  <link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css'
+    integrity='sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T' crossorigin='anonymous'>
+  <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.8.1/css/all.css'
+    integrity='sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf' crossorigin='anonymous'>
+  <link rel='stylesheet' type='text/css' href='custom.css'>
 
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
-    integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-  <script src="https://www.gstatic.com/firebasejs/5.8.4/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/5.8.4/firebase-auth.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/5.8.4/firebase-database.js"></script>
+  <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.8.1/css/all.css'
+    integrity='sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf' crossorigin='anonymous'>
+  <script src='https://www.gstatic.com/firebasejs/5.8.4/firebase-app.js'></script>
+  <script src='https://www.gstatic.com/firebasejs/5.8.4/firebase-auth.js'></script>
+  <script src='https://www.gstatic.com/firebasejs/5.8.4/firebase-database.js'></script>
 
-  <script src="config.js"></script>
+  <script src='config.js'></script>
 
   <title>Cadastro - Papo de Biritas</title>
 </head>
 
 <body>
   <nav class='menu-top'>
-    <div class='menu-background'>
-      <figure class='d-flex justify-content-center'><img id='img-logo' class='mt-5' src='../assets/logo-round.png' alt='Logo Papo de Biritas' width=156 height=156></figure>
+    <div class='bg-menu'>
+      <figure class='d-flex justify-content-center'><img id='img-logo' class='mt-5' src='../assets/logo-round.png'
+          alt='Logo Papo de Biritas' width=156 height=156></figure>
     </div>
   </nav>
 
-  <main id='class-center' class='d-flex justify-content-center align-items-center m-o p-0 flex-column bg-yellow'>
-      <form class='col-md-4'>
-        <div class='form-group'>
-          <input type='email' class='form-control' id='email-input' aria-describedby='emailHelp'
-            placeholder='E-mail'>
-        </div>
-        <div class='form-group'>
-          <input type='password' class='form-control' id='password-input' placeholder='Senha'>
-        </div>
-        <button id='sign-in-btn' type='submit' class='btn-purple btn btn-block'>Entrar</button>
+  <main id='class-center'
+    class='main-center d-flex justify-content-center align-items-center m-o p-0 flex-column bg-yellow'>
+    <form class='col-md-4'>
+      <div class='form-group'>
+        <input type='email' class='form-control' id='email-input' aria-describedby='emailHelp' placeholder='E-mail'>
+      </div>
+      <div class='form-group'>
+        <input type='password' class='form-control' id='password-input' placeholder='Senha'>
+      </div>
+      <button id='sign-in-btn' type='submit' class='btn-purple btn btn-block'>Entrar</button>
 
-        <button type='button' class='btn-secondary btn btn-block' data-toggle='modal' data-target='#exampleModalLong'>
-          Não tem conta? Inscreva-se!
-        </button>
+      <button type='button' class='btn-secondary btn btn-block' data-toggle='modal' data-target='#exampleModalLong'>
+        Não tem conta? Inscreva-se!
+      </button>
 
-      </form>
+    </form>
     </div>
     <div class='login-social-media'>
       <br>
@@ -56,28 +61,30 @@
       </p>
     </div>
 
-    <div class='modal fade bluish' id='exampleModalLong' tabindex='-1' role='dialog' aria-labelledby='exampleModalLongTitle'
-      aria-hidden='true'>
+    <div class='modal fade bluish' id='exampleModalLong' tabindex='-1' role='dialog'
+      aria-labelledby='exampleModalLongTitle' aria-hidden='true'>
       <div class='modal-dialog' role='document'>
         <div class='modal-content'>
           <div class='modal-header'>
-            <p class='modal-title text-center' id='exampleModalLongTitle'>Preencha os dados abaixo e faça parte da nossa plataforma! ;)</p>
+            <p class='modal-title text-center' id='exampleModalLongTitle'>Preencha os dados abaixo e faça parte da nossa
+              plataforma! ;)</p>
             <button type='button' class='close' data-dismiss='modal' aria-label='Close'>
-              <span aria-hidden="true">&times;</span>
+              <span aria-hidden='true'>&times;</span>
             </button>
           </div>
 
           <div class='modal-body'>
 
-              <div class='m-b-20 d-flex justify-content-center'>
-                  <input type='file' class='inputfile' id='photoFile'>
-                  <i id='profile-photo' class='fas fa-user-circle fa-6x faded'></i>
-                </div>
+            <div class='m-b-20 d-flex justify-content-center'>
+              <input type='file' class='inputfile' id='photoFile'>
+              <i id='profile-photo' class='fas fa-user-circle fa-6x faded'></i>
+            </div>
 
             <form>
 
               <div class='form-group'>
-                <input type='text' class='form-control' id='nameInput' placeholder='Nome *' maxlength='10' minlength='2'>
+                <input type='text' class='form-control' id='nameInput' placeholder='Nome *' maxlength='10'
+                  minlength='2'>
               </div>
 
               <div class='form-group'>
@@ -91,9 +98,10 @@
               <div class='form-group'>
                 <input type='email' class='form-control mandatory' id='emailInput' placeholder='E-mail *'>
               </div>
-              
-              <div class="form-group">
-                <input type="password" class="form-control mandatory" id="passwordInput" placeholder="Digite sua senha *">
+
+              <div class='form-group'>
+                <input type='password' class='form-control mandatory' id='passwordInput'
+                  placeholder='Digite sua senha *'>
               </div>
 
               <div>
@@ -106,28 +114,28 @@
     </div>
   </main>
 
-  <script src="https://code.jquery.com/jquery-3.3.1.min.js"
-    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-    crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-    crossorigin="anonymous"></script>
-
-  <script src="https://cdn.rawgit.com/PascaleBeier/bootstrap-validate/v2.2.0/dist/bootstrap-validate.js" ></script>
+  <script src='https://code.jquery.com/jquery-3.3.1.min.js'
+    integrity='sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=' crossorigin='anonymous'></script>
+  <script src='https://code.jquery.com/jquery-3.3.1.slim.min.js'
+    integrity='sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo'
+    crossorigin='anonymous'></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js'
+    integrity='sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1'
+    crossorigin='anonymous'></script>
+  <script src='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js'
+    integrity='sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM'
+    crossorigin='anonymous'></script>
+  <script src='https://cdn.rawgit.com/PascaleBeier/bootstrap-validate/v2.2.0/dist/bootstrap-validate.js'></script>
   <script> bootstrapValidate('#nameInput', 'min:4:Minimo de 4 caracteres |max:10:Máximo de 10 caracteres');</script>
   <script> bootstrapValidate('#lastNameInput', 'max:10:Máximo de 10 caracteres');</script>
   <script> bootstrapValidate('#emailInput', 'email:Digite um formato de email válido');</script>
   <script> bootstrapValidate('#passwordInput', 'min:5:Minimo de 6 caracteres');</script>
 
-	<script src="auth.js"></script>
-	<script src="fb-auth.js"></script>
-	<script src="rating.js"></script>
-  <script src="database.js"></script>
-  <script src="script.js"></script>
-  <script src="script.js"></script>
+	<script src='auth.js'></script>
+	<script src='fb-auth.js'></script>
+	<script src='rating.js'></script>
+	<script src='database.js'></script>
+	<script src='script.js'></script>
 </body>
 
 </html>

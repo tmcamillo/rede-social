@@ -1,24 +1,10 @@
-#class-center{
+.main-center{
   min-height: 80vh;
   width: 100%;
 }
 
-#comment-area{
-  resize: none;
-  transition: all .3s;
-  -webkit-transition: all .3s;
-}
-
 #user-name-p{
   width: 4em;
-}
-
-#comment-area:focus{
-  height:150px;
-}
-
-.comment-count{
-  color: #83579B;
 }
 
 .inputfile {
@@ -30,7 +16,7 @@
 	z-index: -1;
 }
 
-.menu-background{
+.bg-menu{
   background: url("../assets/1xbg-pdbimg.png");
   height: 10em;
 }
@@ -40,55 +26,9 @@
   width: auto;
 }
 
-.purple-ic{
-  color: #83579B;
-}
-
-.purple-ic:hover{
-  color: #764D8D;
-}
-
-.btn-secondary{
-  background-color: #6ABEBC;
-  border: none;
-}
-
-.btn-secondary:hover{
-  background-color: #5BA7A5;
-  border: none;
-}
-
-.modal{
-  color: #6ABEBC;
-}
-
-.image {
-  position: relative;
-  display: block;
-  color: #6ABEBC;
-}
-
 .logo-nav{
   width: 9em;
   height: 4em;
-}
-
-.overlay {
-  position: absolute;
-  top: 17px;
-  bottom: 0;
-  left: 202px;
-  right: 0;
-  width: 95px;
-  height: 94px;
-  border-radius: 50%;
-  opacity: 0;
-  transition: .5s ease;
-  background-color: #6ABEBC;
-}
-
-.container:hover .overlay {
-  opacity: 1;
 }
   
 .text {
@@ -103,19 +43,6 @@
   text-align: center;
 }
 
-.comment{
-	margin: none;
-	padding: 0;
-}
-
-.container-fluid{
-  padding: 0;
-}
-
-body{
-  background: url("../assets/bg-yellow-1x.png")
-}
-
 .fa-user-circle{
   font-size: 2em;
 }
@@ -126,6 +53,9 @@ body{
 .purple{
   color: #83579B;
 }
+.bluish{
+  color: #6ABEBC;
+}
 
 .purple-ic{
   color: #83579B;
@@ -135,62 +65,46 @@ body{
   color: #764D8D;
 }
 
-.bluish{
-  color: #6ABEBC;
-}
-
-.bg-bluish{
-  background-color: #6ABEBC;
-}
-
-.btn-secondary{
-  background-color: #6ABEBC;
-  border: #6ABEBC;
-}
-
-.btn-secondary:hover{
-  background-color: #5BA7A5;
-  border: #5BA7A5;
-}
-
-.btn-purple:not(:disabled):not(.disabled).active, .btn-secondary:not(:disabled):not(.disabled):active, .show>.btn-secondary.dropdown-toggle {
-  background-color: #5BA7A5;
-  border: #5BA7A5;
-  color: white;
-}
-
-.btn-purple{
-  background-color: #83579B;
-  border: #83579B;
-  color: white;
-}
-
 .btn-bluish{
   background-color: #6ABEBC;
   border: #6ABEBC;
   color: white;
 }
-
+.btn-bluish:not(:disabled):not(.disabled).active, .btn-bluish:not(:disabled):not(.disabled):active, .show>.btn-bluish.dropdown-toggle {
+  background-color: #5BA7A5;
+  border: #5BA7A5;
+  color: white;
+}
+.btn-bluish:hover{
+background-color: #5BA7A5;
+border: #5BA7A5;
+color: white;
+}
+.btn-purple{
+  background-color: #83579B;
+  border: #83579B;
+  color: white;
+}
 .btn-purple:hover{
   background-color: #764D8D;
   border: #764D8D;
   color: white;
 }
-
-.btn-purple:not(:disabled):not(.disabled).active, .btn-secondary:not(:disabled):not(.disabled):active, .show>.btn-secondary.dropdown-toggle {
+.btn-purple:not(:disabled):not(.disabled).active, .btn-purple:not(:disabled):not(.disabled):active, .show>.btn-purple.dropdown-toggle {
   background-color: #764D8D;
   border: #764D8D;
   color: white;
 }
 
+.bg-bluish{
+  background-color: #6ABEBC;
+}
 .bg-purple{
   background-color: #83579B;
 }
-
 .bg-yellow{
   background-color: #FCD858;
 }
-
 .bg-pdb{
   background: url("../assets/bg-yellow-1x.png")
 }
@@ -253,7 +167,7 @@ body{
 }
 .container input:checked ~ .beer{
   color: #FCD858;
-  
+}
 .fa-heart{
   color: #C1181C;
 }
