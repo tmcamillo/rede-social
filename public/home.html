@@ -134,20 +134,27 @@
 			</form>
 		</section>
 
-		<section>
-			<div id='timeline' class='bg-pdb'>
+			<section id='timeline' class='bg-pdb'>
 				<div class='container-fluid col-md-6 d-flex p-3'>
 					<!-- <button type='submit' class='btn btn-purple flex-fill my-3 mr-2'>Linha do tempo</button> -->
 					<button id='news-feed' type='submit' class='btn btn-purple flex-fill mr-2'>Feed de novidades</button>
 					<button id='private-post' type='submit' class='btn btn-purple flex-fill ml-2'>Posts Privados</button>
 				</div>
-
-				<ul id='post-list' class='post-list list-unstyled d-flex flex-column-reverse px-3'></ul>
-			</div>
-
+				<ul id='post-list' class='post-list list-unstyled d-flex flex-column-reverse px-3 m-0'>
+				</ul>
+				<section id="no-post" class="text-white text-center card-body">
+						<i class="fas fa-comments fa-3x m-2"></i>
+					<p class="no-post">
+							Vamos bater um papo?
+							<br>
+							Faça sua primeira postagem!
+					</section>
+				</li>
 		</section>
-
 	</main>
+	<footer class="py-4 text-white text-center bg-yellow">
+			<p class="font-small">v0.0.2</p>
+	</footer>
 
 	<!-- Delete Modal -->
 	<div class='modal fade purple' id='deleteModal' tabindex='-1' role='dialog' aria-labelledby='mySmallModalLabel'
@@ -189,6 +196,7 @@
 	<script src='rating.js'></script>
 	<script src='database.js'></script>
 	<script src='script.js'></script>
+	<script src='counter.js'></script>
 </body>
 
 </html>

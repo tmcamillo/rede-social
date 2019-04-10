@@ -1,13 +1,13 @@
 const database = firebase.database();
 const USER_ID = window.location.search.match(/\?id=(.*)/)[1];
 
-let postFrom = database.ref('/post/' + USER_ID).once('value')
-	.then(function (snapshot) {
-		snapshot.forEach(function (childSnapshot) {
-			console.log('postFrom', childSnapshot);
-		});
+// let postFrom = database.ref('/post/' + USER_ID).once('value')
+// 	.then(function (snapshot) {
+// 		snapshot.forEach(function (childSnapshot) {
+// 			console.log('postFrom', childSnapshot);
+// 		});
 
-	});
+// 	});
 
 
 //função carrega todos os posts já realizados pelo usuário
@@ -27,8 +27,8 @@ function loadPosts() {
 					}
 				}
 				appendData(childData, childkey, amountLikes, liked);
-
 			});
+			badges()
 		});
 	userName()
 }
@@ -86,7 +86,7 @@ function appendData(childData, childKey, amountLikes, liked) {
 						<i class='fas fa-user-circle fa-2x purple align-self-center'></i>
 						<div class='ml-2'>
 							<span class='purple'>
-								<strong class='f-14 user-name'></strong>
+								<span class='f-14 user-name'></span> <span class='badge-user'></span>
 								<br>
 								<span class='small'>${childData.postTime} - ${childData.privacy}</span>
 							</span>
@@ -123,7 +123,7 @@ function appendData(childData, childKey, amountLikes, liked) {
 	</div>
 </li>
 	`);
-
+	
 	//Executa edição in-place do post 
 	$(`i[data-edit-id='${childKey}']`).on('click', function () {
 		event.preventDefault();
@@ -135,6 +135,7 @@ function appendData(childData, childKey, amountLikes, liked) {
 
 		// Dispara função de salvar na base e na tela
 		$(".save-update").click(saveUpdate);
+
 	});
 
 	function saveUpdate(event) {
@@ -155,7 +156,6 @@ function appendData(childData, childKey, amountLikes, liked) {
 		$(".save-update").parent().remove();
 		console.log(newPost)
 	}
-
 }
 
 $(document).ready(function () {
@@ -184,6 +184,7 @@ $(document).ready(function () {
 				appendData(childData, childkey, amountLikes, liked);
 				userName()
 			})
+			badges()
 		})
 	})
 
@@ -236,7 +237,7 @@ $(document).ready(function () {
 		//Reseta form e estrelas após post
 		$("#container-comment")[0].reset();
 		$("#stars li").removeClass("selected");
-
+		badges()
 	});
 
 	//Variável declarada global
@@ -254,6 +255,7 @@ $(document).ready(function () {
 		window.scrollTo(0, 0)
 		$(".toast-body").html("O post foi deletado do feed :)");
 		$(".toast").toast("show");
+		badges()
 	});
 
 	//1 passo: guarda o like que foi clicado e muda a cor do icone
