@@ -1,9 +1,18 @@
 const database = firebase.database();
 const USER_ID = window.location.search.match(/\?id=(.*)/)[1];
 
+let postFrom = database.ref('/post/' + USER_ID).once('value')
+.then(function(snapshot){
+	snapshot.forEach(function(childSnapshot){
+		console.log('postFrom' , childSnapshot);
+	});
+	
+});
+
+
 //função carrega todos os posts já realizados pelo usuário
 function loadPosts(){
-	database.ref("/post/" + USER_ID).once("value")
+	database.ref('/post/' + USER_ID).once('value')
     .then(function(snapshot) {
         snapshot.forEach(function(childSnapshot) {
             let childkey = childSnapshot.key;
@@ -27,7 +36,7 @@ function loadPosts(){
 // função salva dados do usuário no firebase
 function writeUserData(email, password, uid) {
 
-	database.ref("users/" + uid).set({
+	database.ref('users/' + uid).set({
 		name: nameInput.value,
 		surname: lastNameInput.value,
 		phone: phoneInput.value,
@@ -58,84 +67,94 @@ function leftZeros(number) {
 }
 
 function userName(){
-	database.ref("users/" + USER_ID).once('value')
+	database.ref('users/' + USER_ID).once('value')
 	.then(function(snapshot){
 		let userInfo= snapshot.val();
-		$(".user-name").text(userInfo.name);
+		$('.user-name').text(userInfo.name);
 	})
 }
 
 //Adiciona dinamicamente itens ao html
 function appendData(childData, childKey, amountLikes, liked) {
-	$(".post-list").append(
+	$('.post-list').append(
 		`
 		<li>
-		<div class="container-fluid col-md-6 bg-light rounded mb-3">
-			<div class="card-body">
-				<div class="d-flex">
-					<a class="d-inline-flex mr-auto mb-3">
-						<i class="fas fa-user-circle fa-2x purple align-self-center"></i>
-						<div class="ml-2">
-							<span class="purple">
-								<strong class="f-14 user-name"></strong>
+		<div class='container-fluid col-md-6 bg-light rounded mb-3'>
+			<div class='card-body'>
+				<div class='d-flex'>
+					<a class='d-inline-flex mr-auto mb-3'>
+						<i class='fas fa-user-circle fa-2x purple align-self-center'></i>
+						<div class='ml-2'>
+							<span class='purple'>
+								<strong class='f-14 user-name'></strong>
 								<br>
-								<span class="small">${childData.postTime} - ${childData.privacy}</span>
+								<span class='small'>${childData.postTime} - ${childData.privacy}</span>
 							</span>
 						</div>
 					</a>
-					<a href="#"> <i data-edit-id="${childKey}" class="edit far fa-edit bluish f-14 mx-1"></i> </a>
-					<a href="#" class="trash-ic" data-toggle="modal" data-target="#deleteModal"
-						data-post-id="${childKey}">
-						<i class="delete far fa-trash-alt bluish f-14 mx-1"></i> </a>
+					<a href='#'> <i data-edit-id='${childKey}' class='edit far fa-edit bluish f-14 mx-1'></i> </a>
+					<a href='#' class='trash-ic' data-toggle='modal' data-target='#deleteModal'
+						data-post-id='${childKey}'>
+						<i class='delete far fa-trash-alt bluish f-14 mx-1'></i> </a>
 				</div>
-				<div id="comment-review">
-					<h5><i class="drink" data-toggle="tooltip" data-placement="top"></i>${childData.drinkIcon} ${childData.label}</h5>
-					<p class="review m-1" data-review-id="${childKey}">${childData.review}</p>
+
+				<div id='comment-review'>
+					<h5 data-review-id='${childKey}'><i class='drink' data-toggle='tooltip' data-placement='top'></i>${childData.label}</h5>
+					<p class='review m-1' data-review-id='${childKey}'>${childData.review}</p>
+
 				</div>
-				<div class="d-flex purple">
+				<div class='d-flex purple'>
 					<div class='rating text-center my-auto'>
-						<ul class="list-unstyled">
+						<ul class='list-unstyled'>
 							${childData.starReply}
 						</ul>
 					</div>
-					<span class="ml-auto">Teor alcóolico <strong>${childData.alcohoolPer}%</strong></span>
+					<span class='ml-auto'>Teor alcóolico <strong>${childData.alcohoolPer}%</strong></span>
 				</div>
 			</div>
-			<div class="card-footer text-muted">
-				<div class="text-right">
-					<a href="#" class="like-Unlike mr-auto text-muted" data-post-id="${childKey}"><i
-							class="${liked ? 'fas fa-heart' : 'far fa-heart'}"></i></a> <span class="likes"
-						data-post-id="${childKey}">${amountLikes}</span> like(s)
-				</div>
+			<div class='card-footer text-muted'>
+			<div class='text-right'>
+				<a href='#' class='like-Unlike mr-auto text-muted' data-post-id='${childKey}'><i
+						class="${liked ? 'fas fa-heart' : 'far fa-heart'}"></i></a> <span class="likes"
+					data-post-id="${childKey}">${amountLikes}</span> like(s)
 			</div>
 		</div>
-</div>
+		</div>
+	</div>
 </li>
 	`);
 
-	$(`i[data-edit-id="${childKey}"]`).on('click', function () {
+	//Executa edição in-place do post 
+	$(`i[data-edit-id='${childKey}']`).on('click', function () {
+
 		event.preventDefault();
 
-		$(`p[data-review-id="${childKey}"]`).html(`
-			<textarea class="post-update" data-text-id="${childKey}">${childData.review}</textarea>
-			<button class="save-update">Update</button>
+		//Cria input/textarea e botão no msm lugar do paragrafo original
+		$(`p[data-review-id='${childKey}']`).html(`
+			<textarea class='post-update form-control rounded bg-light" data-text-id='${childKey}'>${childData.review}</textarea>
+			<button class='save-update btn btn-outline-secondary">Salvar</button>
 			`);
 
-		$(".save-update").click(saveUpdate);
-	})
+		// Dispara função de salvar na base e na tela
+		$('.save-update').click(saveUpdate);
+	});
 
 	function saveUpdate(event) {
 		event.preventDefault();
-		let newPost = $(`textarea[data-text-id="${childKey}"]`).val();
+		//Variável guarda texto novo, inputado 
+		let newPost = $(`textarea[data-text-id='${childKey}']`).val();
 
-		$(`p[data-review-id="${childKey}"]`).html(newPost);
-
-		database.ref("post/" + USER_ID + "/" + childKey).update({
+		//Variável substitui post original
+		$(`p[data-review-id='${childKey}']`).html(newPost);
+		
+		//Variável é salva na base
+		database.ref('post/' + USER_ID + '/' + childKey).update({
 			review: newPost
 		});
 
-		$(".post-update").parent().remove();
-		$(".save-update").parent().remove();
+		//Botão e input são excluídos
+		$('.post-update').parent().remove();
+		$('.save-update').parent().remove();
 		console.log(newPost)
 	}
 
@@ -151,9 +170,9 @@ $(document).ready(function () {
 		loadPosts()
 	})
 
-	$("#private-post").click(function () {
-		$('#post-list').html("");
-		database.ref("/post/" + USER_ID).orderByChild("privacy").equalTo('privado').once('value', function (snapshot) {
+	$('#private-post').click(function () {
+		$('#post-list').html('');
+		database.ref('/post/' + USER_ID).orderByChild('privacy').equalTo('privado').once('value', function (snapshot) {
 			snapshot.forEach(function (childSnapshot) {
 				let childkey = childSnapshot.key;
 				let childData = childSnapshot.val();
@@ -183,7 +202,7 @@ $(document).ready(function () {
 	});
 
 	// Click executa o post, se todos campos estiverem preenchidos
-    $(".add-post").click(function(event) {
+    $('.add-post').click(function(event) {
 		event.preventDefault();
 		// Valida se todos os campos foram de fato preenchidos e barra a postagem caso não.
 		let error = false
@@ -200,17 +219,21 @@ $(document).ready(function () {
 		
 		//Adiciona valores para o objeto no firebase
 		let data = {
-			drink: $("input[class='drink']:checked").val().toUpperCase(),
-			label: $("#label").val().toUpperCase(),
-			review: $("#comment").val(),
-			alcohoolPer: $("#alcohol").val(),
+
+	drink: $('input[class='drink']:checked').val().toUpperCase(),
+			label: $('#label').val().toUpperCase(),
+			review: $('#comment').val(),
+			alcohoolPer: $('#alcohol').val(),
 			postTime: time(),
-			privacy: $("#selPrivacy option:selected").val(),
+			starScore: typeof($('#stars li.selected').last().data('value')) === 'undefined' ? 0 : $('#stars li.selected').last().data('value'),
+			// starScore: parseInt($('#stars li.selected').last().data('value'), 10),
+			privacy: $('#selPrivacy option:selected').val(),
+
 			starReply: $('#stars').html(),
 		};
 		
 		//Pegando id que foi salvo no banco e mostrando na tela
-		let postFromDb = database.ref("/post/" + USER_ID).push(data);
+		let postFromDb = database.ref('/post/' + USER_ID).push(data);
 		appendData(data, postFromDb.key, 0, false);
 		userName()
 		$('.toast-body').html('Sua review foi adicionada ao feed :)');
@@ -230,9 +253,9 @@ $(document).ready(function () {
 		selected_key = $(this).attr('data-post-id');
 	});
 
-	$("#btnDelete").click(function(){
-		database.ref("post/" + USER_ID + "/" + selected_key).remove();
-		$(`a[data-post-id=${selected_key}]`).closest("li").remove();
+	$('#btnDelete').click(function(){
+		database.ref('post/' + USER_ID + '/' + selected_key).remove();
+		$(`a[data-post-id=${selected_key}]`).closest('li').remove();
 		$('#deleteModal').modal('hide');
 		window.scrollTo(0,0)
 		$('.toast-body').html('O post foi deletado do feed :)');
@@ -261,7 +284,7 @@ $(document).ready(function () {
 		}
 		
 		//Busca na base o item que o usuário clicou para validar se a curtida será adicionado ou removida
-		database.ref("/post/" + USER_ID + '/' + selected_key).once("value")
+		database.ref('/post/' + USER_ID + '/' + selected_key).once('value')
 		.then(function(snapshot) {
 			let values = snapshot.val();
 			
@@ -285,11 +308,9 @@ $(document).ready(function () {
 			//incluo dinamicamente a quantidade de likes clicado
 			$(`span[data-post-id=${selected_key}]`).html(values.likes.length);
 			//atualiza qtdade de curtidas no banco
-			database.ref("/post/" + USER_ID + '/'+ selected_key).update(values);
+			database.ref('/post/' + USER_ID + '/'+ selected_key).update(values);
 			
 		});
 	});
 
 });
-
-

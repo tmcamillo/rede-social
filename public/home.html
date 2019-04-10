@@ -30,37 +30,38 @@
 
 <body>
 
-	<header class="container-fluid bg-purple">
+	<header class='container-fluid bg-purple'>
 
-		<nav class="navbar col-md-8 mx-auto pt-3">
+		<nav class='navbar col-md-8 mx-auto pt-3'>
 
-			<a class=""><img class="logo-nav" src="../assets/LOGONEGATVO.png"></a>
+			<a class=''><img class='logo-nav' src='../assets/LOGONEGATVO.png'></a>
 
-			<div class="ml-auto d-flex flex-column align-items-center text-center">
-				<i class="fas fa-user-circle text-white"></i>
-				<p id="user-name-p" class="user-name text-white text-break strong m-0"></p>
+			<div class='ml-auto d-flex flex-column align-items-center text-center'>
+				<i class='fas fa-user-circle text-white'></i>
+				<p id='user-name-p' class='user-name text-white text-break strong m-0'></p>
 			</div>
 			<div class="ml-3 d-flex flex-column">
-				<i class="fas fa-sign-out-alt text-white fa-2x"></i>
-				<p id="logout-label" class="text-white text-break strong m-0">Sair</p>
-			</div>
+			<a href='#'><i id='logout-btn' class='fas fa-sign-out-alt text-white fa-2x'></i></a>
+			<p id='logout-label' class='text-white text-break strong m-0'>Sair</p>
+		</div>
 		</nav>
 
 	</header>
 
 	<main>
-		<!-- Toasts Messages -->
-		<div class="position-absolute w-100 d-flex flex-column p-4">
-			<div class="toast ml-auto" role="alert" data-delay="1000" data-autohide="false">
-				<div class="toast-header">
-					<strong class="mr-auto text-primary">Feito!</strong>
-				</div>
-				<div class="toast-body"></div>
+			<!-- Toasts Messages -->	
+			<div class='position-absolute w-100 d-flex flex-column p-4'>
+					<div class='toast ml-auto' role='alert' data-delay='1500' data-autohide='true'>
+						<div class='toast-header'>
+							<strong class='mr-auto text-primary'>Feito!</strong>
+						</div>
+						<div class='toast-body'></div>
+					</div>
 			</div>
 		</div>
 
-		<div class="container-fluid bg-purple p-3">
-			<form id="container-comment" class="container-fluid col-md-6 bg-light rounded p-3">
+		<div class='container-fluid bg-purple p-3'>
+			<form id='container-comment' class='container-fluid col-md-6 bg-light rounded p-3'>
 
 				<div id="multiCollapseExample1" class="collapse multi-collapse form-row">
 
@@ -86,21 +87,22 @@
 						</div>
 					</div>
 
-					<div class="form-group col-9">
-						<input id="label" type="text" class="form-control" placeholder="Marca">
+				<div id='multiCollapseExample1' class='collapse multi-collapse form-row'>
+					<div class='form-group col-9'>
+						<input id='label' type='text' class='form-control' placeholder='Marca'>
 					</div>
-					<div class="form-group col-3">
-						<input id="alcohol" type="number" min="0" step=".01" class="form-control" placeholder="Teor">
+					<div class='form-group col-3'>
+						<input id='alcohol' type='number' min='0' step='.01' class='form-control' placeholder='Teor'>
 					</div>
-					<p id="comment-count" class="comment-count small ml-2 my-0"><span id="charNum">300</span> caracteres restantes
+					<p id='comment-count' class='comment-count small ml-2 my-0'><span id='charNum'>300</span> caracteres restantes
 					</p>
 				</div>
-				<textarea id="comment" type="text" class="form-control form-group large-compact p-3" rows="1"
-					data-toggle="collapse" data-target=".multi-collapse" aria-expanded="false"
-					aria-controls="multiCollapseExample1 multiCollapseExample2" placeholder="Conte o que achou"></textarea>
+				<textarea id='comment' type='text' class='form-control form-group large-compact p-3' rows='1'
+					data-toggle='collapse' data-target='.multi-collapse' aria-expanded='false'
+					aria-controls='multiCollapseExample1 multiCollapseExample2' placeholder='Conte o que achou'></textarea>
 
-				<div class="collapse multi-collapse" id="multiCollapseExample2">
-					<div id="b-space-comment" class="form-row ml-3" id="multiCollapseExample2">
+				<div class='collapse multi-collapse' id='multiCollapseExample2'>
+					<div id='b-space-comment' class='form-row ml-3' id='multiCollapseExample2'>
 						<div class='rating text-center my-auto'>
 							<ul id='stars' class="list-unstyled">
 								<li class='star' data-value='1'>
@@ -120,28 +122,27 @@
 								</li>
 							</ul>
 						</div>
-
-						<div class="form-group custom-control custom-checkbox ml-auto mr-4">
-							<select class="form-control form-control-sm small text-muted" id="selPrivacy">
-								<option value="público">Público</option>
-								<option value="privado">Privado</option>
+						<div class='form-group custom-control custom-checkbox ml-auto mr-4'>
+							<select class='form-control form-control-sm small' id='selPrivacy'>
+								<option value='público'>Público</option>
+								<option value='privado'>Privado</option>
 							</select>
 						</div>
 					</div>
 				</div>
-				<button id="btn-post" type="submit" class="btn btn-purple btn-block add-post">Postar</button>
+				<button id='btn-post' type='submit' class='btn btn-purple btn-block add-post'>Postar</button>
 			</form>
 		</div>
 
 		<section>
-			<div id="timeline" class="bg-pdb">
-				<div class="container-fluid col-md-6 d-flex p-3">
+			<div id='timeline' class='bg-pdb'>
+				<div class='container-fluid col-md-6 d-flex p-3'>
 					<!-- <button type="submit" class="btn btn-purple flex-fill my-3 mr-2">Linha do tempo</button> -->
-					<button id="news-feed" type="submit" class="btn btn-purple flex-fill mr-2">Feed de novidades</button>
-					<button id="private-post" type="submit" class="btn btn-purple flex-fill ml-2">Posts Privados</button>
+					<button id='news-feed' type='submit' class='btn btn-purple flex-fill mr-2'>Feed de novidades</button>
+					<button id='private-post' type='submit' class='btn btn-purple flex-fill ml-2'>Posts Privados</button>
 				</div>
 
-				<ul id="post-list" class="post-list list-unstyled d-flex flex-column-reverse px-3"></ul>
+				<ul id='post-list' class='post-list list-unstyled d-flex flex-column-reverse px-3'></ul>
 			</div>
 
 		</section>
@@ -149,19 +150,19 @@
 	</main>
 
 	<!-- Delete Modal -->
-	<div class="modal fade purple" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
-		aria-hidden="true" data-backdrop="static">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content ">
-				<div class="modal-header">
-					<h5 class="modal-title">Tem certeza que deseja deletar este post?</h5>
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-						<span aria-hidden="true">&times;</span>
+	<div class='modal fade purple' id='deleteModal' tabindex='-1' role='dialog' aria-labelledby='mySmallModalLabel'
+		aria-hidden='true' data-backdrop='static'>
+		<div class='modal-dialog' role='document'>
+			<div class='modal-content'>
+				<div class='modal-header'>
+					<h5 class='modal-title'>Tem certeza que deseja deletar este post?</h5>
+					<button type='button' class='close' data-dismiss='modal' aria-label='Close'>
+						<span aria-hidden='true'>&times;</span>
 					</button>
 				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cancelar</button>
-					<button id="btnDelete"  type="button" class="btn btn-purple">Deletar</button>
+				<div class='modal-footer'>
+					<button type='button' class='btn btn-outline-secondary' data-dismiss='modal'>Cancelar</button>
+					<button id='btnDelete'  type='button'class='btn btn-purple'>Deletar</button>
 				</div>
 			</div>
 		</div>
