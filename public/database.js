@@ -65,11 +65,6 @@ function userName(){
 	})
 }
 
-function openCollapse() {
-
-
-}
-
 //Adiciona dinamicamente itens ao html
 function appendData(childData, childKey, amountLikes, liked) {
 	$(".post-list").append(
