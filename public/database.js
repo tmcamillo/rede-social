@@ -98,8 +98,8 @@ function appendData(childData, childKey, amountLikes, liked) {
 						<i class='delete far fa-trash-alt bluish f-14 mx-1'></i> </a>
 				</div>
 
-				<div id='comment-review'>
-					<h5 data-review-id='${childKey}'><i class='drink' data-toggle='tooltip' data-placement='top'></i>${childData.label}</h5>
+				<div id='comment-review' class='text-comment'>
+					<h5 data-review-id='${childKey}'>${childData.drinkType} ${childData.label}</h5>
 					<p class='review m-1' data-review-id='${childKey}'>${childData.review}</p>
 
 				</div>
@@ -114,9 +114,9 @@ function appendData(childData, childKey, amountLikes, liked) {
 			</div>
 			<div class='card-footer text-muted'>
 			<div class='text-right'>
-				<a href='#' class='like-Unlike mr-auto text-muted' data-post-id='${childKey}'><i
+				<a href='#' class='like-unlike mr-auto text-muted' data-post-id='${childKey}'><i
 						class='${liked ? 'fas fa-heart' : 'far fa-heart'}'></i></a> <span class='likes'
-					data-post-id='${childKey}'>${amountLikes}</span> like(s)
+					data-post-id='${childKey}'>${amountLikes}</span>
 			</div>
 		</div>
 		</div>
@@ -126,9 +126,7 @@ function appendData(childData, childKey, amountLikes, liked) {
 
 	//Executa edição in-place do post 
 	$(`i[data-edit-id='${childKey}']`).on('click', function () {
-
 		event.preventDefault();
-
 		//Cria input/textarea e botão no msm lugar do paragrafo original
 		$(`p[data-review-id='${childKey}']`).html(`
 			<textarea class='post-update form-control rounded bg-light' data-text-id='${childKey}'>${childData.review}</textarea>
@@ -218,7 +216,7 @@ $(document).ready(function () {
 		//Adiciona valores para o objeto no firebase
 		let data = {
 
-			drink: $("input[class='drink']:checked").val().toUpperCase(),
+			drinkType: $("input[class='drink']:checked").val().toUpperCase(),
 			label: $("#label").val().toUpperCase(),
 			review: $("#comment").val(),
 			alcohoolPer: $("#alcohol").val(),
@@ -263,7 +261,7 @@ $(document).ready(function () {
 	//3 passo: validar se o cara já clicou
 	//4 passo: se o cara já clicou descurtir
 
-	$(document).on("click", ".like-Unlike", function (e) {
+	$(document).on("click", ".like-unlike", function (e) {
 		e.preventDefault();
 
 		//Click pega o data-id no elemento clicado
