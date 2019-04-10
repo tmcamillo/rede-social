@@ -120,6 +120,9 @@ body{
   font-size: 2em;
 }
 
+.gray{
+  color:#ccc;
+}
 .purple{
   color: #83579B;
 }

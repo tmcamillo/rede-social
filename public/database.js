@@ -27,8 +27,10 @@ function loadPosts(){
 				}
 			}
 				appendData(childData, childkey, amountLikes, liked);
+
 			});
 		});
+		userName()
 }
 
 // função salva dados do usuário no firebase
@@ -72,11 +74,6 @@ function userName(){
 	})
 }
 
-function openCollapse() {
-
-
-}
-
 //Adiciona dinamicamente itens ao html
 function appendData(childData, childKey, amountLikes, liked) {
 	$('.post-list').append(
@@ -100,9 +97,11 @@ function appendData(childData, childKey, amountLikes, liked) {
 						data-post-id='${childKey}'>
 						<i class='delete far fa-trash-alt bluish f-14 mx-1'></i> </a>
 				</div>
+
 				<div id='comment-review'>
 					<h5 data-review-id='${childKey}'><i class='drink' data-toggle='tooltip' data-placement='top'></i>${childData.label}</h5>
 					<p class='review m-1' data-review-id='${childKey}'>${childData.review}</p>
+
 				</div>
 				<div class='d-flex purple'>
 					<div class='rating text-center my-auto'>
@@ -110,8 +109,7 @@ function appendData(childData, childKey, amountLikes, liked) {
 							${childData.starReply}
 						</ul>
 					</div>
-					<span class='ml-auto'><strong>${childData.alcohoolPer}%</strong><i data-toggle='tooltip'
-							data-placement='top'></i></span>
+					<span class='ml-auto'>Teor alcóolico <strong>${childData.alcohoolPer}%</strong></span>
 				</div>
 			</div>
 			<div class='card-footer text-muted'>
@@ -128,6 +126,7 @@ function appendData(childData, childKey, amountLikes, liked) {
 
 	//Executa edição in-place do post 
 	$(`i[data-edit-id='${childKey}']`).on('click', function () {
+
 		event.preventDefault();
 
 		//Cria input/textarea e botão no msm lugar do paragrafo original
@@ -158,18 +157,17 @@ function appendData(childData, childKey, amountLikes, liked) {
 		$('.save-update').parent().remove();
 		console.log(newPost)
 	}
+
 }
 
 $(document).ready(function () {
-	
 	loadPosts();
 	ratingStar();
-	userName();
+
 
 	$("#news-feed").click(function () {
 		$('#post-list').html("");
 		loadPosts()
-		userName()	
 	})
 
 	$('#private-post').click(function () {
@@ -187,9 +185,10 @@ $(document).ready(function () {
 					}
 				}
 				appendData(childData, childkey, amountLikes, liked);
+				userName()
 			});
 		});
-		userName()	
+	
 	});
 		
 	// Valida se campos estão todos preenchidos no momento da digitação
@@ -220,7 +219,8 @@ $(document).ready(function () {
 		
 		//Adiciona valores para o objeto no firebase
 		let data = {
-			// drinkIcon: iconDrink(parseInt($('#listDrinks li.selected').last().data('value'), 10)),
+
+	drink: $('input[class='drink']:checked').val().toUpperCase(),
 			label: $('#label').val().toUpperCase(),
 			review: $('#comment').val(),
 			alcohoolPer: $('#alcohol').val(),
@@ -228,19 +228,20 @@ $(document).ready(function () {
 			starScore: typeof($('#stars li.selected').last().data('value')) === 'undefined' ? 0 : $('#stars li.selected').last().data('value'),
 			// starScore: parseInt($('#stars li.selected').last().data('value'), 10),
 			privacy: $('#selPrivacy option:selected').val(),
+
 			starReply: $('#stars').html(),
 		};
 		
 		//Pegando id que foi salvo no banco e mostrando na tela
 		let postFromDb = database.ref('/post/' + USER_ID).push(data);
 		appendData(data, postFromDb.key, 0, false);
-
+		userName()
 		$('.toast-body').html('Sua review foi adicionada ao feed :)');
 		$('.toast').toast('show');
 
 		//Reseta form e estrelas após post
 		$('#container-comment')[0].reset();
-		$('#stars').removeClass('selected');
+		$('#stars li').removeClass('selected');
 
 	});
 
