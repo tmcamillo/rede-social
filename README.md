@@ -1,6 +1,7 @@
-![redeSocial](/apres/apPB1.jpeg)
+![redeSocial](/apres/apPB1.jpg)
 
-PAPO DE BIRITAS
+# PAPO DE BIRITAS
+
 Rede Social para mulheres trocarem experiências.
 
 O Papo de Biritas é uma aplicação desenvolvida para Web que tem como objetivo reunir mulheres maiores de 18 anos que apreciam bebidas alcoólicas e querem compartilhar suas experiências e ter indicações para novas possibilidades.
@@ -12,11 +13,11 @@ E nós não somos obrigadas a gostar de uma coisa só.
 
 No Papo de Biritas as usuárias têm a liberdade de interagir em um ambiente seguro, sem julgamentos e livre de estereótipos do tipo “mulher bebendo é feio” e coisas do gênero. 
 
-Vamos começar o papo?
+# Vamos começar o papo?
 
-![redeSocial](/apres/apPB2.jpeg)
+![redeSocial](/apres/apPB2.jpg)
 
-![redeSocial](/apres/apPB4.jpeg)
+![redeSocial](/apres/apPB4.jpg)
 
 # IMPLEMENTAÇÕES FUTURAS
 
@@ -26,10 +27,10 @@ Página oficial de estabelecimentos que vendem os produtos relacionados e serão
 
 Score das usuárias de acordo com a interação com a plataforma, garantindo benefícios junto aos parceiros e mais credibilidade nos reviews.
 
-![redeSocial](/apres/apPB5.jpeg)
+![redeSocial](/apres/apPB5.jpg)
 
 
-#PERSONAS
+# PERSONAS
 
 ![redeSocial](/apres/persona1.jpeg)
 ![redeSocial](/apres/persona2.jpeg)
@@ -37,8 +38,8 @@ Score das usuárias de acordo com a interação com a plataforma, garantindo ben
 
 # A APLICAÇÃO
 
-![redeSocial](/apres/telaInicial.jpeg)
-![redeSocial](/apres/feed.jpeg)
+![redeSocial](/apres/telaInicial.jpg)
+![redeSocial](/apres/feed.jpg)
 
 
 # Como ter certeza que a usuária é maior de idade?
