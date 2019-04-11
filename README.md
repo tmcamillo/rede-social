@@ -1,4 +1,4 @@
-![redeSocial](/apres/apPB1.jpeg)
+![redeSocial](/apres/apPB1.jpg)
 
 # PAPO DE BIRITAS
 
@@ -15,9 +15,9 @@ No Papo de Biritas as usuárias têm a liberdade de interagir em um ambiente seg
 
 # Vamos começar o papo?
 
-![redeSocial](/apres/apPB2.jpeg)
+![redeSocial](/apres/apPB2.jpg)
 
-![redeSocial](/apres/apPB4.jpeg)
+![redeSocial](/apres/apPB4.jpg)
 
 # IMPLEMENTAÇÕES FUTURAS
 
@@ -27,7 +27,7 @@ Página oficial de estabelecimentos que vendem os produtos relacionados e serão
 
 Score das usuárias de acordo com a interação com a plataforma, garantindo benefícios junto aos parceiros e mais credibilidade nos reviews.
 
-![redeSocial](/apres/apPB5.jpeg)
+![redeSocial](/apres/apPB5.jpg)
 
 
 # PERSONAS
@@ -38,8 +38,8 @@ Score das usuárias de acordo com a interação com a plataforma, garantindo ben
 
 # A APLICAÇÃO
 
-![redeSocial](/apres/telaInicial.jpeg)
-![redeSocial](/apres/feed.jpeg)
+![redeSocial](/apres/telaInicial.jpg)
+![redeSocial](/apres/feed.jpg)
 
 
 # Como ter certeza que a usuária é maior de idade?
