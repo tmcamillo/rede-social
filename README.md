@@ -18,6 +18,14 @@ Vamos começar o papo?
 
 ![redeSocial](/apres/apPB4.jpeg)
 
+# IMPLEMENTAÇÕES FUTURAS
+
+Página oficial das bebidas - página contratada pelo fabricante onde terá um canal direto e obter dados específicos desta fatia do mercado que tanto cresce.
+
+Página oficial de estabelecimentos que vendem os produtos relacionados e serão indicados as usuárias por tipo de produto, geolocalização e preferências pessoais.
+
+Score das usuárias de acordo com a interação com a plataforma, garantindo benefícios junto aos parceiros e mais credibilidade nos reviews.
+
 ![redeSocial](/apres/apPB5.jpeg)
 
 
@@ -31,5 +39,15 @@ Vamos começar o papo?
 
 ![redeSocial](/apres/telaInicial.jpeg)
 ![redeSocial](/apres/feed.jpeg)
+
+
+# Como ter certeza que a usuária é maior de idade?
+Não temos com inibir perfis com dados falsos mas implementaremos a checagem de idade nas páginas de abertura vinculada a política de uso. Neste versão priorizamos os requisitos obrigatórios do projeto apresentado pela Laboratória.
+
+# A aplicação não incentiva o consumo de álcool?
+Não! O objetivo é justamente o contrário. É proporcionar interação e conversas onde se valoriza o consumo social aliado ao maior conhecimento sobre cada produto despertando o interesse à degustação e não ao consumo excessivo. Embora cada um seja livre para consumir da forma que quiser.
+
+# Como monetizar?
+A monetização está prevista em nossas implementações futuras, onde as empresas parceiras (fabricantes e estabelecimentos que comercializam) terão suas páginas oficiais e pagarão mensalidade por isso, visto que elas tem real interesse pelos dados coletados pela aplicação. Para as usuárias a plataforma permanece 100% gratuita.
 
 
