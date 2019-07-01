@@ -1,0 +1,178 @@
+.main-center {
+  min-height: 80vh;
+  width: 100%;
+}
+
+#user-name-p {
+  width: 4em;
+}
+
+.img-logo {
+  height: 30em;
+  width: auto;
+}
+
+.logo-nav {
+  width: 9em;
+  height: 4em;
+}
+
+.text {
+  color: white;
+  font-size: 15px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.fa-user-circle {
+  font-size: 2em;
+}
+
+.gray {
+  color: #ccc;
+}
+.purple {
+  color: #83579b;
+}
+.bluish {
+  color: #6abebc;
+}
+
+.purple-ic {
+  color: #83579b;
+}
+
+.purple-ic:hover {
+  color: #764d8d;
+}
+
+.btn-bluish {
+  background-color: #6abebc;
+  border: #6abebc;
+  color: white;
+}
+.btn-bluish:not(:disabled):not(.disabled).active,
+.btn-bluish:not(:disabled):not(.disabled):active,
+.show > .btn-bluish.dropdown-toggle {
+  background-color: #5ba7a5;
+  border: #5ba7a5;
+  color: white;
+}
+.btn-bluish:hover {
+  background-color: #5ba7a5;
+  border: #5ba7a5;
+  color: white;
+}
+.btn-purple {
+  background-color: #83579b;
+  border: #83579b;
+  color: white;
+}
+.btn-purple:hover {
+  background-color: #764d8d;
+  border: #764d8d;
+  color: white;
+}
+.btn-purple:not(:disabled):not(.disabled).active,
+.btn-purple:not(:disabled):not(.disabled):active,
+.show > .btn-purple.dropdown-toggle {
+  background-color: #764d8d;
+  border: #764d8d;
+  color: white;
+}
+
+.bg-bluish {
+  background-color: #6abebc;
+}
+.bg-purple {
+  background-color: #83579b;
+}
+.bg-yellow {
+  background-color: #eac339;
+}
+.bg-pdb {
+  background: url("assets/bg-yellow-1x.png");
+}
+.bg-menu {
+  background: url("assets/1xbg-pdbimg.png");
+  height: 10em;
+}
+
+.rating ul {
+  -moz-user-select: none;
+  -webkit-user-select: none;
+}
+
+.rating ul > li {
+  display: inline-block;
+}
+
+.rating ul > li > i {
+  color: #ccc;
+}
+
+.rating ul > li.star.hover > i.fa {
+  color: #fcd858;
+}
+
+.rating ul > li.star.selected > i.fa {
+  color: #fcd858;
+}
+
+.container {
+  position: relative;
+  cursor: pointer;
+  font-size: 1em;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.cocktail:hover {
+  color: #6abebc;
+}
+.wine:hover {
+  color: #c1181c;
+}
+.beer:hover {
+  color: #fcd858;
+}
+
+.container input:checked ~ .cocktail {
+  color: #6abebc;
+}
+.container input:checked ~ .wine {
+  color: #c1181c;
+}
+.container input:checked ~ .beer {
+  color: #fcd858;
+}
+.likes {
+  color: #c1181c;
+}
+.fa-heart {
+  color: #c1181c;
+}
+.text-comment {
+  color: rgb(102, 99, 99);
+}
+.badge-user {
+  height: 15px;
+}
+.no-post {
+  font-size: 20px;
+}
