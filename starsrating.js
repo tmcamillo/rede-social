@@ -1,4 +1,4 @@
-function ratingStar() {
+let ratingStar = () => {
 
   $('#stars li').on('mouseover', function () {
     let onStar = parseInt($(this).data('value'), 10);

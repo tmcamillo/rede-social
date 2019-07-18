@@ -36,9 +36,11 @@
 .gray {
   color: #ccc;
 }
+
 .purple {
   color: #83579b;
 }
+
 .bluish {
   color: #6abebc;
 }
@@ -56,6 +58,7 @@
   border: #6abebc;
   color: white;
 }
+
 .btn-bluish:not(:disabled):not(.disabled).active,
 .btn-bluish:not(:disabled):not(.disabled):active,
 .show > .btn-bluish.dropdown-toggle {
@@ -63,21 +66,25 @@
   border: #5ba7a5;
   color: white;
 }
+
 .btn-bluish:hover {
   background-color: #5ba7a5;
   border: #5ba7a5;
   color: white;
 }
+
 .btn-purple {
   background-color: #83579b;
   border: #83579b;
   color: white;
 }
+
 .btn-purple:hover {
   background-color: #764d8d;
   border: #764d8d;
   color: white;
 }
+
 .btn-purple:not(:disabled):not(.disabled).active,
 .btn-purple:not(:disabled):not(.disabled):active,
 .show > .btn-purple.dropdown-toggle {
@@ -89,15 +96,19 @@
 .bg-bluish {
   background-color: #6abebc;
 }
+
 .bg-purple {
   background-color: #83579b;
 }
+
 .bg-yellow {
   background-color: #eac339;
 }
+
 .bg-pdb {
   background: url("assets/bg-yellow-1x.png");
 }
+
 .bg-menu {
   background: url("assets/1xbg-pdbimg.png");
   height: 10em;
@@ -145,9 +156,11 @@
 .cocktail:hover {
   color: #6abebc;
 }
+
 .wine:hover {
   color: #c1181c;
 }
+
 .beer:hover {
   color: #fcd858;
 }
@@ -155,24 +168,31 @@
 .container input:checked ~ .cocktail {
   color: #6abebc;
 }
+
 .container input:checked ~ .wine {
   color: #c1181c;
 }
+
 .container input:checked ~ .beer {
   color: #fcd858;
 }
+
 .likes {
   color: #c1181c;
 }
+
 .fa-heart {
   color: #c1181c;
 }
+
 .text-comment {
   color: rgb(102, 99, 99);
 }
+
 .badge-user {
   height: 15px;
 }
+
 .no-post {
   font-size: 20px;
 }

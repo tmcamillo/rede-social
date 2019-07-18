@@ -7,7 +7,6 @@ window.fbAsyncInit = function () {
   });
 
   FB.AppEvents.logPageView();
-
 };
 
 (function (d, s, id) {
@@ -27,20 +26,14 @@ $(document).ready(function () {
       var token = result.credential.accessToken;
       var user = result.user;
 
-      window.location = 'home.html';
+      window.location = 'feed.html';
 
-      console.log(result)
 
     }).catch(function (error) {
       var errorCode = error.code;
       var errorMessage = error.message;
       var email = error.email;
       var credential = error.credential;
-
-      console.log(errorCode)
-      console.log(errorMessage)
-      console.log(email)
-      console.log(credential)
     });
 
   })

@@ -17,7 +17,7 @@
 	<link href='https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css' rel='stylesheet'>
 	<link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.8.1/css/all.css'
 		integrity='sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf' crossorigin='anonymous'>
-		<link rel='stylesheet' type='text/css' href='custom.css'>
+	<link rel='stylesheet' type='text/css' href='custom.css'>
 	<script src='https://www.gstatic.com/firebasejs/5.8.4/firebase-app.js'></script>
 	<script src='https://www.gstatic.com/firebasejs/5.8.4/firebase-auth.js'></script>
 	<script src='https://www.gstatic.com/firebasejs/5.8.4/firebase-database.js'></script>
@@ -30,11 +30,8 @@
 <body class="bg-purple">
 
 	<header class='container-fluid bg-purple'>
-
 		<nav class='navbar col-md-8 mx-auto pt-3'>
-
 			<a class=''><img class='logo-nav' src='assets/LOGONEGATVO.png'></a>
-
 			<div class='ml-auto d-flex flex-column align-items-center text-center'>
 				<i class='fas fa-user-circle text-white'></i>
 				<p id='user-name-p' class='user-name text-white text-break strong m-0'></p>
@@ -43,41 +40,39 @@
 				<a href='#'><i id='logout-btn' class='fas fa-sign-out-alt text-white fa-2x'></i></a>
 				<p id='logout-label' class='text-white text-break strong m-0'>Sair</p>
 			</div>
-
 		</nav>
-
 	</header>
 
 	<main class="container-fluid p-0">
 		<!-- Toasts Messages -->
 		<div class='position-absolute w-100 d-flex flex-column p-4'>
-			<div class='toast ml-auto' role='alert' data-delay='1500' data-autohide='true'>
+			<div class='toast ml-auto' role='alert' data-delay='2000' data-autohide='true'>
 				<div class='toast-header'>
 					<strong class='mr-auto text-primary'>Feito!</strong>
 				</div>
 				<div class='toast-body'></div>
 			</div>
 		</div>
-		</div>
 
 		<section class='container-fluid bg-purple p-3'>
 			<form id='container-comment' class='container-fluid col-md-6 bg-light rounded p-3'>
 
 				<div id='multiCollapseExample1' class='collapse multi-collapse form-row'>
-
 					<div class='d-flex flex-fill flex-row align-items-center form-group'>
 						<div class='ml-2 mr-auto '>
 							<p class='m-0 purple'>Qual o tipo de bebida?</p>
 						</div>
-						<div class="gray d-flex flex-row mx-2 ">
+						<div id="radio-btn-drinks" class="gray d-flex flex-row mx-2 ">
 							<label class="container m-0 p-0">
 								<input class="drink" type="radio" name="radio" value="coquetel">
-								<i class="cocktail fas fa-cocktail fa-2x mx-2" data-toggle="tooltip" data-placement="top"></i>
+								<i class="cocktail fas fa-cocktail fa-2x mx-2" data-toggle="tooltip"
+									data-placement="top"></i>
 							</label>
 
 							<label class="container m-0 p-0">
 								<input class="drink" type="radio" name="radio" value="vinho">
-								<i class="wine fas fa-wine-glass-alt fa-2x mx-2" data-toggle="tooltip" data-placement="top"></i>
+								<i class="wine fas fa-wine-glass-alt fa-2x mx-2" data-toggle="tooltip"
+									data-placement="top"></i>
 							</label>
 
 							<label class="container m-0 p-0">
@@ -86,20 +81,22 @@
 							</label>
 						</div>
 					</div>
+
 					<div class='form-group col-9'>
 						<input id='label' type='text' class='form-control' placeholder='Marca'>
 					</div>
 					<div class='form-group col-3'>
 						<input id='alcohol' type='number' min='0' step='.01' class='form-control' placeholder='Teor'>
 					</div>
-					<p id='comment-count' class='purple small ml-2 my-0'><span id='charNum'>300</span> caracteres restantes
+					<p id='comment-count' class='purple small ml-2 my-0'><span id='charNum'>300</span> caracteres
+						restantes
 					</p>
-
 				</div>
 
 				<textarea id='comment' type='text' class='form-control form-group large-compact p-3' rows='1'
 					data-toggle='collapse' data-target='.multi-collapse' aria-expanded='false'
-					aria-controls='multiCollapseExample1 multiCollapseExample2' placeholder='Conte o que achou'></textarea>
+					aria-controls='multiCollapseExample1 multiCollapseExample2'
+					placeholder='Conte-nos o que achou'></textarea>
 
 				<div id='multiCollapseExample2' class='collapse multi-collapse'>
 					<div id='b-space-comment' class='form-row ml-3' id='multiCollapseExample2'>
@@ -122,6 +119,7 @@
 								</li>
 							</ul>
 						</div>
+
 						<div class='form-group custom-control custom-checkbox ml-auto mr-4'>
 							<select class='form-control form-control-sm small text-muted' id='selPrivacy'>
 								<option value='público'>Público</option>
@@ -134,26 +132,23 @@
 			</form>
 		</section>
 
-			<section id='timeline' class='bg-pdb'>
-				<div class='container-fluid col-md-6 d-flex p-3'>
-					<!-- <button type='submit' class='btn btn-purple flex-fill my-3 mr-2'>Linha do tempo</button> -->
-					<button id='news-feed' type='submit' class='btn btn-purple flex-fill mr-2'>Feed de novidades</button>
-					<button id='private-post' type='submit' class='btn btn-purple flex-fill ml-2'>Posts Privados</button>
-				</div>
-				<ul id='post-list' class='post-list list-unstyled d-flex flex-column-reverse px-3 m-0'>
-				</ul>
-				<!-- <section id="no-post" class="text-white text-center card-body">
-						<i class="fas fa-comments fa-3x m-2"></i>
-					<p class="no-post">
-							Vamos bater um papo?
-							<br>
-							Faça sua primeira postagem!
-					</section> -->
-				</li>
+		<section id='timeline' class='bg-pdb'>
+			<div class='container-fluid col-md-6 d-flex p-3'>
+				<button id='news-feed' type='submit' class='btn btn-purple flex-fill mr-2'>Feed de novidades</button>
+				<button id='private-post' type='submit' class='btn btn-purple flex-fill ml-2'>Posts Privados</button>
+			</div>
+			<ul id='post-list' class='post-list list-unstyled d-flex flex-column-reverse px-3 m-0'></ul>
+			<section id="no-post" class="text-white text-center card-body">
+				<i class="fas fa-comments fa-3x m-2"></i>
+				<p class="no-post">
+					Vamos bater um papo? <br>
+					Faça sua primeira postagem!
+			</section>
 		</section>
 	</main>
-	<footer class="py-4 text-white text-center bg-yellow">
-			<p class="font-small">v0.0.2</p>
+
+	<footer class="py-1 text-white text-center bg-yellow">
+		<p class="font-small">v0.0.3</p>
 	</footer>
 
 	<!-- Delete Modal -->
@@ -192,11 +187,11 @@
 	<script src='https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js'></script>
 
 	<script src='auth.js'></script>
-	<script src='fb-auth.js'></script>
-	<script src='rating.js'></script>
-	<script src='database.js'></script>
-	<script src='script.js'></script>
-	<script src='counter.js'></script>
+	<script src='auth-fb.js'></script>
+	<script src='starsrating.js'></script>
+	<script src='feed.js'></script>
+	<script src='postscounter.js'></script>
+	<!-- <script src='script.js'></script> -->
 </body>
 
 </html>
