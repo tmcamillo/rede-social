@@ -3,98 +3,98 @@ let USER_ID = null;
 let selected_key = "";
 
 $(document).ready(() => {
-    getUserID();
-    ratingStar();
+	getUserID();
+	ratingStar();
 
-    $(".add-post").click((e) => {
-        e.preventDefault()
-        validateForm()
-    })
+	$(".add-post").click((e) => {
+		e.preventDefault();
+		validateForm();
+	})
 
-    $(".post-list").on('click', '.edit-btn', function (e) {
-        e.preventDefault()
-        editPost($(this).attr("data-edit-id"))
-    })
+	$(".post-list").on("click", ".edit-btn", function (e) {
+		e.preventDefault();
+		editPost($(this).attr("data-edit-id"));
+	})
 
-    $(".post-list").on('click', '.save-update', function (e) {
-        e.preventDefault()
-        saveUpdatedPost($(this).attr("data-btn-id"))
-    })
+	$(".post-list").on("click", ".save-update", function (e) {
+		e.preventDefault();
+		saveUpdatedPost($(this).attr("data-btn-id"));
+	})
 
-    $(".post-list").on('click', '.edit-btn', function (e) {
-        e.preventDefault()
-        editPost($(this).attr("data-edit-id"))
-    })
+	$(".post-list").on("click", ".edit-btn", function (e) {
+		e.preventDefault();
+		editPost($(this).attr("data-edit-id"));
+	})
 
-    $(".post-list").on("click", ".trash-ic", function () {
-        selected_key = $(this).attr("data-post-id");
-    });
+	$(".post-list").on("click", ".trash-ic", function () {
+		selected_key = $(this).attr("data-post-id");
+	});
 
-    $("#btnDelete").on("click", () => {
-        deletPost()
-    });
+	$("#btnDelete").on("click", () => {
+		deletPost();
+	});
 
-    $(".post-list").on("click", ".like-unlike", function (e) {
-        e.preventDefault();
-        if ($(this).children().attr("class") === "fas fa-heart") {
-            $(this).children().removeClass("fas fa-heart");
-            $(this).children().addClass("far fa-heart");
-        }
-        else {
-            $(this).children().removeClass("far fa-heart");
-            $(this).children().addClass("fas fa-heart");
-        }
-        selected_key = $(this).attr("data-post-id");
-        checkUniqueLike()
-    });
+	$(".post-list").on("click", ".like-unlike", function (e) {
+		e.preventDefault();
+		if ($(this).children().attr("class") === "fas fa-heart") {
+			$(this).children().removeClass("fas fa-heart");
+			$(this).children().addClass("far fa-heart");
+		}
+		else {
+			$(this).children().removeClass("far fa-heart");
+			$(this).children().addClass("fas fa-heart");
+		}
+		selected_key = $(this).attr("data-post-id");
+		checkUniqueLike()
+	});
 });
 
 
 let getUserID = () => {
-    firebase.auth().onAuthStateChanged((user) => {
-        if (user) {
-            USER_ID = user.uid;
-        }
-        loadPosts();
-    })
+	firebase.auth().onAuthStateChanged((user) => {
+		if (user) {
+			USER_ID = user.uid;
+		}
+		loadPosts();
+	});
 }
 
 let printUserName = () => {
-    database.ref('users/' + USER_ID).once('value')
-        .then(function (snapshot) {
-            let userInfo = snapshot.val();
-            $(".user-name").text(userInfo.name);
-        })
+	database.ref("users/" + USER_ID).once("value")
+		.then(function (snapshot) {
+			let userInfo = snapshot.val();
+			$(".user-name").text(userInfo.name);
+		});
 }
 
 let posts = [];
 let loadPosts = () => {
-    let newPosts = []
-    database.ref('/post/' + USER_ID).once('value')
-        .then((snapshot) => {
-            snapshot.forEach((childSnapshot) => {
-                const childKey = childSnapshot.key;
-                const childData = childSnapshot.val();
-                let amountLikes = childData.likes ? childData.likes.length : 0;
-                childData.childKey = childKey;
-                childData.amountLikes = amountLikes;
-                newPosts.push(childData);
-                validateLikes();
-            });
-            posts = newPosts;
-            displayPosts();
-            badges();
-            printUserName();
-        });
+	let newPosts = []
+	database.ref("/post/" + USER_ID).once("value")
+		.then((snapshot) => {
+			snapshot.forEach((childSnapshot) => {
+				const childKey = childSnapshot.key;
+				const childData = childSnapshot.val();
+				let amountLikes = childData.likes ? childData.likes.length : 0;
+				childData.childKey = childKey;
+				childData.amountLikes = amountLikes;
+				newPosts.push(childData);
+			});
+			posts = newPosts;
+			validateLikes();
+			displayPosts();
+			badges();
+			printUserName();
+		});
 
 
 }
 
 let displayPosts = () => {
-    $(".post-list").empty();
-    posts.map((post) => {
-        $(".post-list").append(
-            `<li>
+	$(".post-list").empty();
+	posts.map((post) => {
+		$(".post-list").append(
+			`<li>
 				<div class='container-fluid col-md-6 bg-light rounded mb-3 p-0'>
 					<div class='card-body'>
 						<div class='d-flex'>
@@ -137,160 +137,160 @@ let displayPosts = () => {
 				</div>
 			</li>
 		`);
-    })
+	})
 }
 
 let validateForm = () => {
-    let error = false
+	let error = false
 
-    if ($('#label').val() === '') {
-        $('#label').addClass("is-invalid");
-        error = true
-    }
-    else {
-        $('#label').removeClass("is-invalid");
-    }
+	if ($('#label').val() === '') {
+		$('#label').addClass("is-invalid");
+		error = true
+	}
+	else {
+		$('#label').removeClass("is-invalid");
+	}
 
-    if ($('#alcohol').val() === '') {
-        $('#alcohol').addClass("is-invalid");
-        error = true
-    }
-    else {
-        $('#alcohol').removeClass("is-invalid");
-    }
+	if ($('#alcohol').val() === '') {
+		$('#alcohol').addClass("is-invalid");
+		error = true
+	}
+	else {
+		$('#alcohol').removeClass("is-invalid");
+	}
 
-    if ($('#comment').val() === '') {
-        $('#comment').addClass("is-invalid");
-        error = true
-    }
-    else {
-        $('#comment').removeClass("is-invalid");
-    }
+	if ($('#comment').val() === '') {
+		$('#comment').addClass("is-invalid");
+		error = true
+	}
+	else {
+		$('#comment').removeClass("is-invalid");
+	}
 
-    if (typeof ($("#stars li.selected").last().data("value")) === "undefined") {
-        $('#stars li').addClass("border border-danger");
-        error = true
-    }
-    else {
-        $('#stars li').removeClass("border border-danger");
-    }
+	if (typeof ($("#stars li.selected").last().data("value")) === "undefined") {
+		$('#stars li').addClass("border border-danger");
+		error = true
+	}
+	else {
+		$('#stars li').removeClass("border border-danger");
+	}
 
-    if (typeof ($("input[class='drink']:checked").val()) === 'undefined') {
-        $("#radio-btn-drinks").addClass("border border-danger");
-        error = true
-    }
-    else {
-        $("#radio-btn-drinks").removeClass("border border-danger");
-    }
+	if (typeof ($("input[class='drink']:checked").val()) === 'undefined') {
+		$("#radio-btn-drinks").addClass("border border-danger");
+		error = true
+	}
+	else {
+		$("#radio-btn-drinks").removeClass("border border-danger");
+	}
 
-    if (!error) saveToDatabase()
+	if (!error) saveToDatabase()
 }
 
 let saveToDatabase = () => {
-    let data = {
-        drinkType: $("input[class='drink']:checked").val(),
-        label: $("#label").val().toUpperCase(),
-        review: $("#comment").val(),
-        alcohoolPer: $("#alcohol").val(),
-        postTime: timeNdatePosted(),
-        starScore: typeof ($("#stars li.selected").last().data("value")) === "undefined" ? 0 : $("#stars li.selected").last().data("value"),
-        privacy: $("#selPrivacy option:selected").val(),
-        starReply: $("#stars").html(),
-    };
-    database.ref("/post/" + USER_ID).push(data);
+	let data = {
+		drinkType: $("input[class='drink']:checked").val(),
+		label: $("#label").val().toUpperCase(),
+		review: $("#comment").val(),
+		alcohoolPer: $("#alcohol").val(),
+		postTime: timeNdatePosted(),
+		starScore: typeof ($("#stars li.selected").last().data("value")) === "undefined" ? 0 : $("#stars li.selected").last().data("value"),
+		privacy: $("#selPrivacy option:selected").val(),
+		starReply: $("#stars").html(),
+	};
+	database.ref("/post/" + USER_ID).push(data);
 
-    $(".toast-body").html("Sua review foi adicionada ao feed :)");
-    $(".toast").toast("show");
+	$(".toast-body").html("Sua review foi adicionada ao feed :)");
+	$(".toast").toast("show");
 
-    loadPosts();
-    badges();
-    resetForm();
+	loadPosts();
+	badges();
+	resetForm();
 }
 
 let editPost = (key) => {
-    let post = posts.find((obj) => { return obj.childKey === key })
-    console.log(post)
-    $(`p[data-review-id='${key}']`).html(`
+	let post = posts.find((obj) => { return obj.childKey === key });
+	console.log(post)
+	$(`p[data-review-id='${key}']`).html(`
 		<textarea class='post-update form-control rounded bg-light' data-text-id='${key}'>${post.review}</textarea>
 		<button class='save-update btn btn-outline-secondary' data-btn-id='${key}'>Salvar</button>
 		`);
 }
 
 let saveUpdatedPost = (key) => {
-    let newPost = $(`textarea[data-text-id='${key}']`).val();
-    $(`p[data-review-id='${key}']`).html(newPost);
-    database.ref('post/' + USER_ID + '/' + key).update({
-        review: newPost
-    })
-        .then(() => {
-            loadPosts();
-        })
+	let newPost = $(`textarea[data-text-id='${key}']`).val();
+	$(`p[data-review-id='${key}']`).html(newPost);
+	database.ref('post/' + USER_ID + '/' + key).update({
+		review: newPost
+	})
+		.then(() => {
+			loadPosts();
+		});
 
-    $(".post-update").parent().remove();
-    $(".save-update").parent().remove();
+	$(".post-update").parent().remove();
+	$(".save-update").parent().remove();
 }
 
 let deletPost = () => {
-    database.ref("post/" + USER_ID + "/" + selected_key).remove();
-    $(`a[data-post-id=${selected_key}]`).closest("li").remove();
-    $("#deleteModal").modal("hide");
-    window.scrollTo(0, 0)
+	database.ref("post/" + USER_ID + "/" + selected_key).remove();
+	$(`a[data-post-id=${selected_key}]`).closest("li").remove();
+	$("#deleteModal").modal("hide");
+	window.scrollTo(0, 0)
 
-    $(".toast-body").html("O post foi deletado do feed :)");
-    $(".toast").toast("show");
+	$(".toast-body").html("O post foi deletado do feed :)");
+	$(".toast").toast("show");
 
-    loadPosts();
-    badges();
+	loadPosts();
+	badges();
 }
 
 let resetForm = () => {
-    $("#container-comment")[0].reset();
-    $("#stars li").removeClass("selected");
+	$("#container-comment")[0].reset();
+	$("#stars li").removeClass("selected");
 };
 
 let timeNdatePosted = () => {
-    let today = new Date();
-    let hour = today.getHours();
-    let min = today.getMinutes();
-    let day = today.getUTCDate();
-    let month = today.getUTCMonth();
-    let year = today.getUTCFullYear();
-    let timeNow = includeZero(day) + '/' + includeZero(month) + '/' + year + ' - ' + includeZero(hour) + ':' + includeZero(min);
-    return timeNow;
+	let today = new Date();
+	let hour = today.getHours();
+	let min = today.getMinutes();
+	let day = today.getUTCDate();
+	let month = today.getUTCMonth();
+	let year = today.getUTCFullYear();
+	let timeNow = includeZero(day) + '/' + includeZero(month) + '/' + year + ' - ' + includeZero(hour) + ':' + includeZero(min);
+	return timeNow;
 }
 
 let includeZero = (number) => {
-    let newNumber = (number.toString() < 10 ? "0" : "") + number.toString();
-    return newNumber;
+	let newNumber = (number.toString() < 10 ? "0" : "") + number.toString();
+	return newNumber;
 }
 
 let checkUniqueLike = () => {
-    database.ref("/post/" + USER_ID + "/" + selected_key).once("value")
-        .then(function (snapshot) {
-            let values = snapshot.val();
-            if (values.likes) {
-                //inArray() search a value in an array and return its index, if the value was not found it’ll return -1.
-                if ($.inArray(USER_ID, values.likes) != -1) {
-                    //splice(index, howmany, item1, ....., itemX)
-                    values.likes.splice($.inArray(USER_ID, values.likes), 1);
-                }
-                else {
-                    values.likes.push(USER_ID);
-                }
-            }
-            else {
-                values.likes = [];
-                values.likes.push(USER_ID);
-            }
-            database.ref("/post/" + USER_ID + "/" + selected_key).update(values);
-        })
+	database.ref("/post/" + USER_ID + "/" + selected_key).once("value")
+		.then(function (snapshot) {
+			let values = snapshot.val();
+			if (values.likes) {
+				//inArray() search a value in an array and return its index, if the value was not found it’ll return -1.
+				if ($.inArray(USER_ID, values.likes) != -1) {
+					//splice(index, howmany, item1, ....., itemX)
+					values.likes.splice($.inArray(USER_ID, values.likes), 1);
+				}
+				else {
+					values.likes.push(USER_ID);
+				}
+			}
+			else {
+				values.likes = [];
+				values.likes.push(USER_ID);
+			}
+			database.ref("/post/" + USER_ID + "/" + selected_key).update(values);
+		})
 }
 
 let validateLikes = () => {
-    let liked = false;
-    if (posts.likes) {
-        if ($.inArray(USER_ID, posts.likes) != -1) {
-            liked = true;
-        }
-    };
+	let liked = false;
+	if (posts.likes) {
+		if ($.inArray(USER_ID, posts.likes) != -1) {
+			liked = true;
+		}
+	};
 }
