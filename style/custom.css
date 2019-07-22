@@ -106,11 +106,11 @@
 }
 
 .bg-pdb {
-  background: url("assets/bg-yellow-1x.png");
+  background: url("../assets/bg-yellow-1x.png");
 }
 
 .bg-menu {
-  background: url("assets/1xbg-pdbimg.png");
+  background: url("../assets/1xbg-pdbimg.png");
   height: 10em;
 }
 

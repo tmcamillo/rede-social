@@ -17,12 +17,12 @@
 	<link href='https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css' rel='stylesheet'>
 	<link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.8.1/css/all.css'
 		integrity='sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf' crossorigin='anonymous'>
-	<link rel='stylesheet' type='text/css' href='custom.css'>
+	<link rel='stylesheet' type='text/css' href='style/custom.css'>
 	<script src='https://www.gstatic.com/firebasejs/5.8.4/firebase-app.js'></script>
 	<script src='https://www.gstatic.com/firebasejs/5.8.4/firebase-auth.js'></script>
 	<script src='https://www.gstatic.com/firebasejs/5.8.4/firebase-database.js'></script>
 
-	<script src='config.js'></script>
+	<script src='js/config.js'></script>
 
 	<title>Cadastro - Papo de Biritas</title>
 </head>
@@ -94,9 +94,7 @@
 				</div>
 
 				<textarea id='comment' type='text' class='form-control form-group large-compact p-3' rows='1'
-					data-toggle='collapse' data-target='.multi-collapse' aria-expanded='false'
-					aria-controls='multiCollapseExample1 multiCollapseExample2'
-					placeholder='Conte-nos o que achou'></textarea>
+					aria-expanded='false' placeholder='Conte-nos o que achou'></textarea>
 
 				<div id='multiCollapseExample2' class='collapse multi-collapse'>
 					<div id='b-space-comment' class='form-row ml-3' id='multiCollapseExample2'>
@@ -128,6 +126,7 @@
 						</div>
 					</div>
 				</div>
+
 				<button id='btn-post' type='submit' class='btn btn-purple btn-block add-post'>Postar</button>
 			</form>
 		</section>
@@ -186,11 +185,11 @@
 	<script src='https://cdn.rawgit.com/PascaleBeier/bootstrap-validate/v2.2.0/dist/bootstrap-validate.js'></script>
 	<script src='https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js'></script>
 
-	<script src='auth.js'></script>
-	<script src='auth-fb.js'></script>
-	<script src='starsrating.js'></script>
-	<script src='feed.js'></script>
-	<script src='postscounter.js'></script>
+	<script src='js/auth.js'></script>
+	<script src='js/auth-fb.js'></script>
+	<script src='js/starsrating.js'></script>
+	<script src='js/feed.js'></script>
+	<script src='js/postscounter.js'></script>
 	<!-- <script src='script.js'></script> -->
 </body>
 

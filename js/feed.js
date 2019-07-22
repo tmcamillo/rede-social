@@ -1,6 +1,7 @@
 const database = firebase.database();
 let USER_ID = null;
 let selected_key = "";
+let collapsed = false;
 
 $(document).ready(() => {
 	getUserID();
@@ -47,6 +48,25 @@ $(document).ready(() => {
 		selected_key = $(this).attr("data-post-id");
 		checkUniqueLike()
 	});
+
+	$("#private-post").on("click", function () {
+		let filtered_posts = posts.filter(p => {
+			return p.privacy === "privado"
+		})
+
+		displayPosts(filtered_posts);
+	})
+
+	$("#news-feed").on("click", function () {
+		displayPosts(posts);
+	})
+
+	$("#comment").on("click", function () {
+		if (!collapsed) {
+			$('.multi-collapse').collapse('show');
+			collapsed = true;
+		}
+	})
 });
 
 
@@ -79,20 +99,19 @@ let loadPosts = () => {
 				childData.childKey = childKey;
 				childData.amountLikes = amountLikes;
 				newPosts.push(childData);
+
 			});
 			posts = newPosts;
 			validateLikes();
-			displayPosts();
+			displayPosts(posts);
 			badges();
 			printUserName();
 		});
-
-
 }
 
-let displayPosts = () => {
+let displayPosts = (post_list) => {
 	$(".post-list").empty();
-	posts.map((post) => {
+	post_list.map((post) => {
 		$(".post-list").append(
 			`<li>
 				<div class='container-fluid col-md-6 bg-light rounded mb-3 p-0'>
@@ -129,7 +148,7 @@ let displayPosts = () => {
 					<div class='card-footer text-muted'>
 						<div class='text-right'>
 							<a href='#' class='like-unlike mr-auto text-muted' data-post-id='${post.childKey}'><i
-									class='${post.liked ? 'fas fa-heart' : 'far fa-heart'}'></i></a> <span class='likes'
+									class='${post.amountLikes != 0 ? 'fas fa-heart' : 'far fa-heart'}'></i></a> <span class='likes'
 								data-post-id='${post.childKey}'>${post.amountLikes}</span>
 						</div>
 					</div>
@@ -246,6 +265,9 @@ let deletPost = () => {
 let resetForm = () => {
 	$("#container-comment")[0].reset();
 	$("#stars li").removeClass("selected");
+
+	collapsed = false;
+	$('.multi-collapse').collapse('hide');
 };
 
 let timeNdatePosted = () => {
@@ -282,6 +304,7 @@ let checkUniqueLike = () => {
 				values.likes = [];
 				values.likes.push(USER_ID);
 			}
+			$(`span[data-post-id=${selected_key}]`).html(values.likes.length);
 			database.ref("/post/" + USER_ID + "/" + selected_key).update(values);
 		})
 }

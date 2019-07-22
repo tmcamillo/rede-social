@@ -1,4 +1,5 @@
 $(document).ready(() => {
+	const database = firebase.database();
 	$('[data-toggle="tooltip"]').tooltip()
 
 	$('#sign-in-btn').click((event) => {
@@ -29,12 +30,11 @@ $(document).ready(() => {
 		firebase.auth().createUserWithEmailAndPassword(email, password)
 			.then((response) => {
 				writeUserData(email, password, response.user.uid);
-				window.location = 'feed.html?id=' + response.user.uid;
 			})
-
 			.catch((error) => {
 				let errorCode = error.code;
 				let errorMessage = error.message;
+				console.log(errorCode, errorMessage)
 				alert('Ocorreu um erro, tente novamente.');
 			})
 	});
@@ -57,4 +57,16 @@ $(document).ready(() => {
 		}
 	});
 
+	let writeUserData = (email, password, uid) => {
+		database.ref('users/' + uid).set({
+			name: nameInput.value,
+			surname: lastNameInput.value,
+			phone: phoneInput.value,
+			email: email,
+			pass: password
+		})
+			.then(() => {
+				window.location = 'feed.html?id=' + uid;
+			})
+	}
 });
